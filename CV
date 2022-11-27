@@ -1,0 +1,108 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\documentclass[12pt]{altacv}
+\usepackage[papersize={216mm,279mm},lmargin=2cm,rmargin=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{lato}
+\usepackage{multicol}
+\definecolor{Mulberry}{HTML}{72243D}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{heading}{Sepia}
+\colorlet{accent}{Mulberry}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\name{TODOS JUNTOS APRENDIENDO}
+\tagline{DIVULGACIÓN DE LA CIENCIA}
+\photo{3.8cm}{channels4_profile.jpg}
+\personalinfo{
+  %\email{}
+  \phone{+525583676953}
+  \mailaddress{tjaprendiendo@gmail.com }
+  \location{Nezahulcóyotl, México}
+  %\twitter{@NISZhU}
+  %\linkedin{linkedin.com/in/ulbke-zhanysbek-a17459177/}
+  %\github{github.com/Ulbike}
+  \extrainfo{PUESTO AL QUE POSTULO: JEFE DE ÁREA} \\
+  \extrainfo{DISPONIBILIDAD PARA VIAJAR Y CAMBIO DE RESIDENCIA}
+}
+
+\begin{fullwidth}
+\makecvheader
+\end{fullwidth}
+
+
+\begin{multicols}{2}
+
+\cvsection{Educación}
+
+\cvevent{Químico}{Universidad Nacional Autónoma de México}{Agosto 2016 -- Febrero 2022 }{}
+
+\cvevent{Maestría en Ciencias Químicas}{Universidad Nacional Autónoma de México}{Agosto 2022 -- Presente }{}
+
+\cvsection{Idiomas}
+\cvskill{Español (materno)}{5}
+\divider
+
+\cvskill{Inglés}{4}
+
+\medskip
+
+\cvsection[page1sidebar]{Experiencia}
+
+\cvevent{Docente en química, física y matemáticas}{Asociación Educativa Nuestra América}{En 2020 --  Ags 2022}{Iztapalapa, CDMX}
+\begin{itemize}
+\item Cursos de ingreso a la educación superior universitaria UNAM, IPN y UAM
+
+\item Preparación pedagógica de alumnos que presentan el examen COMIPEMS
+
+\item Diseño de cursos experimentales con recursos caseros de fácil acceso, y para todas las edades.
+\end{itemize}
+
+\divider
+
+\cvevent{Encargado de venta y contaduria}{Distribuidora Cheli}{En. 2016 -- En. 2020}{Iztapalapa, CDMX}
+\begin{itemize}
+\item Venta y trato al cliente con planeación estrégica
+
+\item Delegado de la administración tributaria, así como de la recepción y exedición de facturas y declaraciones tributarias.
+\end{itemize}
+
+\medskip
+
+\cvsection{Software \& Programacióm}
+
+\cvachievement{}{LaTex (avanzado)}{}
+
+\divider
+
+\cvachievement{}{Fortran (Intermedio)}{}
+
+\divider
+
+\cvachievement{}{Python (avanzado)}{}
+
+\divider
+
+\cvachievement{}{Office (avanzado)}{}
+
+
+\cvsection{Fortalezas}
+
+\cvtag{Trabajador}
+\cvtag{Habilidades de comunicación}
+\cvtag{Responsable}\
+\cvtag{Administración del tiempo}
+\cvtag{Motivador \& Líder}
+
+\end{multicols}
+
+\end{document}
