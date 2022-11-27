@@ -1,0 +1,1497 @@
+%Este documento es una plntilla del desarrolo de una tesis, espero pueda ser de apoyo a más
+%estudiantes, cualquier objeto es este código puede ser tomado y reproducido en su parcualidad o 
+% totalidad. Fuego a los derechos de autor
+
+%Correo: Chavasalvador.jns@gmail.com
+
+\documentclass[12pt]{book} % tamaño de letra, usamos por defecto la fuente de latex
+\usepackage{graphicx} % paqueteria para incluir imagenes
+\usepackage{longtable,multirow,booktabs} %formato para incluir tablas
+\usepackage{caption} % para referencias
+\usepackage[spanish,USenglish,es-tabla]{babel} % alterna inglés y español en la escritura
+\usepackage[hidelinks]{hyperref} %elimina las casillas rojas en los hiperlinks
+\usepackage{float} %aquete para mejorar la posición de flotantes
+\setlength{\parskip}{1em} %
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amssymb} 
+\usepackage{emptypage}
+\usepackage{titlesec}
+\usepackage{amsmath} 
+\usepackage{subfigure}
+\usepackage[papersize={216mm,279mm},lmargin=3cm,rmargin=2cm,top=2cm,bottom=2cm]{geometry}
+%geometry define tamaño de papel para impresión así como el tamaño de los margenes
+
+\titleformat{\chapter}[frame]{\normalfont}{\filcenter \small \ CAPÍTULO \  \thechapter \ }{7pt}{\Large\bfseries\filcenter} %defenimos el encabezado para los capitulos
+
+\titleformat{\section}[display]
+{}{\filcenter\bfseries Sección
+\thesection.}{0pt}{\titlerule[1pt]
+\itshape\fillast}[{\titlerule[1pt]}]
+
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+
+%cambiamos de inglés a español algunos comandos
+\newtheorem{theorem}{Teorema}
+\renewcommand{\contentsname}{Índice general}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\partname}{Parte}
+\renewcommand{\appendixname}{Apéndice}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\chaptername}{Capítulo} 
+\renewcommand{\bibname}{Bibliografía} 
+
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\renewcommand{\headrulewidth}{0.0mm}
+\lfoot{} 
+\cfoot{\thepage} 
+\rfoot{}
+
+\thispagestyle{empty} % no numeramos la pagina
+
+\begin{minipage}{.25\textwidth}
+  \flushleft
+  \center{\includegraphics[scale=.07]{unam.pdf}}
+
+  \vspace{20pt}
+
+  \center{
+    \rule{.5pt}{.6\textheight}
+    \hspace{7pt}
+    \rule{2pt}{.6\textheight}
+    \hspace{7pt}
+    \rule{.5pt}{.6\textheight}
+  } \\
+
+  \center{\includegraphics[scale=.15]{FQ.pdf}}
+\end{minipage}
+\begin{minipage}{.7\textwidth}
+\flushright
+
+\center{
+
+  \center{
+    \LARGE{U}\large{NIVERSIDAD} \LARGE{N}\large{ACIONAL} 
+    \LARGE{A}\large{UTÓNOMA} \\[10pt]
+    \large{DE} 
+    \LARGE{M}\large{ÉXICO} 
+  } \\
+  \rule{\textwidth}{2pt}
+  \\
+  \hrulefill\\[.5cm]
+  
+  \LARGE{F}\large{ACULTAD DE } \LARGE{Q}\large{UÍMICA}\\[1cm]
+
+  \large{{\bf{
+Estudio topológico del flujo de corriente eléctrica en compuestos tipo $ML_4$}}}\\[2cm]
+
+  \huge{
+T \hspace{1cm} E \hspace{1cm} S \hspace{1cm} I \hspace{1cm} S  }\\[1cm]
+
+  \large{QUE PARA OBTENER EL TÍTULO DE}\\[1cm]
+
+  \large{
+QUÍMICO}\\[1cm]
+
+  \large{PRESENTA:}\\[1cm]
+
+  \large{ \textbf{Carlos Alberto Salvador Jiménez Rosas}
+   }\\[1cm]
+
+  \large{
+TUTOR  }\\[1cm]
+
+  \large{
+Dr. José Enrique Barquera Lozada}
+}\\[1cm]
+
+  \large{
+México, CDMX, Coyoacán, C.U. \hspace{3cm} 2022   
+}
+
+\end{minipage}
+
+\newpage
+
+\pagenumbering{Roman} 
+
+\clearpage\hbox{}\thispagestyle{empty}\newpage
+
+Jurado asignado:
+
+\vspace{2cm}
+
+Presidente.       \hspace{1.9cm} Dr. Armando Marín Becerra
+
+Vocal.            \hspace{2.8cm} Dr. Luis Emilio Orgaz Baqué
+
+Secretario.	     \hspace{2cm} Dr. José Enrique Barquera Lozada
+
+Primer Suplente.  \hspace{0.85cm} M en C. Margarita Chávez Martínez
+
+Segundo Suplente.  \hspace{0.6cm} Dr. Jorge Martin del Campo Ramírez
+
+\vspace{2cm}
+Sitio en donde se desarrolló el tema:
+
+Edificio D.
+
+Departamento de Fisicoquímica.
+
+Instituto de Química.
+
+Universidad Nacional Autónoma de México.
+
+\vspace{2cm}
+
+\rule{7.5cm}{0.3mm} 
+
+Dr. José Enrique Barquera Lozada  
+
+Asesor de Tesis 
+
+
+\vspace{2cm}
+
+\rule{7.5cm}{0.3mm} 
+
+Carlos Alberto Salvador Jiménez Rosas
+
+Sustentante
+
+
+\vspace{6cm}
+
+Los resultados y avances de esta tesis, se presentaron en:
+
+\begin{itemize}
+	\item XXXV Simposio interno del Instituto de Química, 2018. Ciudad de México, Coyoacán. ``Estudio teórico topológico del flujo de corriente eléctrica en compuestos tipo $ML_4$". Modalidad cartel
+	
+	\item Química y materiales en el siglo XXI. Future of science 2019. Ciudad de México, Coyoacán. ``Theoretical-topological study of electric current flow". Modalidad cartel
+	
+	\item XXXVII Simposio interno del Instituto de Química, 2020. Ciudad de México, Coyoacán. ``Theoretical-topological study of electric current flow". Modalidad cartel
+\end{itemize}
+
+\newpage
+
+\clearpage\hbox{}\thispagestyle{empty}\newpage
+
+\begin{center}
+\huge{Agradecimientos}
+\end{center}
+
+A mi madre, por todo el apoyo recibido, por la muy particular crianza que me diste. Por ti es que ahora tengo un oficio y una profesión, y pude explotar y orientar toda esa curiosidad y energía que siempre tuve en la ciencia.
+
+A mis abuelos, ``mamá Chela", lo prometido es deuda, ``papá Javier". Sin duda su experiencia fue indispensable para mi formación a todos niveles.
+
+A mi hermano por siempre tener un punto de contraste con mis ideas, por ser el ``P1". Más en general, a toda mi familia, porque siempre recibí un apoyo, un consejo, una idea, una aliento.
+
+A Danna, siempre has estado tú, amiga, compañera de vida, cómplice, consejera, siempre parte de todo. Es invaluable, lo has hecho/haces por mí. Te amo un mol chatita. 
+
+A los ``Conquistadores de la piedra Mayéutica", por ser mis compañerxs y amigxs durante toda la carrera, por las risas, tardes de juegos y comida, mucha comida, ja, ja, ja. El camino nunca fue fácil, pero es mejor llevarlo con las extraordinarias amistades que encontré en ustedes.
+
+Al grupo ``BioBby Fest...", sin duda han sido mis compañerxs en muchos pasajes de la vida, y las personas que siempre me alegra ver, además de aprender siempre de todxs ustedes. 
+
+Al Dr. José Enrique Barquera Lozada, por su guía a través de este trabajo, por los consejos, por tanta paciencia, por mostrarme el camino a seguir para ser un científico. Al ``Barquera reseach group" Carlos Victor, Lidya, Ricardo, Miguel, Gustavo, Antonio, por recibirme cálidamente, por darme un lugar en su comunidad, por su amistad que hizo toda una aventura mi estadía en el IQ.
+
+Estaré eternamente agradecido con todxs quienes fueron mis estudiantes. Siempre he aprendido mucho más yo de ustedes que lo que ustedes pudieron aprender de mí... Con la labor docente amplié mi criterio, y mi modo de ver la vida cambió completamente.
+
+Al maíz.
+
+A las tortugas.
+
+A las nubes ¡Hasta donde me trajo la curiosidad! ¿Hasta dónde me llevará?..
+
+\vspace{1cm}
+
+\begin{flushright}
+\textit{Carlos Alberto Salvador Jiménez Rosas \\
+EDOMEX, cd. Nezahualcóyotl, Julio del 2022.
+}
+\end{flushright}
+
+\newpage
+
+
+\hspace{5cm}
+
+Al CONACYT por el apoyo a través del proyecto: 284367. Y a la DGAPA por el proyecto con número de registro: IN208820, gracias por el financiamiento. 
+
+A la DGTIC  por el tiempo de cómputo en la supercomputadora ``Miztli" de la UNAM, a través del proyecto con número de registro: LACAD-UNAM-DGTIC-304, que fue indispensable para el desarrollo de este trabajo.
+
+
+\newpage %declaramosqueremos continuar la impresión en l siguiente página
+
+\clearpage\hbox{}\thispagestyle{empty}\newpage
+
+%para agregar algunas citas inclinadas a la izquierda o la dercha
+
+\begin{flushright}
+\textit{ And the Raven, never flitting, still is sitting, \\
+On the pallid bust of Pallas just above my chamber door;\\
+And his eyes have all the seeming of a demon’s that is dreaming, \\
+And the lamp-light  him streaming throws his shadow on the floor; \\
+And my soul from out that shadow that lies floating on the floor \\
+Shall be lifted NEVERMORE! \\ [0.5cm]
+-The Raven. Edgar Allan Poe.}
+\end{flushright}
+
+\vspace{5cm}
+
+\begin{flushleft}
+
+\end{flushleft}
+\textit{ El futuro nunca lo vi,\\
+se convirtió en ayer, \\
+cuando intentaba alcanzarlo.\\[0.5cm]
+-Esperanza. José Emilio Pacheco.}
+\end{flushleft}
+
+\vspace{5cm}
+
+\begin{flushright}
+\textit{Aquí son hermosas cuatro florecitas, \\
+su cuerpo aparece como espejo radiante, \\
+sus hojas son bella aurora, \\
+tus raíces son el cordón umbilical, \\
+tus espigas son el plumaje y el canto de las aves, \\
+tu fruto es mi sangre, es mi cuerpo, \\
+porque tú me provees de alimento, \\
+¿Por qué estoy vivo? ¡Por qué estás aquí!\\[0.5cm]
+-Poema al maíz.}
+\end{flushright}
+\newpage
+
+\tableofcontents % indice de contenidos
+\addcontentsline{toc}{chapter}{Índice general}
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Índice de figuras} % para que aparezca en el indice de contenidos
+\listoffigures % indice de figuras
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{Índice de tablas} % para que aparezca en el indice de contenidos
+\listoftables % indice de tablas
+
+% encabezados
+\lhead[]{CAPÍTULO \ \thechapter.\ \rightmark} %impares
+\chead[]{}
+\rhead[CAPÍTULO \ \thechapter. \ \leftmark]{} %pares 
+\renewcommand{\headrulewidth}{0.5pt}
+
+% pie de pagina
+\lfoot[]{P\'gina \thepage \hspace{1pt} de \pageref{LastPage}}
+\cfoot[]{}
+\rfoot[P\'agina \thepage \hspace{1pt} de \pageref{LastPage}]{}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% primera pagina de un capitulo
+\fancypagestyle{plain}{
+\fancyhead[L]{}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+
+\chapter{Resumen}
+	\label{cap.intro}
+
+\markboth{RESUMEN}{RESUMEN}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\begin{flushright}
+\textit{Busca lo más vital, no más, lo que es necesidad, no más [...] y mamá naturaleza te lo da. 
+\\[0.1cm]
+-Oso Balú.}
+\end{flushright}
+
+
+Se hizo un estudio topológico del flujo de corriente eléctrica en compuestos tipo $ML_4$, M = Ni, Pd y Pt. Dichos compuestos tienen una geometría cuadrado plano, y el metal en una configuración $d^8$. Se hicieron pruebas con diversos ligantes, usando ligantes que recorrieran la serie espectroquímica ($Cl^-, F^-, OH^-, CN^-, H^-, H_2O, NH_3, PH_3,CO$), la capacidad de retrodonación ($PF_3, PH_3, PMe_3, PO_4Me_3$), y también se probaron los efectos de los isómeros (cis y trans), de los isómeros geométricos, para poder dilucidar qué relación guardan con el flujo de corriente eléctrica. 
+
+	Se concluyó que la isomería cis y trans, los isómeros geométricos  y la velocidad de los electrones no tiene correlación con el flujo de corriente eléctrica, los ligantes de campo débil aumentan significativamente el flujo de corriente eléctrica, además el efecto es el mismo a una menor capacidad de retrodonación de los ligantes; los ligantes que más aumentan el flujo son el $F^-, Cl^-$ y el metal que exhibió mayores flujos fue el Ni.
+
+\chapter{Antecedentes}
+	\markboth{ANTECEDENTES}{ANTECEDENTES}
+
+\begin{flushright}
+\textit{All my life through, the new sights of Nature made me rejoice like a child.
+\\[0.1cm]
+-Marie Curie.}
+\end{flushright}
+
+La materia se describe formada por átomos que se combinan para formar moléculas. Desde el punto de vista de la mecánica cuántica, toda la información accesible sobre un sistema está contenida en la función de onda del mismo ($\Psi$). Esta función depende de sus coordenadas espaciales, del espín y del tiempo. Aún con simplificaciones y aceptando la separación entre la función de onda nuclear y la electrónica (aproximación de Born–Oppenheimer), la obtención e interpretación de esta última es, por sí sola, suficientemente compleja.
+
+	\section{Densidad electrónica $\rho(r)$}
+	\lhead[]{\thesection \ Densidad electrónica $\rho (r)$}
+
+	Tanto desde un punto de vista teórico como experimental, la densidad electrónica, $\rho (r)$, siempre ha tenido gran importancia para un químico, ya que de su estudio se comprenden las propiedades de una molécula. Dado que es un observable, es susceptible de determinación experimental, por lo que en los últimos años se ha vivido un auge en el desarrollo de técnicas para su determinación, como la difracción de rayos X, la dispersión Compton y la difracción de electrones, la difracción mixta de neutrones y electrones \cite{Savariault}.
+	
+	La densidad electrónica se obtiene de la siguiente forma: $\rho(r) =\mid\Psi\mid^2$. Esto claramente implica que conocemos la función de onda exacta del sistema, lo cual solo es cierto para la molécula de hidrógeno $(H_2)$. En este trabajo se hizo uso de la teoría de los funcionales de la densidad electrónica (DFT, por sus siglas en inglés) que propone una densidad electrónica de prueba, que obtenemos de un conjunto de orbitales atómicos de prueba, y una vez obtenida esta densidad de prueba se realiza un ciclo de optimización de la densidad electrónica, hasta que se obtiene una densidad óptima para el sistema que se está estudiando.	
+	
+	La ventaja de usar $\rho(r)$ en comparación con $\Psi$ es que se tiene una función que únicamente depende de una variable, y nos ayuda a describir las propiedades de un átomo o molécula, en el espacio tridimensional. El análisis del campo vectorial gradiente de la densidad electrónica, $\nabla \rho (r)$, proporciona la información necesaria para delimitar las regiones espaciales de un átomo en una molécula. Este campo también puede definir la topología de $\rho(r)$.
+
+	Es posible relacionar algunos conceptos químicos con los puntos críticos de la densidad electrónica: núcleos (máximos), puntos de enlace (puntos de silla de primer orden), anillos (puntos de silla de segundo orden) y cajas (mínimos). Para entender el enlace químico en este contexto tenemos la línea del campo gradiente que va de un núcleo a otro, el conjunto de las líneas de enlace proporciona la fórmula estructural de la molécula. La cuenca de atracción (o de repulsión) de un punto crítico es el lugar donde todas las líneas del campo gradiente terminan (o nacen). La cuenca de atracción de un núcleo es una región tridimensional convexa y separada de las restantes cuencas. La unión del punto crítico nuclear con su cuenca de atracción constituye un átomo. La integración de operadores apropiados en el interior de una cuenca proporciona las propiedades observables del átomo en la molécula.
+
+	Aún restan por interpretar otros conceptos de la química: la existencia de capas atómicas, las ideas clásicas de los distintos modelos de enlace químico, y la reactividad química que puede presentar una molécula. Para todo ello se hizo un estudio de otro campo escalar: el laplaciano de la densidad electrónica, $\nabla^2 \rho(r)$. 
+
+
+	\section{Laplaciano de la densidad electrónica $\nabla^2 \rho (r)$}
+				\lhead[]{\thesection \ Laplaciano de la densidad electrónica $\nabla^2 \rho (r)$}
+
+El laplaciano de la densidad electrónica es el resultado de aplicar el operador nabla $\nabla^2$ a la función escalar de la densidad electrónica. Según la teoría de átomos en moléculas (QTAIM, por sus siglas en inglés) \cite{Feynman_1, Bader_1, Slater_2}. $\nabla^2 \rho (r)$ es usado para describir las capas de electrones o los pares de electrones libres. De esta forma, la teoría cuántica de átomos en moléculas proporciona un fundamento físico a los modelos empíricos utilizados para predecir la geometría de enlace \cite{Beader}.
+
+	Las regiones en donde los electrones están localizados pueden visualizarse representando la función $- \nabla^2 \rho (r)$ , que presentan máximos relacionados con los pares electrónicos. En la figura \ref{fig:lap_ro} se ha representado $\rho (r)$ y $-\nabla^2 \rho (r)$, se puede observar como la densidad electrónica decrece monótonamente a partir del máximo que en el dibujo aparece situado en la posición atómica. Sin embargo, los cambios en la curvatura a lo largo de la dirección radial provoca que en el laplaciano se alternen las regiones negativas con las positivas, lo que refleja la presencia de regiones concéntricas donde los electrones están localizados, separadas por regiones en donde predomina la repulsión.
+
+\begin{figure}[H]
+\centering
+\subfigure[Densidad electrónica]{\includegraphics[scale=0.6]{imgr/densid_elec.png} }
+\subfigure[Negativo del laplaciano de la densidad electrónica]{\includegraphics[scale=0.6]{imgr/topol_laplaciano.png} }
+\caption{Ambas imágenes representas a un átomo de argón en el vacío. \cite{Beader}} 
+\label{fig:lap_ro}
+\end{figure}
+
+	Representando el negativo del laplaciano de la densidad electrónica, se aprecia la posición de la capa de valencia, que es la más externa de las concentraciones de carga alrededor del átomo. El ejemplo de una molécula de agua está ilustrado en la figura \ref{fig:planos_agua} donde se ha representado el negativo del laplaciano en dos planos de esta molécula. Alrededor del oxígeno aparecen en el plano que contiene los hidrógenos, dos picos correspondientes a los pares de electrones en los enlaces O-H mientras que se observa en un tercer pico en el vértice del ángulo H-O-H. En el plano que bisecta este ángulo se aprecia cómo este último pico es en realidad un nexo de dos picos que corresponden a los pares libres del oxígeno.
+
+\begin{figure}[H]
+\centering
+\subfigure[En un plano que contiene a los tres átomos]{\includegraphics[scale=0.7]{imgr/agua_enplanos.png} }
+\subfigure[Plano que bisecta el ángulo H-O-H]{\includegraphics[scale=0.7]{imgr/agua_distintoplano.png} }
+\caption{Negativo del laplaciano en una molécula de agua aislada. \cite{Beader}} 
+\label{fig:planos_agua}
+\end{figure}
+
+En otras palabras, la topología del laplaciano nos da información acerca de la acumulación o deficiencia  de densidad electrónica, esto es fundamental en la química, pues podemos apoyarnos en esto para hacer descripción moléculas tipo ácidos o bases de Lewis, o en el estudio del laplaciano para apoyar la Teoría de Repulsión de Pares Electrónicos en la Capa de Valencia (TRPECV).
+
+$$ \nabla^2 \rho(r) \left\{
+	       \begin{array}{ll}
+		 (-) & Concentraci\acute{o}n \ de \ densidad \ electr\acute{o}nica \\
+		 (+) & Deficiencia \ de \  densidad \ electr\acute{o}nica
+	       \end{array}
+	     \right.
+$$
+
+	\section{El modelo de corriente de anillo}
+			\lhead[]{\thesection \ El modelo de corriente de anillo}
+				
+El modelo de corriente de anillo se introdujo en 1930 para racionalizar la anisotropicidad observada experimentalmente de la susceptibilidad diamagnética de las sustancias aromáticas.\cite{PaulingL, Lonsdale, LondonF} La extensión de Pople y McWeeny de la teoría de London de la susceptibilidad diamagnética de los hidrocarburos conjugados proporcionó información más detallada sobre la corriente del anillo. \cite{PopleJ,McWeenyR} Los primeros mapas de densidad de corriente fueron publicados en la década de 1960 por Hegstrom y Lipscomb.\cite{HegstromRA} Los perfiles de densidad de corriente para el benceno fueron calculados diez años más tarde por Atkins y Gomes.\cite{AtkinsPW} El modelo de corriente de anillo fue inicialmente criticado \cite{MusherJI, Musher_JI} hoy el modelo es aceptado  \cite{Lazzeretti}.
+	
+	Se han desarrollado métodos computacionales más precisos desde principios de la década de 1990 para calcular la densidad de corriente. En 1993, Kutzelnigg hace mapas de densidad de corriente publicados para el benceno, calculados usando el método de origen individual para orbitales localizados \cite{Kutzelnigg_W} (IGLO, por sus siglas en inglés). Keith y Bader intentaron sortear el problema del origen  mediante el uso de orígenes individuales para cada átomo en la molécula \cite{Keith_TA}. Ellos aplicaron el enfoque de conjunto continuo de transformaciones de origen (CSGT por sus siglas en inglés), que es un método independiente del origen para calcular las densidades de corriente inducidas magnéticamente y publicaron cálculos de densidad de corriente para $H_2O$. \cite{KeithTA, Keith_Bader} Este enfoque usa un origen separado para cada punto en el espacio para calcular las densidades de corriente inducidas magnéticamente y fue un paso significativo para hacer cálculos de densidad de corriente independientes del origen que fueran precisos. Zanasiet \textit{et al.} lo extendió a la transformación continua del origen de densidad de corriente (CTOCD por sus siglas en inglés) y lo empleó en los cálculos de Hartree-Fock de mapas de densidad de corriente de moléculas aromáticas como el antraceno \cite{CorianiS, ZanasiR, LazzP, Zanasi_R}. Se han desarrollado métodos similares para calcular las densidades de corriente inducidas por momentos magnéticos nucleares \cite{Ligabue}.
+	
+	Jusélius \textit{et al.} publican los primeros cálculos de densidad de corriente que emplean orbitales atómicos invariantes del origen (GIAO, por sus siglas en inglés) \cite{Juslius_J, 32WolinskiK} La densidad de corriente obtenida no tiene ninguna referencia al origen cuando se emplean GIAO. El uso de GIAO también mejora la convergencia del conjunto de bases de las propiedades magnéticas calculadas y las densidades de corriente; prácticamente elimina los errores debidos al origen cuando se emplean tamaños de conjuntos de base estándar.  También se ha desarrollado un método para calcular densidades de corriente independientes del origen en el nivel de campo autoconsistente de multiconfiguración (MCSCF, por sus siglas en inglés). \cite{SonciniA, TabertS}.
+	
+	\section{Densidad de corriente inducida magnéticamente $J_{(e)}$}
+		\lhead[]{\thesection \ Densidad de corriente inducida magnéticamente $J_{(e)}$} 
+		
+Cuando una molécula se expone a un campo magnético externo, sus electrones se ven obligados a moverse alrededor de partes de la molécula o alrededor de la molécula entera, dando lugar a una densidad de corriente eléctrica inducida \cite{PaulingL}. De acuerdo con la ley de Faraday, la densidad de corriente inducida, induce un campo magnético en la dirección opuesta al campo externo. El campo magnético en los sistemas moleculares es muy similar al efecto del campo magnético en una bobina en física clásica, sin embargo, para las moléculas los efectos cuánticos deben tenerse en cuenta, ya que los sistemas cuánticos separados espacialmente por corrientes inducidas magnéticamente pueden fluir simultáneamente en la dirección clásica y en la dirección no clásica que fortalece el campo magnético local. La corriente que fluye en las direcciones clásicas y no clásica se llaman corrientes diatrópicas y paratrópicas, respectivamente \cite{Queralt}. 
+	
+	Como las interacciones magnéticas son débiles en comparación con las electrostáticas, la mayoría de los estudios de mecánica cuántica utilizan la teoría de perturbación. En el nivel de teoría de perturbación, se supone que el campo magnético externo es uniforme e infinitamente débil. La densidad de corriente se calcula como la respuesta de primer orden debido al campo magnético aplicado. Para los químicos, el conocimiento sobre la densidad de corriente inducida magnéticamente es relevante porque la densidad muestra cómo los electrones se mueven en los sistemas moleculares cuando se exponen a campos magnéticos externos, dicha información no es de fácil acceso experimentalmente, por lo tanto, los cálculos siguen siendo un complemento obligatorio para la experimentación. Cantidades medibles como los desplazamientos químicos en resonancia nuclear magnética (NMR por sus siglas en inglés) y las susceptibilidades magnéticas pueden estar relacionadas con la densidad de corriente inducida magnéticamente a través de la ley de Bio-Savart \cite{Roca_Sanjun}. Al comprender cómo fluyen las corrientes inducidas magnéticamente en las moléculas, es posible proporcionar información adicional sobre, desplazamientos químicos inusuales. 
+	 
+	 La densidad de corriente es un tensor que consta de nueve componentes correspondientes al flujo de corriente en las tres direcciones cartesianas (x, y, z), cuando los campos magnéticos externos se aplican en las tres direcciones cartesianas. La densidad de corriente se calcula convenientemente en puntos discretos en cuadrículas bidimensionales 2D o 3D y se analiza empleando métodos numéricos. El módulo de la función vectorial produce la magnitud absoluta del vector correspondiente a la densidad de corriente. Este no proporciona ninguna información sobre la dirección de la corriente. Alternativamente, el flujo de corriente eléctrica puede investigarse realizando un análisis numérico de la susceptibilidad de la densidad de corriente que pasa por un plano dado a través de la molécula que se puede determinar mediante la integración numérica del flujo de corriente que es paralelo al vector normal del plano de integración. La susceptibilidad de la corriente proporciona información sobre la fuerza y la dirección del flujo de corriente que pasa por el plano de integración elegido.
+	 
+	  El procedimiento de integración ha resultado ser muy útil, porque la susceptibilidad se puede utilizar como una medida de deslocalización de electrones dada por la movilidad, lo que ha demostrado ser una herramienta muy confiable para el estudio de la aromaticidad  \cite{Pelodmd}. Si bien el concepto de aromaticidad en sí mismo aún se debate, los análisis de densidad actuales han contribuido a la interpretación de observaciones experimentales relacionadas con la aromaticidad molecular \cite{Barqueee}. El conocimiento detallado de las corrientes inducidas magnéticamente podría complementar el diseño experimental de nuevos compuestos que tienen propiedades deseadas. Las densidades también pueden contener información sobre otro tipo de propiedades moleculares que dependen de la deslocalización de electrones.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =16cm,height =6cm]{imgr/image12.png} 
+\caption{La dirección en la que gira la densidad de corriente eléctrica define su nombre.}
+Elaboración propia
+\end{center}
+\end{figure}	  
+
+	\section{Teoría de campo cristalino}	 
+			\lhead[]{\thesection \ Teoría de campo cristalino}
+			
+La teoría del campo cristalino (TCC) es un modelo que permite describir la estructura electrónica  de compuestos de coordinación, esta teoría explica muy bien las propiedades de los materiales, por ejemplo: propiedades magnéticas, colores, entalpías de formación, geometrías. Esta teoría establece que cuando los ligantes se acercan al centro metálico ejercen una interacción electrostática con los orbitales del metal debido al campo eléctrico de los ligantes, haciendo que esa degeneración energética se rompa, llevando a algunos orbitales a bajar de energía, y a algunos otros a aumentar su energía \cite{Ballhausen_c}.
+
+	Este  `` desdoblamiento del campo cristalino", es la energía de separación que sufren los orbitales del centro metálico por la presencia de los ligantes, algunos autores se refieren a esta energía como $10_{dq}$ \cite{Guzzetta_aa}. La forma en la que los orbitales se `` desdoblan" dependerá de la simetría que va a adquirir el compuesto. Existe una notación para destacar cuántos electrones están ocupando orbitales d de un metal, la notación es: $d^n$, donde n = el número de electrones que ocupan los orbitales d. Es de nuestra particular atención ver de qué forma se desdoblan los orbitales para compuestos en geometría cuadrado plano, y con un metal en configuración $d^8$, para este particular caso, podemos observar en la figura \ref{fig:campo_cristalino}.
+	
+\begin{figure}[H]
+\centering
+\includegraphics[trim = 10mm 20mm 0mm 45mm, clip, scale=0.5]{imgr/cp.jpg} 
+\caption{Ligantes de campo fuerte aumentan $10_{dq}$, en cambio, ligantes de campo débil no separan mucho los orbitale ($10_{dq}$ pequeño)\cite{Teoria_del_campo_ligando}} 
+\label{fig:campo_cristalino}
+\end{figure}
+
+	Qué tanto se vayan a separar los orbitales d, dependerá de qué tan fuerte los ligantes estén interactuando con ellos, por ejemplo, interacciones fuertes generan desdoblamiento fuerte, y viceversa. Aquellos ligantes que desdoblan mucho el campo son llamados ``ligantes de campo fuerte", por otro lado, los ligantes que desdoblan poco a los orbitales son llamados ``ligantes de campo débil". Se ha clasificado empíricamente a los ligantes en lo que se conoce como ``serie espectroquímica" que simplemente es un orden respecto a qué ligantes desdoblan más los orbitales, un ejemplo de esta es la que podemos ver en la figura \ref{fig:Serie_}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[trim = 0mm 30mm 0mm 80mm, clip, scale=0.6]{imgr/images(3).png} 
+\caption{Serie espectroquímica. La primera hilera corresponde a ligantes de campo débil, la segunda hilera corresponde a ligantes de campo fuerte. \cite{Teoria_del_campo_ligando}}
+\label{fig:Serie_}
+\end{figure}
+
+	\section{Retrodonación de los ligantes}
+			\lhead[]{\thesection \ Retrodonación de los ligantes}
+			
+El concepto de retrodonación es utilizado en química para referirnos al movimiento de electrones de un orbital $\pi$ de un ligante, a un orbital d del metal que tenga la simetría adecuada \cite{Weller_M}. Este es un fenómeno que se puede apreciar mucho en compuestos organometálicos o en compuestos con elementos de transición. Algunos ligantes que se sabe pueden generar retrodonación cuando forman un enlace son: monóxido de carbono, etileno, el catión nitrosonio. En este proceso se puede liberar al metal de un exceso de carga formal negativa.
+		
+	\subsection{Fosfinas}
+
+
+Los ligantes fosfina tienen la fórmula general, $PR_3$ su estructura depende de R, donde R puede ser alquilo, arilo, H, haluro, etc. Muy relacionados están los ligantes de fosfito que tienen la fórmula general $P(OR)_3$ .  Al igual que el CO, las fosfinas son ligantes electrodonadores \cite{Pascariu_b}. La interacción que contribuye a la unión de fosfina a un centro metálico es un par solitario en el fósforo que interactúa con un orbital d vacío del metal. La naturaleza electrónica de los grupos R influye en la capacidad de donación de los orbitales del átomo de fósforo. Por ejemplo, las alquilfosfatos, que poseen enlaces P – C de hibridación $sp^3$ , tienden a ser mejores donantes de electrones que las aril fosfinas, que poseen enlaces P – C de hibridación $sp^2$ \cite{Henderson_Jr}. El razonamiento aquí es la mayor electronegatividad del orbital híbrido $sp^2$ frente al híbrido $sp^3$, lo que hace que el átomo de fósforo atraiga más a su par solitario cuando se une a un $sp^2$ carbón. La misma idea se aplica cuando se incorporan grupos electroactractores en R: la densidad de electrones en P es baja cuando R contiene grupos electroactractores y alta cuando R contiene grupos electronegativos. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[trim = 0mm 20mm 0mm 0mm, clip, scale=0.7]{imgr/fosfinas.png} 
+\caption{A medida que agregamos grupos R electronegativos, el átomo de fósforo (y el metal al que está unido) se vuelven más pobres en electrones. \cite{Jose_olguin}}
+\end{figure}
+
+	A medida que se colocan grupos  electroactractores en el átomo de fósforo, la capacidad de donación de sigma del ligando de fosfina tiende a disminuir. Al mismo tiempo, la energía del aceptor $\pi$ ($\sigma^*$) en el fósforo se reduce. Por lo tanto, las fosfinas pueden exhibir una variedad de capacidades de donador $\sigma$ y aceptor $\pi$, y las propiedades electrónicas de un centro metálico pueden ajustarse mediante la sustitución de fosfinas \cite{Appleby_T}.
+
+	Puede lograrse un orden empírico aproximado de las capacidades de aceptación de $\pi$ o de donación de $\sigma$ de las fosfinas como el siguiente:
+	
+\[ PMe_3 < PPh_3 < P(OMe)_3 < P(OPh)_3 < P(NR_2)_3 < PCl_3 < CO < PF_3 \]
+
+\[ \rule{5cm}{0.3mm} Mayor \ acidez \ \pi \rule{5cm}{0.3mm}> \]
+
+	\section{Factores que afectan los desplazamientos químicos en H-RMN}	 
+		\label{sec:Factores_que_afectas}
+		\lhead[]{\thesection \ Factores que afectan los desplazamientos químicos en H-RMN}
+
+Los desplazamientos químicos anormales en resonancia magnética nuclear de protón ($H-RMN$) que pueden presentar algunos compuestos han sido un fenómeno muy interesante para los científicos \cite{Segreee}, aunque se han tenido diversos estudios para poder explicar a qué se deben, esta anormalidad sigue siendo objeto de estudio \cite{Skotnicki}. En 1964 Buckingham y Stephens \cite{Buckingham_a} hacen un estudio sobre el desplazamiento de la señal de hidrógeno en complejos octaédricos $d^6$ de hidruros con metales de transición,  ellos presentan un concepto basado en la teoría del campo cristalino, para estimar la contribución electrónica de los átomos de metales de transición a la protección de los átomos de hidrógeno vecinos a ellos. Para complejos $d^8$ de geometría cuadrado plano, el modelo de estos investigadores también se ha aplicado para predecir grandes desplazamientos a campo bajo para los átomos de hidrógeno situados por encima o por debajo del plano molecular \cite{Buckingham_b}.
+
+	Otras investigaciones han confirmado a través de cálculos DFT-GIAO que la protección paramagnética ($\sigma_p$) es el término principal que determina el valor de los desplazamientos de H-RMN, $\delta$, en muchos hidruros de metales de transición \cite{Pelloni_s, Monaco_g}, en estas mismas investigaciones se intentaron establecer una relación directa entre la topología de la densidad electrónica (por ejemplo, en puntos críticos de enlace) y los desplazamientos químicos en H-RMN. En otras investigaciones se ha mostrado la utilidad de las herramientas del análisis topológico de la densidad electrónica en la explicación de los desplazamientos químicos, como utilizar el laplaciano de la densidad para investigar la concentración de carga, los valores en el punto crítico de enlace, o la elipticidad del enlace \cite{Presselt_a, Palusiak_a}.
+
+	Un caso muy interesante es el desplazamiento químico de los hidrógenos agósticos, es decir, los hidrógenos de un ligante que se encuentran interaccionando con un centro metálico (M -- H-C), en ellos encontramos que en casos en los que el hidrógeno agnóstico apunta a un sitio ácido de Lewis local del metal la señal de H-RMN se desplaza hacia campo alto \cite{Poater_b}. Los átomos de hidrógeno agósticos en los complejos planos de metales de transición $d^8$ también se han podido describir en los mismos términos.
+		
+\begin{figure}[H]
+\centering
+\includegraphics[scale=1.5]{imgr/H_agostico.png} 
+\caption{Ejemplo de una interacción de hidrógenos agósticos}
+Elaboración propia
+\end{figure}
+	
+	Investigaciones más recientes han tenido como conclusión que la topología del laplaciano en metales de transición con geometría cuadrado plano y configuración $d^8$ parece influir en el comportamiento diatrópico o paratrópico  de la densidad de corriente inducida por un campo magnético \cite{Barquera}. Además, que los diferentes sentidos de rotación de las densidades de corriente inducida en estos finalmente controlan el tipo de apantallamiento (positivo o negativo) de un protón agóstico. Este estudio deja carta abierta a hacer un análisis más detallado y minucioso de la topología del laplaciano para poder encontrar su relación con los flujos de corriente eléctrica, que es nuestro punto de partida.
+
+\chapter{Objetivos e hipótesis} \label{cap.Objetivos} 
+ \markboth{OBJETIVOS E HIPÓTESIS}{OBJETIVOS E HIPÓTESIS}
+ 
+ \section{Objetivo General}
+ 
+Determinar los factores que inducen un incremento o disminución del flujo de corriente eléctrica en  moléculas con geometría cuadrado plano, teniendo como centro metálico Ni y Pd en configuración $d^8$ bajo un campo magnético externo, estudiando su isomería y las propiedades químicas de sus ligantes.
+
+\section{Objetivos particulares}
+ 
+	\begin{itemize}
+	\item Estudiar el efecto trans que tienen distintos ligantes y si estos generan una diferencia en la energía y en flujo eléctrico en las moléculas.
+	
+	\item Entender si existe una relación entre el laplaciano de la densidad electrónica y el flujo de corriente eléctrica.
+	
+	\item Saber si los ligantes de campo fuerte o de campo débil hacen que se incremente el flujo de corriente eléctrica.
+	
+	\item Discernir qué genera que se incremente o disminuya el flujo de corriente eléctrica en las moléculas
+	\end{itemize}
+	
+\section{Hipótesis}
+	
+	El flujo de corriente eléctrica se ve influenciado por las propiedades químicas de los ligantes, tales como: capacidad de retrodonación, campo ligante. Y efectos como: la isomería cis, trans y la geometría.
+
+
+\chapter{Marco teórico} \label{cap.marco_teo}
+ \markboth{MARCO TEÓRICO}{MARCO TEÓRICO}
+
+\begin{flushright}
+\textit{Science does not know about countries, because knowledge belongs to humanity and is the torch that iluminates the world
+\\[0.1cm]
+-Louis Pasteur.}
+\end{flushright}
+
+	Un método que en principio es exacto, y puede tratar los sistemas que mencionamos con un bajo costo computacional, es la Teoría de Funcionales de la Densidad. El formalismo de esta teoría fue desarrollado por Hohenberg y Kohn \cite{Hohenberg}, y por Kohn y Sham \cite{Kohn}. Kohn y Sahm propusieron la forma en la que se puede conocer la energía exacta del sistema, proponiendo un funcional que considera todas las interacciones llamadas no clásicas, como: la energía de correlación, de intercambio y de auto interacción, en un funcional que llamaron el funcional universal $E_{xc}$, llamado así porque este funcional no depende del sistema que se está estudiando; así entonces la energía que se obtiene por DFT debería de ser la energía exacta del sistema.
+	
+	\section{Teoría de los funcionales de la densidad electrónica}
+		\lhead[]{\thesection \ Teoría de los funcionales de la densidad}
+
+	En 1964 Hohenberg y Khon presentaron dos teoremas fundamentales para la teoría de DFT.
+
+	\begin{theorem}
+El potencial externo $v(r)$ es un funcional único -hasta una constante arbitraria- de densidad electrónica $\rho (r)$ del estado basal
+	\label{T_1}
+	\end{theorem} 
+
+	A partir de este teorema, se muestra que a partir de la densidad electrónica del estado basal se puede determinar el potencial externo, el número de electrones del sistema y conocer el operador hamiltoniano. La demostración del teorema \ref{T_1} consiste en suponer dos potenciales externos distintos $v(r) \ y \ v'(r)$ asociados a una misma densidad electrónica  $\rho$. Dos potenciales distintos darán lugar a dos operadores hamiltonianos $\widehat{H}$ y $\widehat{H'}$ distintos y dos funciones de onda distintas $\Psi \ y \ \Psi '$
+
+\begin{theorem}
+La energía más baja del sistema se obtiene del funcional $E[\rho]$ si y solo si la densidad electrónica empleada es la del estado basal
+\end{theorem}
+
+En otras palabras: {\bf{El principio variacional también aplica para el funcional $E[\rho]$}}. Este teorema garantiza la minimización de la energía total del sistema por un método variacional.
+
+La minimización de la energía con respecto a la densidad electrónica $\partial E_v[\rho] = 0$ debe de ser realizada asegurando la conservación de la N - representabilidad en el proceso de optimización, mediante el método de los multiplicadores indeterminados de Lagrange.
+
+	\section{El método de Kohn y Sham}
+		\lhead[]{\thesection \ El método de Kohn y Sham }
+
+El problema que se presenta es que no se conoce con exactitud la ecuación que relaciona $F_{HK}(\rho)$ con la densidad electrónica. En particular, la forma exacta de $T[\rho]$ no se conoce con suficiente exactitud. Para una función indeterminada, Kohn y Sham propusieron un método para calcular la energía a partir de la densidad electrónica.
+
+Sabemos que la energía está descrita por: 
+
+\begin{equation}
+E_v[\rho] = T[\rho] + \int \rho(r)v_n(r)dr + v_{ee}[\rho]
+\end{equation}
+
+Haciendo una partición en la energía:
+
+\begin{equation}
+E_v[\rho] = T_s[\rho] + \int \rho(r)v_n(r)dr + J[\rho] + (T[\rho] - T_s[\rho]) + (v_{ee}[\rho] - J[\rho])
+\end{equation}
+
+En esta ecuación $T_s[\rho]$ es la energía cinética de los $e^-$ en un sistema que tiene la misma densidad que la densidad real, pero que no hay interacciones $e^- - e^-$. Por otro lado, $J[\rho]$ es la \textit{energía de repulsión Coulómbica} y está descrita por:
+
+\begin{equation}
+J[\rho] = \frac{1}{2} \int \int \frac{\rho(r_i) \rho (r_j)}{\vert r_i - r_j \vert}dr_i dr_j
+\end{equation}
+
+El término $T_c[\rho] = T[\rho] - T_s[\rho]$ es la diferencia entre el sistema real y el sistema de referencia. Y se llama \textit{energía cinética de correlación}. El término $W_{xc}[\rho] = v_{ee}[\rho] -J[\rho]$ es la \textit{energía de correlación e intercambio} de la parte electrónica. Ahora el funcional de correlación intercambio queda:
+
+\begin{equation}
+E_{xc}[\rho] = (T[\rho] - T_s[\rho]) + (v_{ee} [\rho] - J [\rho]) = T_c [\rho]  + W_{xc} [\rho]
+\end{equation}
+
+En $E_{xc}[\rho]$ están contenidos todos las contribuciones a la energía para las que no tenemos una solución sencilla, en función de la densidad electrónica.
+
+\subsection{El campo autoconsistente de Kohn y Sham}
+
+Ahora definimos:
+
+\begin{equation}
+\widehat{h}_i = - \frac{1}{2} \nabla_i^2 + v_{eff} \ ; \ \ \ \langle x_i \vert x_j \rangle = \partial_{ij}
+\end{equation}
+
+Las ecuaciones a resolver son:
+
+\begin{equation}
+\widehat{h}_i x_i = \varepsilon_i x_i
+\end{equation}
+
+Los orbitales que aparecen llamados de Kohn y Sham permiten el cálculo inmediato de la densidad 
+
+\begin{equation}
+\rho (r) = \sum_{i=1}^N \vert x_i (r) \vert^2
+\end{equation}
+
+En el campo autoconsistente se hacen los siguientes pasos:
+
+\begin{enumerate}
+	\item Para la solución, se parte de un conjunto de orbitales moleculares de prueba $$\{x_i(r)\}$$
+	\item Se determina la densidad electrónica con $$\rho (r) = \sum_{i=1}^N \vert x_i (r) \vert^2$$
+	\item Esta densidad se utiliza para obtener un $v_{eff}$. $$v_{eff} = v_n (r) + \int \frac{\partial \rho (r_j)}{\vert r_i - r_j \vert} dr_j + v_{xc} (r)$$
+	\item Se da solución a la ecuación de valores y funciones propias. $$\widehat{h}_i x_i = \varepsilon_i x_i$$
+	\item Se repiten todos las pasos hasta la convergencia.
+\end{enumerate}
+
+	\section{Teoría cuántica de átomos en moléculas}
+ 	\lhead[]{\thesection \ Teoría cuántica de átomos en moléculas}
+ 
+ 	La teoría cuántica de átomos en moléculas (QTAIM, por sus siglas en inglés),  desarrollada por Bader \cite{Beader} dice que cualquier molécula se puede dividir en diferentes regiones o cuencas, que se representarán por la letra griega $\Omega$. Esta partición del espacio molecular se puede realizar mediante superficies de cero flujo del campo vectorial gradiente de la densidad $\nabla \rho(r)$. El espacio identificado como un átomo es aquel en el que las líneas de flujo de $\nabla \rho(r)$ terminan en el núcleo de dicho átomo, como se muestra en la figura \ref{ceroflux_molecue}. Las fronteras de dichas regiones satisfacen la condición de cero flujo.
+		
+		\begin{equation}
+		\nabla \rho(r) \cdot  n = 0
+		\end{equation}			
+	
+	Donde $r$ es el vector de posición y $n$ es el vector normal a la superficie. Se cumple que para cada cuenca ($\Omega$) hay un conjunto de líneas del vector gradiente que se origina en el infinito y termina en un punto entre dos átomos enlazados. Las líneas de este conjunto pertenecen por definición a la superficie de cero flujo porque ellas satisfacen la ecuación localmente.
+	
+
+	\begin{figure}[H]		
+	\begin{center}
+	\includegraphics[width =16cm,height =8cm]{imgr/prettycolors_a.png} 
+	\caption[Lineas de flujo $\nabla \rho(r)$ de la molécula $(CHO-(C_3H_3NS)-CH=CH-CH=CHCl)$]{Lineas de flujo $\nabla \rho(r)$ de la molécula $(CHO-(C_3H_3NS)-CH=CH-CH=CHCl)$. Estas trayectorias delimitan las regiones que pueden ser identificadas como átomos \cite{AIMAll}}
+	\label{ceroflux_molecue}
+	\end{center}
+	\end{figure} 
+
+	Algunas trayectorias de $\nabla \rho(r)$ conectan pares de núcleos (trayectorias de enlace). Las trayectorias de enlace definen los enlaces químicos en QTAIM.
+	
+\subsection{Topología de la densidad electrónica}
+
+	El primer paso para un análisis topológico mediante QTAIM es obtener los puntos críticos de la densidad $\rho(r)$, esto es, obtener los puntos en los que el gradiente de la densidad se hace cero, lo que es lo mismo, resolver:
+	
+ \begin{equation}
+ \nabla \rho(r) = \vec{i} \ \frac{\partial \rho (r)}{\partial x} +\vec{j} \ \frac{\partial \rho (r)}{\partial y} + \vec{k} \ \frac{\partial \rho (r)}{\partial z}
+ \end{equation}
+
+	Igual que con cualquier otra función matemática, se obtendrán tres tipos de puntos: máximos (correspondientes a los núcleos), mínimos y puntos de silla. Para identificarlos habrá que obtener la matriz hessiana evaluada en los diferentes puntos críticos:
+ 
+\begin{equation}
+\nabla^2 \rho(r_C)= A(r_C) =  
+\begin{bmatrix}
+\frac{\partial^2 \rho (r)}{\partial x^2} & \frac{\partial^2 \rho (r)}{\partial x \partial y} & \frac{\partial^2 \rho (r)}{\partial x \partial z}  \\
+\frac{\partial^2 \rho (r)}{\partial y \partial x} & \frac{\partial^2 \rho (r)}{\partial y^2 } & \frac{\partial^2 \rho (r)}{\partial y \partial z}  \\
+\frac{\partial^2 \rho (r)}{\partial z \partial x} & \frac{\partial^2 \rho (r)}{\partial z \partial y} & \frac{\partial^2 \rho (r)}{\partial z^2} 
+\end{bmatrix} _{\vec{r} = \vec{r_C}}
+ \end{equation}
+
+	Esta matriz Hessiana puede ser diagonalizada, ya que es real y simétrica, lo que equivale a una rotación del sistema de coordenadas desde x, y, z $\rightarrow$ $x_p , y_p , z_p$ (que son los ejes principales de curvatura de este punto crítico) empleando una matriz unitaria U, obtenemos:
+	
+ \begin{equation}
+ U^{-1}AU = D = \begin{bmatrix}
+\frac{\partial^2 \rho (r_p)}{\partial x_p^2} & 0 & 0  \\
+0 & \frac{\partial^2 \rho (r_p)}{\partial y_p^2 } & 0 \\
+0 & 0 & \frac{\partial^2 \rho (r_p)}{\partial z_p^2} 
+\end{bmatrix} 
+=
+  \begin{bmatrix}
+\lambda_1 & 0 & 0  \\
+0 & \lambda_2 & 0 \\
+0 & 0 & \lambda_3 
+\end{bmatrix} 
+ \end{equation}
+
+ $\lambda_i$ son las curvaturas o eigenvalores de la densidad con respecto a los ejes principales en ese punto crítico $x_p , y_p , z_p$ y juntos suman la traza de la matriz Hessiana, denominada en este caso como “laplaciano de la densidad”, que viene dado por la expresión:
+
+ \begin{equation}
+ \nabla \cdot \nabla \rho(r) = \nabla^2 \rho(r) = \frac{\partial^2 \rho (r_p)}{\partial x_p^2} + \frac{\partial^2 \rho (r_p)}{\partial y_p^2} + \frac{\partial^2 \rho (r_p)}{\partial z_p^2} = \lambda_1 + \lambda_2 + \lambda_3
+ \end{equation}
+ 
+	El laplaciano de $\rho (r)$ se relaciona con la acumulación o fuga local de carga. Un punto con $\nabla^2 \rho(r ) < 0$ se identifica con una acumulación de carga con respecto a su entorno, mientras que si $\nabla^2 \rho (r ) > 0$, entonces entendemos que existe fuga de densidad con respecto a los alrededores.
+		
+ \begin{itemize}
+ 
+	\item Interacciones de capa compartida, acumulan densidad electrónica en la región internuclear.
+
+   \item Interacciones de capa cerrada, hay fuga de carga en la región internuclear.
+\end{itemize}
+
+  En el caso de que el laplaciano sea positivo, se comporta como una base de Lewis (dador) y, por el contrario, con un laplaciano menor de cero, su carácter es el de un ácido de Lewis (aceptor).
+
+	\subsection{Densidad de corriente inducida magnéticamente}
+	
+	Para el cálculo de la densidad de corriente inducida magnéticamente se utiliza el algoritmo GIAO, aquí se hace una partición de la corriente inducida, en donde separamos la contribución paramagnética $J^B_p(r)$ y la contribución diamagnética $J^B_d(r)$.
+	
+	\begin{equation}
+		J^B(r) = J^B_d(r) + J^B_p(r)
+	\end{equation}		
+	
+	La contribución paramagnética se puede escribir como:
+	
+	\begin{equation}
+	J^B_{\alpha , para} (r) = \frac{i}{2}\sum_{pq} D^B_{pq}\left[\phi^*_p	(r)\left(\nabla_\alpha \phi_q (r) \right) - \left(\nabla_\alpha \phi^*_q (r) \right) \phi_q (r) \right]
+	\end{equation}
+	
+	Donde $D^B_{pq}$ son tres elementos de la matriz de densidad perturbada magnéticamente y $\phi_p(r)$ son los orbitales moleculares. 
+	
+	La contribución diamagnética se obtiene:
+	
+	\begin{equation}
+	J^B_{\alpha , dia} (r) = - \frac{1}{2} \epsilon_{\alpha \beta \gamma} \sum_{pq} D_{pq}\left( r - r_0 \right) _\gamma \phi^*_p(r)\phi_q(r)
+	\end{equation}
+
+
+La densidad de corriente eléctrica ($\vec{J}$ ) es un campo vectorial que describe el flujo de carga en cada punto del espacio. La dirección del vector  es la misma que el movimiento de las cargas. En unidades base SI, la densidad de la corriente eléctrica se mide en ampere por metro cuadrado $\frac{A}{m^2}$.	
+	
+	La propiedad de $J (r)$ que se  analiza principalmente en el estudio de las moléculas bajo campos magnéticos es la dirección de rotación de las corrientes eléctricas (tropicidad). Un flujo en el sentido de las agujas del reloj o en sentido contrario es una corriente diatrópica o paratrópica respectivamente, es importante tener en cuenta que para determinar la tropicidad de las corrientes eléctricas tomemos como referencia que el campo magnético debe de apuntar hacia el observador.
+		
+	\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width =16cm,height =7cm]{imgr/j_inducido.png}
+	\caption{Corrientes inducidas en una molécula bajo un campo magnético $\vec{B}$} 
+	Elaboración propia
+	\label{Corrientes_inducidas}
+	\end{center}
+	\end{figure}
+	
+	Cuando se aplica un campo magnético perpendicular al plano de la molécula, se genera un campo magnético inducido ($\vec{B}_{ind}$) debido a la rotación de las corrientes eléctricas, como se ilustra en la imagen \ref{Corrientes_inducidas}. En un estudio de Resonancia Magnética Nuclear de protón ($H^1$NMR por sus siglas en inglés) si el campo magnético inducido está a favor del campo magnético impuesto, ayudaría a crear un efecto de desprotección de los protones que se encuentren en el plano de la molécula, y sus desplazamientos se verían a campo más bajo, lo que ayudaría a poder separar las señales obtenidas en un espectro de $H^1$NMR. Los detalles de la resonancia magnética nuclear se discuten en la sección \ref{Seccion_RMN}
+	
+	\section{Resonancia magnética nuclear} \label{Seccion_RMN}
+		\lhead[]{\thesection \ Resonancia magnética nuclear}
+
+La resonancia magnética nuclear (RMN) es una de las herramientas más poderosas que existen en la actualidad para dilucidar estructuras de moléculas. Para ello, y como su nombre lo indica, esta técnica se basa en una característica intrínseca de los núcleos: sus propiedades magnéticas, aunque no se puede dejar de lado la importancia de las propiedades mecánicas.
+
+Los protones y neutrones que conforman los núcleos atómicos tienen espín 1/2 cada uno (igual que los electrones) y el espín total de un núcleo (al cual llamaremos I) es la suma de los espines de las partículas que los componen. Dicha sumatoria no es sencilla, pero vamos a clasificar a los núcleos según la resultante, dando algunos ejemplos. El valor de I depende de la paridad del número atómico (Z) y del número másico (A).
+
+En presencia de un campo magnético, cada espín nuclear puede adoptar diferentes orientaciones. Cada orientación tiene asociada una componente $J_z$ a lo largo del eje del campo aplicado. Dicha componente $J_z$ estará dada por 
+
+$$J_z = \frac{mh}{2 \pi} = m \hbar$$
+
+Donde m es un número de la serie $I, I-1, \cdots ,-I+1, -I$. Dicho en otras palabras, todos los números entre +I y –I saltando de uno en uno. En el caso de los núcleos con espín I=$\frac{1}{2}$, m puede tomar los valores $-\frac{1}{2} \ y \ + \frac{1}{2}$. Este es el caso de los protones ( $^1H$) y $^{13}C$.
+
+	Por el contrario, si, el núcleo tiene espín I=1, m puede tomar valores -1, 0 o 1. Este es el caso del deuterio ( 2 H). Para núcleos con espín I=$\frac{3}{2}$, m puede tomar valores $- \frac{3}{2}, - \frac{1}{2}, +- \frac{1}{2} \ o \ + \frac{3}{2}$.
+
+Dado que el espín nuclear no se alinean paralelamente al campo externo aplicado, el mismo recibe un torque y comienza a efectuar un movimiento de precesión, del mismo modo que lo hace un trompo. La frecuencia de este giro depende del campo magnético aplicado ($B_0$) y del núcleo del cual se trate. La misma viene expresada por la ecuación:
+
+\begin{equation}
+ \mu_L = \frac{\gamma}{2 \pi} B_0
+\end{equation}
+
+Se la conoce como frecuencia de Larmor del núcleo. La magnitud $\gamma$ se denomina constante giromagnética, y es una constante propia de cada núcleo. Al aplicar un campo magnético externo, la población de núcleos se dividirá según cómo alineen sus espines respecto al campo magnético. Supongamos el ejemplo sencillo de núcleos con espín I=1/2 y que, por lo tanto, pueden adoptar solo dos orientaciones posibles (correspondientes a m +1/2 y m -1/2): a favor del campo magnético externo o en contra de él. En este momento el panorama ha cambiado notablemente: aquellos núcleos que orienten su espín a favor del campo estarán en un nivel energético ligeramente inferior a aquellos que lo orienten en contra. Y la diferencia de energía entre ambos estados ($\Delta E$) viene dada por la siguiente ecuación:
+
+\begin{equation}
+\Delta E = \frac{\gamma h}{2 \pi} B_0
+\end{equation} 
+
+Donde $B_0$ es el campo magnético aplicado, y $h$ es la constante de Planck. Sin embargo, esta diferencia energética es muy pequeña: supongamos un equipo de RMN que aplique un campo magnético de 7.05 T, entonces, para el caso de los núcleos de $^1H$ el valor de $\Delta E$ sería de aproximadamente 0.12 $\frac{J}{mol}$. Esta energía extremadamente baja corresponde al rango de las radiofrecuencias (ondas de radio) y es la que separa a las dos poblaciones de núcleos de 1H en estas condiciones.
+
+	Si se calcula cuál es la frecuencia correspondiente a esta diferencia de energía, veremos que corresponde aproximadamente a 300MHz. Si se irradia con esa frecuencia, entonces espines de los núcleos comenzarán a interaccionar con la radiofrecuencia (más precisamente, con su componente magnética) y la muestra absorberá radiación. Esta condición se llama condición de resonancia y se da cuando la frecuencia de la radiación emitida coincide con la frecuencia de Larmor de los núcleos. En estas condiciones, dicha absorción se mide de manera indirecta y el equipo la percibe como una señal.
+
+ \subsection{Desplazamiento químico}
+
+    La herramienta para distinguir núcleos de H rodeados por diferentes densidades electrónicas son las diferencias en frequencias de resonancia. Sin embargo, usar la frecuencia como medida de las densidades electrónicas alrededor del núcleo tiene un problema: depende del campo magnético externo. Si hacemos el mismo experimento en un equipo que opere con un campo magnético más intenso (y, por ende, a valores de frecuencia mayores), por ejemplo, un RMN de 500 MHz, observaremos que el cloroformo absorbe a 500,003,630Hz mientras que el pentacloroetano lo hace a 500,003,200Hz. Ahora la diferencia entre ellas es mayor. 
+
+	Para resolver este problema se define el desplazamiento químico que se denomina con la letra delta ($\delta$). Para definir el desplazamiento químico se necesita elegir una sustancia como referencia para medir, ya no frecuencias, sino diferencias de frecuencia. Dicha sustancia es usualmente el tetrametilsilano (TMS), que presenta valores muy bajos de frecuencia dado que la densidad electrónica sobre sus hidrógenos es alta debido a que el silicio es menos electronegativo que el C. Por convención, se le asigna al TMS el valor de delta cero ($\delta$ TMS = 0).
+
+El desplazamiento químico de los H de otras sustancias se calcula así: 
+
+\begin{equation}
+\delta = \frac{(\upsilon_i – \upsilon_{TMS}) 10^6}{\upsilon_0}
+\end{equation}
+
+Donde $\upsilon_i$ es la frecuencia de absorción del hidrógeno que estamos considerando, $\upsilon_{TMS}$
+es la frecuencia a la cual absorbe el TMS y $\upsilon_0$ es la frecuencia aproximada (nominal) a la cual trabaja el equipo que se está usando (si es un equipo de 300 MHz, entonces $\upsilon_0$ es 300.10 6 Hz, etc). Los desplazamientos químicos ($\delta$) no sólo son independientes del campo aplicado, sino que también toman valores usuales entre 0 y 12, muy cómodos de usar, comparar, memorizar y tabular.
+
+	Nótese que $\delta$, al ser un cociente de frecuencias, no tiene unidades. Puede seguirse el uso de  ppm (lo cual indica partes por millón, dado que está multiplicado por $10^6$), no obstante lo cual, la misma suele obviarse y se indican los valores de $\delta$ sencillamente con un número. Los espectros RMN suelen mostrar un gráfico de absorbancia vs. $\delta$, que es equivalente a un gráfico de absorbancia vs frecuencia aplicada. En los mismos, se grafica $\delta$ en la escala horizontal con el 0 del lado derecho (es decir, $\delta$ aumenta hacia la izquierda). Aquellos protones que absorben a $\delta$ altos, diremos que absorben a campo bajo. Por el contrario, para los que absorben a $\delta$ bajo diremos que absorben a campo alto.
+		
+\chapter{Metodología} \label{Metodologia}
+ \markboth{METODOLOGÍA}{METODOLOGÍA}
+ \lhead[]{}
+
+Se hicieron uso de los recursos de supercómputo de la UNAM, además de utilizar las computadoras y software del Instituto de Química, para poder desarrollar esta investigación.
+
+ \section{Optimización de geometría}
+		\lhead[]{\thesection \ Optimización de geometría} 
+		
+	La construcción de todas las moléculas se hizo en el programa Avogadro.	Utilizando el programa Gaussian 16 \cite{Gaussian16}, se hizo una optimización de geometría de todas las moléculas presentadas en esta tesis, utilizando el funcional global híbrido M06 \cite{Zhao-M06}  que tiene un  intercambio de 27$\%$ HF. Este funcional está destinado a la termoquímica del grupo principal y las interacciones no covalentes, termoquímica de metales de transición y organometálicos. Se utilizaron las funciones base def2TZVP.\cite{Weigend}. También se hizo el cálculo de frecuencias de vibración de los átomos en las moléculas, para asegurar haber encontrado un mínimo en la superficie de energía potencial. Ya optimizada la geometría, se hizo el cálculo de los apantallamientos magnéticos, en todas las moléculas.
+	
+	Para las moléculas que incluyen Ni como centro metálico, los cálculos de RMN se hicieron a un nivel de teoría M06/Def2TZVP. En el caso de las moléculas que tienen como centro metálico Pd se utilizaron las funciones JorgeTZVP \cite{A_New_Basis_Set}.	
+
+ \section{Análisis de la topología de la densidad electrónica}
+		\lhead[]{\thesection \ Análisis de la topología de la densidad electrónica} 
+		 
+	Con el programa AIMALL \cite{AIMAll_ESTUDIO} se hizo el cálculo de planos de densidad electrónica, y de densidad de corriente inducida. Sabiendo tres puntos en ese plano, el primer punto $P_1(x_1, y_1, z_1)$ eran las coordenadas del metal, el segundo punto $P_2(x_2, y_2, z_2)$ las coordenadas del metal, aumentando una unidad de distancia a la coordenada que se encuentra perpendicular al plano de la molécula, y el tercer punto $P_3(x_3, y_3, z_3)$ era la distancia media entre ligantes vecinos. A partir de esos 3 puntos se obtienen 2 vectores en el plano: $V_1 = (x_1, y_1, z_1) \ y \ V_2 = (x_2, y_2, z_2) $ 
+
+  Con estos 2 vectores se puede hacer el cálculo de los planos como se ve en figura \ref{fig:planos_de_moleculas}.
+  
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =16cm,height =8cm]{imgr/planos_1_4.png} 
+\caption{Todos los planos de las moléculas se calcularon entre los espacios que hay entre los ligantes.}
+	Elaboración propia.
+\label{fig:planos_de_moleculas}
+\end{center}
+\end{figure}
+
+	Cálculo del Laplaciano de la densidad electrónica: $\nabla^2 \rho(r)$, los resultados se observan en la figura \ref{fig:lap_de_moleculas}.
+  
+  	$$ \nabla^2 \rho(r): \left\{
+	       \begin{array}{ll}
+			M\acute{a}ximo: Indica \ una \ valor \ m\acute{a}ximo \ de \ densidad \\
+			M\acute{i}nimo: Indica \ un \ m\acute{i}nimo \ de \ densidad	 
+	       \end{array}
+	     \right.
+	$$
+	
+	\begin{equation}
+ \nabla^2 \rho(r) = \frac{\partial^2 \rho (r)}{\partial x^2} \vec{i}  + \frac{\partial^2 \rho (r)}{\partial y^2} \vec{j}  +  \frac{\partial^2 \rho (r)}{\partial z^2} \vec{k} 
+	\end{equation} 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[trim = 150mm 20mm 150mm 45mm, clip, scale=0.35]{imgr/img11LapPd.png} 
+\caption{Amarrilo indica un máximo, el rosa indica un mínimo.}
+	Elaboración propia.
+\label{fig:lap_de_moleculas}
+\end{center}
+\end{figure}
+
+	Particularmente los valores del laplaciano de interés para este estudio, son las diferencias entre los valores máximo y mínimo adyacentes del laplaciano sobre el plano molecular, la forma de obtención de estas diferencias se ilustra en la figura \ref{fig:lap_max_min}
+	
+	\begin{figure}[H]
+	\begin{center}
+	\includegraphics[width =15cm,height =8cm]{imgr/pdLap.png} 
+	\caption{Valores máximos y mínimos de $\nabla^2 \rho$ sobre el plano molecular}
+	Elaboración propia
+	\label{fig:lap_max_min}
+	\end{center}
+	\end{figure} 
+
+	Con el programa ParaView \cite{ParaView} se hicieron los siguientes cálculos:
+	
+\begin{itemize}
+	\item Flujo de corriente eléctrica en dirección del vector normal al plano.
+	\item Cálculo de la velocidad de los electrones en el plano
+\end{itemize}
+  
+  \begin{equation}
+	V_e = \frac{J_{(e)}}{\rho_e} = \frac{V_e \rho_e}{\rho_e}  
+  \end{equation}  
+
+	 \section{Búsqueda de correlaciones}
+		\lhead[]{\thesection \ Búsqueda de correlaciones} 
+				 
+	Con los datos que se obtienen de velocidad de los electrones, flujo de corriente eléctrica y laplaciano, buscamos correlaciones, utilizando el método de cuadrados mínimos. Para todos los casos se reporta el valor de $r^2$ para que se pueda notar qué tan lineales son los resultados. Para la elaboración de las  gráficas y el cálculo de mínimos cuadrados se utilizó el lenguaje de programación python.
+ 
+ 
+\chapter{Resultados y discusión}
+ \markboth{RESULTADOS Y DISCUCIÓN}{RESULTADOS Y DISCUCIÓN}
+  \lhead[]{}
+
+Se comenzó esta investigación cuestionando si la diferencia entre tener un isómero cis o uno trans marcaba una diferencia en la estabilidad de la molécula, para posteriormente poder ver si esto se acompañaba de una diferencia en el flujo de corriente eléctrica, en este caso se usaron como centros metálicos Ni, Pd y Pt, bajo la metodología ya descrita en el capítulo: \ref{Metodologia}, se buscó probar si el flujo de corriente eléctrica estaba ligado a la estabilidad de los isómeros.
+
+	\section{Influencia de los isómeros cis y trans}
+		\label{sec:Influencia_isome}
+		\lhead[]{\thesection \ Influencia de los isómeros cis y trans} 
+
+A continuación las diferencias ($\Delta$) que se presentan en las tablas \ref{Comp:Ni-cis-trans}, \ref{Pd-cis-trans} y \ref{Pt-cis-trans} se refieren en todos los casos a hacer la resta del valor encontrado para el isómero cis con el isómero trans, $\Delta = cis - trans$. Los valores de las siguientes tablas, imágenes y figuras están dados en unidades atómicas (a.u por sus siglas en inglés) a menos que se indique lo contrario.
+
+\begin{table}[H]
+\centering
+\caption{Comparación de isómeros cis y trans con Ni}
+\label{Comp:Ni-cis-trans}
+\resizebox{12cm}{!}{
+\begin{tabular}{cccc} 
+\toprule
+Compuesto & Isómero & Energía / Hartree & $\Delta$ Energía / kJ/mol  \\ \midrule
+\multirow{2}{3cm}{$Ni(CH3)_2(NH3)_2$} & cis & -1701.172 & \multirow{2}{2cm}{-1.749} \\ 
+& trans & -1701.169  \\ 
+\hline
+\multirow{2}{3cm}{$Ni(H)_2(NH3)_2$} & cis & -1622.574 & \multirow{2}{2cm}{-4.059} \\ 
+& trans & -1622.567  \\ 
+\hline
+\multirow{2}{3cm}{$Ni(Cl)_2(NH3)_2$} & cis & -2541.902 & \multirow{2}{2cm}{16.305} \\ 
+& trans & -2541.928 \\ 
+\hline
+\multirow{2}{3cm}{$Ni(NO2)_2(NH3)_2$} & cis & -2031.675 & \multirow{2}{2cm}{16.131} \\ 
+& trans & -2031.701 \\ 
+\hline
+\multirow{2}{3cm}{$Ni(CN)_2(NH3)_2$} & cis & -1807.082 & \multirow{2}{2cm}{6.945} \\ 
+& trans & -1807.093 \\ 
+\hline
+\multirow{2}{3cm}{$Ni(F)_2(NH3)_2$} & cis & -1821.174 & \multirow{2}{2cm}{13.867} \\ 
+& trans & -1821.196 \\ 
+\hline
+\multirow{2}{3cm}{$Ni(PH3)_2(Cl)_2$} & cis & -3115.079 & \multirow{2}{2cm}{7.301} \\ 
+& trans & -3115.091 \\ 
+\hline
+\multirow{2}{3cm}{$Ni(CO)_2(Cl)_2$} & cis & -2655.407 & \multirow{2}{2cm}{5.959} \\ 
+& trans & -2655.416 \\ 
+\bottomrule
+\end{tabular}
+}
+\end{table}	
+
+\begin{table}[H]
+\centering
+\setcounter{table}{1}
+\caption{Comparación de isómeros cis y trans con Pd}
+\label{Pd-cis-trans}
+\begin{longtable}{cccc} 
+\toprule
+Compuesto & Isómero & Energía / Hartree & $\Delta$ Energía / kJ/mol  \\ \midrule
+\multirow{2}{3cm}{$Pd(CH_3)_2(NH_3)_2$} & cis & -320.820 & \multirow{2}{2cm}{-10.948} \\ 
+& trans & -320.802  \\ 
+\hline
+\multirow{2}{3cm}{$Pd(F)_2(NH_3)_2$} & cis & -440.778 & \multirow{2}{2cm}{8.855} \\ 
+& trans & -440.793  \\ 
+\hline
+\multirow{2}{3cm}{$Pd(Cl)_2(NH_3)_2$} & cis & -1161.529 & \multirow{2}{2cm}{12.479} \\ 
+& trans & -1161.549 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2(F)_2$} & cis & -554.287 & \multirow{2}{2cm}{-2.069} \\ 
+& trans & -651.306 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(NO_2)_2(NH_3)_2$} & cis & -651.306 & \multirow{2}{2cm}{11.397} \\ 
+& trans & -651.324 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(NH_3)_2$} & cis & -426.717 & \multirow{2}{2cm}{3.057} \\ 
+& trans & -426.722 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(H)_2(NH_3)_2$} & cis & -242.231 & \multirow{2}{2cm}{-14.088} \\ 
+& trans & -242.208 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2(Cl)_2$} & cis & -1275.039 & \multirow{2}{2cm}{2.19358} \\ 
+& trans & -1275.043 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(PH_3)_2(Cl)_2$} & cis & -1734.723 & \multirow{2}{2cm}{4.017} \\ 
+& trans & -1734.730 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(CO)_2$} & cis & -540.216 & \multirow{2}{2cm}{$4.0x10^{-3}$} \\ 
+& trans & -540.216 \\ 
+\bottomrule
+\end{longtable}
+\end{table}	
+
+\begin{table}[H]
+\centering
+\setcounter{table}{2}
+\caption{Comparación de energías cis y trans con Pt}
+\label{Pt-cis-trans}
+\begin{tabular}{cccc} 
+\toprule
+Compuesto & Isómero & Energía / Hartree & $\Delta$ Energía / kJ/mol \\ \midrule
+\multirow{2}{3cm}{$Pt(CH3)_2(NH3)_2$} & cis & -312.269 & \multirow{2}{2cm}{-10.739} \\ %
+& trans & -312.252  \\ 
+\hline
+\multirow{2}{3cm}{$Pt(H)_2(NH3)_2$} & cis & -233.689 & \multirow{2}{2cm}{-13.119} \\ 
+& trans & -233.659  \\ 
+\hline
+\multirow{2}{3cm}{$Pt(Cl)_2(NH3)_2$} & cis & -1152.970 & \multirow{2}{2cm}{12.424} \\ 
+& trans & -1152.990 \\ 
+\hline
+\multirow{2}{3cm}{$Pt(NO2)_2(NH3)_2$} & cis & -642.749 & \multirow{2}{2cm}{13.076} \\ 
+& trans & -642.770 \\ 
+\hline
+\multirow{2}{3cm}{$Pt(CN)_2(NH3)_2$} & cis & -418.174 & \multirow{2}{2cm}{2.839} \\ 
+& trans & -418.178 \\ 
+\hline
+\multirow{2}{3cm}{$Pt(F)_2(NH3)_2$} & cis & -432.223 & \multirow{2}{2cm}{6.922} \\ 
+& trans & -432.234 \\ 
+\hline
+\multirow{2}{3cm}{$Pt(PH3)_2(Cl)_2$} & cis & -1726.176 & \multirow{2}{2cm}{0.478} \\ 
+& trans & -1726.177 \\ 
+\hline
+\multirow{2}{3cm}{$Pt(CO)_2(Cl)_2$} & cis & -1266.503 & \multirow{2}{2cm}{-3.522} \\ 
+& trans & -1266.497 \\ 
+\bottomrule
+\end{tabular}
+\end{table}
+
+Al analizar los datos se nota que no hay diferencias de energía muy grandes entre los isómeros cis y trans, la mayor diferencia de energía fue de $16.13 \ kJ/mol$ y corresponde al compuesto de $Ni(NO_2)(NH_3)$. El siguiente paso fue calcular el flujo de corriente eléctrica en los isómeros cis y trans de Pd, y los valores encontrados están reportados en la tabla \ref{tab1_Pd}.	
+
+\begin{table}[H]
+\centering
+\caption{Valores de los compuestos con Pd. Ver figura \ref{fig:lap_max_min} para defiición de $V_i$}
+\label{tab1_Pd}
+\resizebox{14cm}{!}{
+\begin{tabular}{ccccccc}
+\toprule
+Compuesto & Isómero & $J_e \ (x10^{-3})$ & $V_i$ promedio & $V_i$ máximo & $V_i$ mínimo & $\Delta$ Energía $\frac{k cal}{mol}$\\ 
+\hline
+\midrule
+\multirow{2}{3cm}{$Pd(F)_2(NH_3)_2$} & cis & 35.6 & 12.3 & 12.4 & 12.2  & \multirow{2}{2cm}{8.856} \\ 
+& trans & 35.6	& 12.6	& 13.4	& 11.8 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(NO_2)_2(NH_3)_2$} & cis & 19.4	& 9.26	& 9.64	& 8.85  & \multirow{2}{2cm}{11.398} \\ 
+& trans & 14.6	& 9.99	& 10.2	& 9.78 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(Cl)_2(NH_3)_2$} & cis & 19.3	&10.5	&10.9	& 10.2  & \multirow{2}{2cm}{12.479} \\ 
+& trans & 17.5	& 10.9	& 11.1 & 10.6  \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2F_2$} & cis & 8.92	& 9.59 & 9.96 & 9.13 & \multirow{2}{2cm}{-2.069}\\ 
+& trans & 19.4	& 10.6	& 12.2	& 9.10 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(NH_3)_2$} & cis & 5.46	& 9.22	& 10.2	& 8.22  & \multirow{2}{2cm}{3.058} \\ 
+& trans & 9.19	& 10.1	& 10.3	& 9.96 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(H)_2(NH_3)_2$} & cis & 4.81	& 6.83	& 7.82 & 5.82  & \multirow{2}{2cm}{-14.089} \\ 
+& trans & 5.39	& 9.08 & 9.61 & 8.55  \\ 
+\hline
+\multirow{2}{3cm}{$Pd(PH_3)_2Cl_2$} & cis & 3.26 & 7.61 & 8.05 & 7.22  & \multirow{2}{2cm}{4.017} \\ 
+& trans & 1.16	& 8.28 & 8.69 & 7.87 \\
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(CO)_2$} & cis & 3.01 & 7.31 & 7.85 & 6.70 & \multirow{2}{2cm}{$-4.078x10^{-5}$}\\ 
+& trans & 2.41	& 7.96 & 8.74 & 7.19  \\ 
+\hline 
+\multirow{2}{3cm}{$Pd(CH_3)_2(NH_3)_2$} & cis & 1.36 & 7.91 & 8.92 & 6.93  & \multirow{2}{2cm}{-10.948}  \\ 
+& trans & 4.66 & 9.39 & 10.1 & 8.74 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2Cl_2$} & cis & 0.90	& 8.07	& 8.13	& 8.01  & \multirow{2}{2cm}{2.194} \\ 
+& trans & 2.41	& 8.75	& 9.31	& 8.19 \\ 
+\midrule
+\bottomrule
+\end{tabular}
+}
+\end{table}	
+
+Si se tiene el isómero cis o trans, no se establece ninguna relación de aumento o disminución del flujo eléctrico,  pues los valores exhibidos en la tabla \ref{tab1_Pd} no siguen ninguna relación. Aunque en casi todos los casos el isómero que genera un mayor flujo es el que tiene una diferencia más grande entre los valores del laplaciano ($V_i$). Lo que sí es un hecho, es que en las moléculas en donde está incluido un halógeno, el flujo de corriente eléctrica es mayor a las demás.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{Imagenes/p_lap_conformeros.png} 
+\caption{Relación entre el promedio, máximo y mínimo de las diferencias del laplaciano ($V_i$) y el flujo de corriente eléctrica} 
+Elaboración propia
+\label{p_lap_conformeros}
+\end{center}
+\end{figure}
+
+	De la figura \ref{p_lap_conformeros} se observa que la mejor relación lineal la se obtiene cuando se compara $V_i$ con el flujo de corriente eléctrica, pero en general la correlación no es muy buena.
+	
+	\section{Influencia de los isómeros geométricos}
+	\label{secn:influen_conformeros}
+		\lhead[]{\thesection \ Influencia de los isómeros geométricos} 
+		
+Se probó si los isómeros geométricos de los compuestos era importante para poder generar flujos de corriente eléctrica, para esto se mantuvieron fijos 3 ligantes en la molécula y el cuarto ligante se intercambia entre $CH_3, Cl^- \ y \ F^-$, los halógenos escogidos generaron flujos de corriente grandes cuando se les incluía en una molécula, en comparación con el metilo, que al incluirse en una molécula, los flujos de corriente tendían a ser pobres. La forma en la que se construyeron las moléculas se ilustra en la figura \ref{isomeros_posicionales}. Lo que se quiso entender es qué relación guarda el hecho de colocar un ligante en una particular posición dentro de la molécula. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{imgr/isomeros_posicionales.png} 
+\caption{Ejemplo de como se construyeron los isómeros geométricos} 
+Elaboración propia
+\label{isomeros_posicionales}
+\end{center}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Valores obtenidos para los isómeros geométricos con centro metálico Pd}
+\begin{tabular}{ccccc}
+\toprule
+Isómero & Flujo eléctrico ($x10^{-3}$) & $V_i$ promedio &  $V_i$ máximo & $V_i$ mínimo \\ 
+\midrule 
+\multicolumn{5}{c}{$L = F$} \\
+\midrule 
+1 & 9.18 & 8.98 & 10.0 & 8.22 \\ 
+2 & 2.02 & 7.89 & 9.78 & 6.39 \\ 
+3 & 1.58 & 7.51 & 9.12 & 6.30 \\ 
+\midrule
+\multicolumn{5}{c}{$L = CH_3$} \\
+\midrule 
+1 & 5.77 & 6.54 & 7.51 & 5.71 \\
+2 & 6.42 & 7.17 & 8.19 & 5.47 \\
+3 & 6.81 & 6.27	& 7.41 & 5.51 \\
+\midrule 
+\multicolumn{5}{c}{$L = Cl$} \\
+\midrule 
+1 & 1.90 & 7.93 & 9.27 & 7.09 \\ 
+2 & 4.11 & 7.59 & 9.14 & 6.16 \\ 
+3 & 4.56 & 7.03 & 8.89 & 5.96 \\ 
+\bottomrule
+\end{tabular}
+\end{table}	
+
+En este caso se utilizó Pd como centro metálico, se observó que los isómeros geométricos parecen no guardar una relación entre el aumento del flujo eléctrico y la posición en la que se coloca el ligante. El ligante que generó un considerable aumento en el flujo eléctrico fue el flúor, seguido de los flujos generados por el cloro, y por último los flujos generados por el $CH_3$. Ahora en la imagen \ref{isomeros_posicionales_Pd} se observan las gráficas y su relación lineal.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.7]{Imagenes/isomeros_123.png} 
+\caption{Isómeros geométricos con Pd} 
+Elaboración propia
+\label{isomeros_posicionales_Pd}
+\end{center}
+\end{figure}
+
+Atendiendo a las similitudes que hay entre las propiedades químicas de $Cl^- \ y \ F^-$ para entender a fondo por qué estos ligantes están generando altos flujos de corriente eléctrica, y podamos dilucidar que otros ligantes podrían generar también un aumento en el flujo. Sus similitudes son:
+
+\begin{itemize}
+	\item Ambos ligantes tienen una carga eléctrica negativa
+	\item Se unen al metal a través de un enlace sencillo tipo $\sigma$
+	\item Son ligantes pequeños, monoatómicos y monodentados.
+	\item {\bf{Son ligantes de campo débil}}.
+\end{itemize}
+
+Como ya se mencionó en la sección \ref{sec:Factores_que_afectas} el campo ligante fue nombrado anteriormente como un factor que puede afectar el flujo de corriente eléctrica, en esas investigaciones no se establece una relación concreta entre el campo del ligante y el flujo de corriente eléctrica, solo se mencionaba ``una relación empírica". El siguiente paso fue poder decir concretamente, a través de un análisis riguroso y concreto, qué relación que se guarda entre el campo ligante y el flujo de corriente eléctrica, todo esto se discute en la siguiente sección \ref{sec:desdoblamiento}.
+
+	\section{Influencia de la velocidad de los electrones}
+	\label{sec:influen_velocidad}
+		\lhead[]{\thesection \ Influencia de la velocidad de los electrones}
+	
+La siguiente prueba es si la velocidad que llevan los electrones en la molécula tiene una relación con los valores del laplaciano de la densidad, se pensó que los electrones al ir de un máximo de densidad a un mínimo podría aumentar la velocidad del electrón, y que esta velocidad aumentaría conforme la diferencia entre los valores máximos y mínimos fuera más grande, por eso se probó una serie de moléculas en donde tenemos diferencias grandes entre los valores máximos y mínimos del laplaciano, y moléculas en donde se esas diferencias eran mínimas. Siguiendo nuestra metodología se obtuvieron los resultados vertidos en la tabla \ref{tab:Veolocidad_flujo}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =12cm,height =8cm]{Imagenes/v_electron.png} 
+\caption{Relación de la velocidad de los electrones con la diferencia de los valores del laplaciano} 
+Elaboración propia
+\label{velocidad}
+\end{center}
+\end{figure}
+
+De la figura \ref{velocidad} se nota muy claramente que no hay ninguna relación entre la velocidad de los electrones y los valores de laplaciano, se concluye que estas variables son independientes una de la otra. Aunque se pudo notar que en algunos casos particulares como e la molécula de $Pd(CN)_2(NH_3)_2$ y $Pd(CN)_2(CO)_2$, el cambio entre la isomería cis y trans aumenta significativamente la velocidad, aunque esto tampoco guarda relación con los valores del laplaciano, pues esas diferencias fueron mínimas.
+	
+\begin{table}[H]
+\centering
+\caption{Valores de la velocidad de los electrones} 
+\label{tab:Veolocidad_flujo}
+\resizebox{18cm}{!}{
+\begin{tabular}{ccccccc}
+\toprule
+Compuesto & Isómero & $J_e \ (x10^{-3}) \ \diagdown \ A$ & $V_{e^-} \ \  m\diagdown s$ & $V_i$ promedio & $V_i$ máximo &  $V_i$ mínimo \\ 
+\hline
+\midrule
+\multirow{2}{3cm}{$Pd(F)_2(NH_3)_2$} & cis & 35.6 & -2.71 & 12.3 & 12.4 & 12.2 \\ 
+& trans & 35.6	& -2.20 & 12.6 & 13.4 & 11.8 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(NO_2)_2(NH_3)_2$} & cis & 19.4 & -1.63  & 9.26 & 9.64	& 8.85  \\ 
+& trans & 14.6	& -1.82  & 9.99	& 10.2	& 9.78 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(Cl)_2(NH_3)_2$} & cis & 19.3	& -3.10  & 10.5	& 10.9	&10.2  \\ 
+& trans & 17.5	& -2.67  & 10.9	& 11.1 & 10.6 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2F_2$} & cis & 8.92 & -2.69  & 9.59 & 9.96 & 9.13 \\ 
+& trans & 19.4	& -2.57  & 10.6	& 12.2	& 9.10 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(NH_3)_2$} & cis & 5.46	& -2.48  & 9.22	& 10.2	& 8.22 \\ 
+& trans & 9.19	& -2.52  & 10.1	& 10.3	& 9.96 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(H)_2(NH_3)_2$} & cis & 4.81 & -2.69 & 6.83 & 7.82 & 5.82\\ 
+& trans & 5.39	& -2.16 & 9.08 & 9.61 & 8.55 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(PH_3)_2Cl_2$} & cis & 3.26 & -2.14 & 7.61 & 8.05 & 7.22 \\ 
+& trans & 1.16 & -1.86  & 8.28 & 8.69 & 7.87 \\
+\hline
+\multirow{2}{3cm}{$Pd(CN)_2(CO)_2$} & cis & 3.01 & -2.47 & 7.31 & 7.85 & 6.70 \\ 
+& trans & 2.41	& -2.75 & 7.96 & 8.74 & 7.19 \\ 
+\hline 
+\multirow{2}{3cm}{$Pd(CH_3)_2(NH_3)_2$} & cis & 1.36 & -2.4  & 7.91 & 8.92 & 6.93 \\ 
+& trans & 4.66 & -2.7  &9.39 & 10.1 & 8.74 \\ 
+\hline
+\multirow{2}{3cm}{$Pd(CO)_2Cl_2$} & cis & 0.90	& 1.97  & 8.07 & 8.13 & 8.01 \\ 
+& trans & 2.41	& -2.91  & 8.75	& 9.31	& 8.19 \\ 
+\hline
+\multirow{3}{3cm}{$PdCH_3PH_3NH_3H$} & 1 & 5.77	& 0.42  & 6.54 & 7.51 & 5.71 \\ 
+& 2 & 6.42 & 1.10  & 7.17 & 8.19 & 5.47 \\
+& 3 & 6.81 & 0.40  & 6.27	& 7.41 & 5.51 \\ 
+\hline
+\multirow{3}{3cm}{$PdFPH_3NH_3H$} & 1 & 9.18 & -0.25  & 8.98 & 10.0 & 8.22 \\ 
+& 2 & 2.02 & 0.29  & 7.89 & 9.78 & 6.39 \\
+& 3 & 1.58 & -0.14  & 7.51 & 9.12 & 6.30 \\
+\hline
+\multirow{3}{3cm}{$PdClPH_3NH_3H$} & 1 & 1.90 & 0.09  & 7.93 & 9.27 & 7.09 \\ 
+& 2 & 4.11 & 0.84  & 7.59 & 9.14 & 6.16 \\
+& 3 & 4.56 & 0.11  & 7.03 & 8.89 & 5.96 \\
+\hline
+$PdCl_4$ & N.A. & 36.6 & -3.43  & 10.61 & 10.61 & 10.61 \\
+\hline
+$Pd(PH_3)_4$ & N.A. & 0.002 & -2.16  & 8.66 & 8.66 & 8.66 \\
+\hline
+$Pd(CO)_4$ & N.A. & 2.10 & -3.30  & 9.16 & 9.16 & 9.16 \\ 
+\hline
+$PdF_4$ & N.A. & 74.7 & -3.52  & 2.03 & 4.07 & 2.77 \\ 
+\hline
+$Pd(H_2O)_4$ & N.A. & 71.9 & -2.41 & 14.01 & 14.22 & 13.92 \\ 
+\hline
+$Pd(NH_3)_4$ & N.A. & 20.4 & -2.21  & 11.66 & 11.66 & 11.66 \\ 
+\hline
+$Pd(NO_2)_4$ & N.A. & 25.0 & -2.20  & 8.52 & 8.52 & 8.52 \\
+\hline
+$Pd(OH)_4$ & N.A. & 40.0 & -2.56  & 12.1 & 12.3 & 11.9 \\ 
+\hline
+$Pd(CN)_4$ & N.A. & 0.002 & -2.16  & 8.66 & 8.66 & 8.66 \\
+\hline
+$PdH_4$ & N.A. & 9.26 & -4.48  & 7.50 & 7.50 & 7.50 \\
+\midrule
+\bottomrule
+\end{tabular}
+}
+\end{table}	
+
+	\section{Influencia del desdoblamiento del campo cristalino}
+		\label{sec:desdoblamiento}
+		\lhead[]{\thesection \ Influencia del desdoblamiento del campo}
+	
+	Se probó si influye el desdoblamiento de los orbitales ($10_{dq}$) en la capacidad de generar densidades de corriente inducida altas, para esto se probaron ligantes que recorren las serie espectroquímica, que en orden ascendente siguen el orden mostrado en la figura \ref{fig:Serie_} Las moléculas se diseñaron de tal forma que se pudiera garantizar que la configuración del metal fuera $d^8$, así en algunas de ellas la carga total de la molécula fue de 2+ o de 2- para que la carga sobre el metal fuera siempre la misma. Se grafica por separado los datos de los ligantes neutros y con carga.
+	
+\begin{table}[H]
+\centering
+\caption{Compuestos con Ni, se incluyen ligantes de campo débil y fuerte.} 
+\label{tab:Ni_campoligante}
+\begin{tabular}{ccccc}
+\toprule
+Compuesto & Flujo eléctrico $(x10^{-3})$ & $V_i$ promedio &  $V_i$ máximo & $V_i$ mínimo \\ 
+\midrule 
+$[NiCl_4]^{2-}$ & 168 & 30.2 & 30.2 & 30.2  \\
+\hline
+$[NiF_4]^{2-}$ & 241 & 36.5 & 36.5 & 36.5 \\
+\hline
+$[Ni(OH)_4]^{2-}$ & 168 &	30.2 & 30.2 & 30.2 \\
+\hline
+$[Ni(CN)_4]^{2-}$ & 45.4 & 20.9 & 20.9	& 20.9 \\ 
+\hline
+$[NiH_4]^{2-}$ & 35.6 & 21.6 & 21.6 & 21.6 \\ 
+\hline
+$[Ni(H_2O)_4]^{2+}$ & 214 & 36.4 & 36.3 &	36.3 \\ 
+\hline
+$[Ni(NH_3)_4]^{2+}$ & 103 & 31.1 & 31.1 & 31.1 \\ 
+\hline
+$[Ni(PH_3)_4]^{2+}$ & 24.3 & 17.6 & 17.6 & 17.6 \\
+\hline
+$[Ni(CO)_4]^{2+}$ & 51.9 & 22.5 & 22.5 & 22.5 \\ 
+\hline
+\bottomrule
+\end{tabular}
+\end{table}
+
+	De la tabla \ref{tab:Ni_campoligante} se destaca que ligantes como $F^-, Cl^- \ y \ OH^-$ generan corrientes muy altas, y que todos estos ligantes son considerados de campo débil, relativo a los demás ligantes sus corrientes están un orden de magnitud por encima. En la figura \ref{Fig:Ni_estd_ox} se observa las correlaciones para ligantes con carga y neutros respectivamente, y se puede notar, que para ambos casos la correlación fue buena, pero en el particular caso de ligantes con carga fue mucho mejor.
+
+\begin{figure}[H]
+\centering
+\subfigure[Complejos de carga 2-]{\includegraphics[scale=0.45]{Imagenes/Ni_2menos.png} } 
+\subfigure[Complejos de carga 2+]{\includegraphics[scale=0.45]{Imagenes/Ni_2mas.png} }
+\caption{Correlación con compuestos de Ni de acuerdo al campo ligante.} 
+Elaboración propia
+\label{Fig:Ni_estd_ox}
+\end{figure}
+
+Se construyeron las mismas moléculas, pero cambiando el centro metálico a Pd, se hace el mismo análisis presentado anteriormente, obteniendo los resultados vertidos en la tabla \ref{tab:Pd_campoligante}. Se observó que los complejos de carga 2- no generan una buena correlación, pero los complejos de carga 2+ sí generan buena correlación (sub imágenes (a) y (b) de la figura \ref{Fig:Pd_estd_ox} respectivamente). También se puede destacar que los ligantes que mayores flujos generaron fueron los de campo débil, destacando los halógenos $F^-, Cl^- \ y \ H_2O$ , en el mismo caso que en él Ni, los ligantes de campo débil generaron bajos flujos de corriente.
+
+\begin{figure}[h!]
+\centering
+\subfigure[Complejos de carga 2-]{\includegraphics[scale=0.45]{Imagenes/Pd_2menos.png} } 
+\subfigure[Complejos de carga 2+]{\includegraphics[scale=0.45]{Imagenes/Pd_2mas.png} }
+\caption{Correlación con compuestos de Pd de acuerdo al campo ligante.} 
+Elaboración propia
+\label{Fig:Pd_estd_ox}
+\end{figure}
+
+	Como se observa comparando las tablas \ref{tab:Ni_campoligante} y \ref{tab:Pd_campoligante}, el metal que genera mayores flujos de corriente es el Ni, lo que es muy interesante, porque el Pd es un átomo mucho más rico en electrones y podríamos pensar que esa abundancia electrónica haría que tuviera mayores flujos.	Esta observación de que Ni sea el metal que mayores flujos genera ya se venía observando desde los compuestos de la sección \ref{sec:Influencia_isome}, lo que es más, ahí se puede observar que el Pt es el metal que genera flujos de corriente más pobres, siendo así notamos que mientras más rico en electrones sea un átomo, más pobres son los flujos de corriente que genera, al menos en el grupo $d^8$.
+	
+\begin{table}[H]
+\centering
+\caption{Compuestos con Pd, se incluyen ligantes de campo débil y fuerte.} 
+\label{tab:Pd_campoligante}
+\begin{tabular}{ccccc}
+\toprule
+Compuesto & Flujo eléctrico $(x10^{-3}) \ A$ & $V_i$ promedio & $V_i$ máximo &  $V_i$ mínimo  \\ 
+\midrule 
+$[PdCl_4]^{2-}$ & 33.6 & 10.6 & 10.6 & 10.6  \\
+\hline
+$[PdF_4]^{2-}$ & 74.7 & 2.03 & 4.07 & 1.90 \\
+\hline
+$[Pd(OH)_4]^{2-}$ & 40.0 &	12.1 & 12.3 & 11.9 \\
+\hline
+$[Pd(CN)_4]^{2-}$ & 0.002 & 8.6 & 8.6	& 8.6 \\ 
+\hline
+$[PdH_4]^{2-}$ & 9.26 & 7.50 & 7.50 & 7.50 \\ 
+\hline
+$[Pd(H_2O)_4]^{2+}$ & 71.8 & 14.0 & 14.2 &	13.9 \\ 
+\hline
+$[Pd(NH_3)_4]^{2+}$ & 20.4 & 11.6 & 11.6 & 11.6 \\ 
+\hline
+$[Pd(PH_3)_4]^{2+}$ & 0.002 & 8.6 & 8.6 & 8.6 \\
+\hline
+$[Pd(CO)_4]^{2+}$ & 2.10 & 9.16 & 9.16 & 9.15 \\ 
+\hline
+\bottomrule
+\end{tabular}
+\end{table}
+
+	\section{Influencia de la capacidad de retrodonación del ligante}
+		\label{sec:influen_retrodon}
+		\lhead[]{\thesection \ Influencia de la capacidad de retrodonación del ligante}
+
+	La última hipótesis es que la capacidad de retrodonación del metal al ligante es lo que hace que aumente o disminuya el flujo de corriente eléctrica. Se probaron distintas fosfinas, en orden descendente, de ser aceptores de electrones del metal:
+		
+	\[ PF_3 >  PO_4Me_3 > PH_3 > PPh_3 > PMe_3  \]
+		
+\begin{table}[h!]
+\centering
+\caption{Fosfinas con Ni y Pd}
+\label{tab:fosinas_Ni_Pd} 
+\begin{tabular}{ccccc}
+\toprule
+Compuesto & Flujo eléctrico ($x10^{-3}$) & $V_i$ promedio &  $V_i$ máximo & $V_i$ mínimo \\ 
+\midrule
+\multicolumn{5}{c}{$Ni$} \\
+\midrule 
+$Ni(PF_3)_4$ & 33.1 & 17.4 & 17.4 & 17.4 \\
+\hline
+$Ni(PH_3)_4$ & 24.3 & 17.6 & 17.6 & 17.6 \\
+\hline
+$Ni(PMe_3)_4$ & 35.8 & 17.3 & 17.3 & 17.3 \\
+\hline
+$Ni(PO_4Me_3)_4$ & 35.6 & 17.3 & 17.3 & 17.3 \\
+\midrule 
+\multicolumn{5}{c}{$Pd$} \\
+\midrule 
+$Pd(PF_3)_4$ & 5.31 & 6.29 & 6.291 & 6.29 \\
+\hline
+$Pd(PH_3)_4$ & 0.26 & 8.66 & 8.658 & 8.66 \\
+\hline
+$Pd(PMe_3)_4$ & 6.63 &	5.87 &	5.873 &	5.87 \\
+\hline
+$Pd(PO_4Me_3)_4$ & 5.31 & 5.87 & 5.873 & 5.87 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Analizando los datos de la tabla \ref{tab:fosinas_Ni_Pd} se puede observar que para las fosfinas del Ni, mientras menor es la capacidad $\pi$ aceptor de la fosfina se aumenta ligeramente el flujo de la corriente eléctrica, mientras que el Pd sigue la misma tendencia, exeptuando $PH_3$. En ambos casos la fosfina $PH_3$ genera una corriente eléctrica muy baja, relativa a todos las demás fosfinas. Aunque en términos generales y para ambos metales las diferencias en los flujos de corriente que generan, no son muy altas.
+
+\begin{figure}[H]
+\centering
+\subfigure[Fosfinas con Ni]{\includegraphics[scale=0.45]{Imagenes/Ni_fosfinas.png} } 
+\subfigure[Fosfinas con Pd]{\includegraphics[scale=0.45]{Imagenes/Pd_fosfinas.png} }
+\caption{Correlación con las fosfinas propuestas}
+Elaboración propia
+\label{Fig:fosfinas}
+\end{figure}
+
+En ambas series de fosfinas con Ni y Pd se observa que se sigue una relación bastante buena con los valores obtenidos para el laplaciano. Las fosfinas $PPh_3$ aunque en un principio se intentaron modelar, fue imposible llegar a una convergencia en su optimización de geometría en cuadrado plano, posiblemente por el muy alto impedimento estérico de los tres arilos. En las moléculas de $M(PMe_3)_4$ se salen del plano, por lo que se fijó el ángulo diedro entre los 4 átomos de P igual a 0, la diferencia de energía entre las moléculas no fue realmente significativa, la mayor fue de $9.14\frac{kJ}{mol}$ con Pd.
+	
+	\begin{figure}[h!]
+	\centering
+	\subfigure[Molecula convergida]{\includegraphics[scale=0.15]{imgr/NiPMe3nmr.png}} 
+	\subfigure[Fijando el ángulo dihedro=0]{\includegraphics[scale=0.15]{imgr/NiPMeDh3nmr.png}}
+	\caption{En este ejemplo el Ni es el centro metálico} 
+	Elaboración propia
+	\end{figure}
+
+\chapter{Conclusiones}
+ \markboth{CONCLUSIONES}{CONCLUSIONES}
+  \lhead[]{} 
+
+    
+En la sección \ref{sec:Influencia_isome}, al analizar el flujo de corriente que se generaban, observamos que no hay una buena correlación entre el flujo de corriente eléctrica y las diferencias entre máximos y mínimos del laplaciano ($V_i$). Analizando los isómeros geométricos de la sección \ref{secn:influen_conformeros} se observó que no había un isómero geométrico en particular que favorece el aumento del flujo de corriente. De la sección \ref{sec:influen_velocidad} se concluye que la velocidad que llevan los electrones es independiente de los valores del laplaciano, descartando definitivamente esta hipótesis planteada al principio de la tesis.
+
+	Cuando se estudió el efecto del campo cristalino en la sección \ref{sec:desdoblamiento}, se nota que son los ligantes de campo débil los que generan un aumento significativo en los valores del flujo de corriente eléctrica, particularmente ligantes como: $F^-, Cl^- \ y \ H_2O$ son los que mayores flujos de corriente generaron, en comparación con ligantes de campo fuerte que mostraron generar flujos muy pobres.
+
+	De manera general se concluye que el Ni es el centro metálico capaz de generar flujos de corriente eléctrica más altos, de todos los metales estudiados. Siendo estos flujos aumentados por ligantes de campo débil y ligantes con baja capacidad $\pi$ aceptor. También se concluye que el laplaciano de la densidad electrónica tiene cierta correlación con la densidad de corriente si los sistemas que se comparan pertenecen a una misma serie, aunque las diferencias finas entre corrientes no se reflejan en el valor del laplaciano de la densidad. %falta completa con la información babababbab
+	
+	%La bibliografia se incluye en el formato preferido, automaticamente se numera, debemos de agregar
+	%una etiqueta al principio para pode hacer una referencia después
+	
+\begin{thebibliography}{} 
+ \addcontentsline{toc}{chapter}{Bibliografía}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CITAS DE LOS ANTECEDENTES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\bibitem{Savariault} Savariault, J. M., \& Lehmann, M. S. (1980). Experimental determination of the deformation electron density in hydrogen peroxide by combination of x-ray and neutron diffraction measurements. Journal of the American Chemical Society, 102(4), 1298-1303.
+	
+	\bibitem{PaulingL} Pauling L. The diamagnetic anisotropy of aromatic molecules. J Chem Phys 1936, 4:673–677. %1
+
+	\bibitem{Lonsdale} Lonsdale K. Magnetic anisotropy and electronic structure of aromatic molecules. Proc R Soc Lond A Math Phys Sci 1937, 159:149–161. %2
+
+	\bibitem{LondonF} London F. Théorie quantique des courants interatomiques dans les combinaisons aromatiques. J Phys Radium 1937, 8:397–409. %3
+	
+	\bibitem{PopleJ} Pople J. Molecular orbital theory of aromatic ring currents. Mol Phys 1958, 1:175–180. %4
+
+	 \bibitem{McWeenyR} McWeeny R. Ring currents and proton magnetic resonance in aromatic molecules. Mol Phys 1958, 1:311–321.%5
+
+	\bibitem {Beader} Bader, R. F. (2002). Atoms in molecules. Encyclopedia of computational Chemistry, 1. %40
+		 
+   	\bibitem{HegstromRA} Hegstrom RA, Lipscomb WN. Magnetic properties of the BH molecule. J Chem Phys 1966, 45:2378–2383. %6
+   	
+   	\bibitem{AtkinsPW} Atkins PW, Gomes JANF. Charge and current densities for approximate molecular wavefunctions. Mol Phys 1976, 32:1063–1074. %7
+
+	\bibitem{MusherJI} Musher JI. On the magnetic susceptibility of aromatic hydrocarbons and “ring currents”. J Chem Phys 1965, 43:4081–4083. %8
+
+	\bibitem{Musher_JI} Musher JI. On the nonexistence of “ring currents” in aromatic hydrocarbons. J Chem Phys 1967, 46:1219–1221.%9
+
+	\bibitem{Lazzeretti} Lazzeretti P, Rossi E, Zanasi R. Theoretical studies on the benzene molecule. II. Criticism of the ring current model. J Chem Phys 1982, 77:3129–3139. %10
+	
+	\bibitem{Kutzelnigg_W} Kutzelnigg W, van W\"ullen C, Fleischer U, Franke R, van Mourik T. The IGLO method: recent developments. In: Tossell JA, ed. Nuclear Magnetic Shieldings and Molecular Structure. Kluwer Academic Publishers: Dordrecht; 1993, 141–161.  %11
+	
+	\bibitem{Keith_TA} Keith TA, Bader RFW. Calculation of magnetic response properties using atoms in molecules. Chem Phys Lett 1992, 194:1–8. %12
+	
+	\bibitem{KeithTA} Keith TA, Bader RFW. Topological analysis of magnetically induced molecular current distributions. J Chem Phys 1993, 99:3669–3682. %13
+
+	\bibitem{Keith_Bader} Keith TA, Bader RFW. Calculation of magnetic response properties using a continuous set of gauge transformations. Chem Phys Lett 1993, 210:223–231.  %14
+	%
+	\bibitem{CorianiS} Coriani S, Lazzeretti P, Malagoli M, Zanasi R. On CHF calculations of 2nd-order magnetic properties using the method of continuous transformation of origin of the current-density. Theor Chim Acta 1994, 89:181–192.  %15
+
+	\bibitem{ZanasiR} Zanasi R, Lazzeretti P, Malagoli M, Piccinini F. Molecular magnetic properties within continuous transformations of origin of the current density. J Chem Phys 1995, 102:7150–7157.  %16
+
+	\bibitem{LazzP} Lazzeretti P, Malagoli M, Zanasi R. Coupled Hartree-Fock calculations of origin-independent magnetic properties of benzene molecule. J Chem Phys 1995, 102:9619–9625.  %17
+
+	\bibitem{Zanasi_R} Zanasi R. Coupled Hartree-Fock calculations of molecular magnetic properties annihilating the transverse paramagnetic current density. J Chem Phys 1996, 105:1460–1469.  %18
+
+	\bibitem{Ligabue}Ligabue A, Pincelli U, Lazzeretti P, Zanasi R. Current density maps, magnetizability, and nuclear magnetic shielding tensors for anthracene, phenanthrene, and triphenylene. J Am Chem Soc 1999, 121:5513–5518.  %19
+	
+	\bibitem{Juslius_J} Jusélius J, Sundholm D, Gauss J. Calculation of current densities using gauge-including atomic orbitals. J Chem Phys 2004, 121:3952–3963.  %20
+
+	\bibitem{32WolinskiK} Wolinski K, Hinton JF, Pulay P. Efficient implementation of the gauge-independent atomic orbital method. %21
+	
+	\bibitem{SonciniA} Soncini A. Charge and spin currents in open-shell molecules: a unified description of NMR and EPR observable. J Chem Theory Comput 2007, 3:2243–2257. %22 
+
+	\bibitem{TabertS} Taubert S, Sundholm D, Jusélius J. Calculation of spin-current densities using gauge-including atomic orbitals. J Chem Phys 2011, 134:054123. %23
+	
+	\bibitem{TellgrenEI} Tellgren EI, Soncini A, Helgaker T. Nonperturbative ab initio calculations in strong magnetic fields using London orbitals. J Chem Phys 2008, 129:154114. %24
+
+	\bibitem{Tellgren_EI} Tellgren EI, Teale AM, Furness JW, Lange KK, Ekström U, Helgaker T. Non-perturbative calculation of molecular magnetic properties within current density functional theory. J Chem Phys 2014, 140:034101. %25
+
+	\bibitem{ReynoldsRD} Reynolds RD, Shiozaki T. Fully relativistic self-consistent field under a magnetic field. Phys Chem Chem Phys 2015, 17:14280–14283. %26
+
+	\bibitem{Mosquera_MA} Mosquera MA, Wasserman A. Current density partitioning in time-dependent current density functional theory. J Chem Phys 2014, 140:18A525. %27
+	
+	\bibitem{Feynman_1} Feynman, R. P. (1939). “Forces in Molecules” Physical Review 56: 340-343.
+	
+	\bibitem{Bader_1} Bader, R. F. W. (2010). “Definition of Molecular Structure: By Choice or by Appeal to Observation?” Journal of Physical Chemistry A 114: 7431-7444.
+
+	\bibitem{Slater_2} Slater. J. C. (1933). “The Virial and Molecular Structure” Journal of Chemical Physics 1: 687-691.
+
+	\bibitem{F_London} F. London, J. Phys. Radium 8 (1937)397
+
+	\bibitem{Wolinski}K. Wolinski, J. F. Hinton, P. Pulay, J. Am. Chem Soc. 1990, 112, 8251–8260. %28
+
+	\bibitem{Mullen} C. Van Mullen, en Calculation of NMR and EPR Parameters, (Eds.  M.  Kaupp, M.  Bühl and V.  G.  Malkin), Wiley-VCH, Weinheim, 2004, p. 85.	%29
+
+	\bibitem{Teoria_del_campo_ligando} Teoria del campo ligando. (2015). Desdoblamiento de cuadrado plano [Figura]. https://www.slideshare.net/olgahoyos/teoria-del-campo-ligando/6
+	
+	\bibitem{Jose_olguin} José E. M. Olguín. (2019). Estudio de la reactividad de cúmulos metálicos de rutenio y osmio frente a $CO_2$ y $SO_2$. [Tesis de licenciatura]. Instituto Politécnico Nacional.
+
+	\bibitem{Pascariu_b} Pascariu, A., Iliescu, S., Popa, A., \& Ilia, G. (2009). Polydentate phosphines. Journal of Organometallic Chemistry, 694(25), 3982-4000.
+
+	\bibitem{Henderson_Jr} Henderson Jr, W. A., \& Buckler, S. A. (1960). The nucleophilicity of phosphines. Journal of the American Chemical Society, 82(22), 5794-5800.
+		
+	\bibitem{Henderson_Jr_b} Henderson Jr, W. A., \& Streuli, C. A. (1960). The basicity of phosphines. Journal of the American Chemical Society, 82(22), 5791-5794.
+	
+	\bibitem{Appleby_T} Appleby, T., \& Woollins, J. D. (2002). Inorganic backbone phosphines. Coordination Chemistry Reviews, 235(1-2), 121-140.
+	
+ \bibitem{Buckingham_a} Buckingham, A. D.; Stephens, P. J. Proton Chemical Shifts in the Nuclear Magnetic Resonance Spectra of Transition-Metal Hydrides: Octahedral Complex. J. Chem. Soc. 1964, 2747-2759. %30
+ 
+ \bibitem{Queralt} Queralt, N., Taratiel, D., de Graaf, C., Caballol, R., Cimiraglia, R., \& Angeli, C. (2008). On the applicability of multireference second‐order perturbation theory to study weak magnetic coupling in molecular complexes. Journal of computational chemistry, 29(6), 994-1003.
+
+ \bibitem{Roca_Sanjun} Roca‐Sanjuán, D., Aquilante, F., \& Lindh, R. (2012). Multiconfiguration second‐order perturbation theory approach to strong electron correlation in chemistry and photochemistry. Wiley Interdisciplinary Reviews: Computational Molecular Science, 2(4), 585-603
+ 
+ \bibitem{Pelodmd} Pelloni, S., \& Lazzeretti, P. (2013). Polygonal current model: an effective quantifier of aromaticity on the magnetic criterion. The Journal of Physical Chemistry A, 117(37), 9083-9092.
+ 
+ \bibitem{Barqueee} Barquera‐Lozada, J. E. (2019). The vorticity of the current density tensor and 3D‐aromaticity. International Journal of Quantum Chemistry, 119(8), e25848.
+ 
+ \bibitem{Guzzetta_aa} Guzzetta, F. H., \& Hadley, W. B. (1964). Crystal field effects in coordination compounds. A calorimetric study of some hexacyano metal complexes. Inorganic Chemistry, 3(2), 259-264.
+
+ \bibitem{Weller_M} Weller, M., Overton, T., Rourke, J., \& Armstrong, F. (2014). Inorganic chemistry. Oxford University Press, USA.
+ 
+ \bibitem{Ballhausen_c}	Ballhausen, C. J. (1962). Crystal Field Theory.
+
+ \bibitem{Segreee} Segre, A., \& Musher, J. I. (1967). “Anomalous” Chemical Shifts in the Nuclear Magnetic Resonance Spectra of the 1, 3, 5-Trimethylcyclohexanes. Journal of the American Chemical Society, 89(3), 706-707.
+
+ \bibitem{Skotnicki} Skotnicki, M., \& Hodgkinson, P. (2022). Characterization of crystalline and amorphous forms of irbesartan by multi-nuclear solid-state NMR. Solid State Nuclear Magnetic Resonance, 101783.
+ 
+ \bibitem{Buckingham_b}  Buckingham, A. D.; Stephens, P. J. Proton Chemical Shifts in the Nuclear Magnetic Resonance Spectra of Transition-Metal Hydrides: Square-Planar Platinum (II) Complex. J. Chem. Soc. 1964 4583- 4587. %31
+ 
+	 \bibitem{Pelloni_s} Pelloni, S.; Lazzeretti, P.; Zanasi, R. Induced Orbital Paramagnetism and Paratropism in Closed-Shell Molecules. J. Phys. Chem. A 2009, 113, 14465-14479. %32
+	 
+	 \bibitem{Monaco_g} Monaco, G.; Zanasi, R. On the Analysis of Some Orbital Contributions to the Current Density in Circulenes. Int. J. Quantum chem. 2009, 109, 243-249. %33
+	 
+	 \bibitem{Presselt_a} Presselt, M.; Schnedermann, C.; Schmitt, M.; Popp, J. Prediction of Electron Densities, the Respective Laplacians, and Ellipticities in Bond-Critical Points of Phenyl-CH-Bonds via Linear Relations to Parameters of Inherently Localized CD Stretching Vibrations and 1
+H NMR-Shifts. J. Pys. Chem. A 2009, 113, 3210-3222. %34
+
+	 \bibitem{Palusiak_a} Palusiak, M.; Krygowski, T. M. Application of AIM Parameters at Ring Critical Points for Estimation of $\pi$-Electron Delocalization in Six-Membered Aromatic and Quasi-Aromatic Rings. Chem.Eur. J. 2007, 13, 7996-8006.%35
+	 
+	\bibitem{Poater_b} Poater, J.; Duran, M.; Sola, M.; Silvi, B. Theoretical Evaluation of Electron Delocalization in Aromatic Molecules by Means of Atoms in Molecules (AIM) and Electron Localization Function (ELF) Topological Approaches. Chem. Rev. 2005, 105, 3911-3947. %36
+
+	\bibitem{Barquera} Barquera-Lozada, J. E., Obenhuber, A., Hauf, C., \& Scherer, W. (2013). On the chemical shifts of agostic protons. The journal of physical chemistry A, A, 117(20), 4304-4315. %37
+	 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CITAS DEL MARCO TEÓRICO%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\bibitem{Hohenberg} Hohenberg, P., \& Kohn, W. (1964). Inhomogeneous electron gas. Physical review, 136(3B), B864.  %38
+	
+	\bibitem{Kohn} Kohon, W.,\& Sham, L. J. (1965). Self-consistent equations including exchange and correlation effects. Physical review, 140(4A), A1133.  %39
+
+	\bibitem {AIMAll} Todd A. Keith. Página de internet de aimall, 2019, http://aim.tkgristmill.com  %41
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%CITAS DE LA METODOLOGÍA%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\bibitem{Gaussian16} Gaussian 16, Revision B.01, M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, G. A. Petersson, H. Nakatsuji, X. Li, M. Caricato, A. V. Marenich, J. Bloino, B. G. Janesko, R. Gomperts, B. Mennucci, H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, Gaussian, Inc., Wallingford CT, 2016. %46
+
+	\bibitem  {Zhao-M06} Y. Zhao \& D.G. Truhlar (2006). ``The M06 suite of density functionals for main group thermochemistry, thermochemical kinetics, noncovalent interactions, excited states, and transition elements: Two new functionals and systematic testing of four M06-class functionals and 12 other functionals". Theor Chem Acc. 120 (1–3): 215–241. %47
+	
+	\bibitem {Weigend} Weigend, F., \& Ahlrichs, R. (2005). Balanced basis sets of split valence, triple zeta valence and quadruple zeta valence quality for H to Rn: Design and assessment of accuracy. Physical Chemistry Chemical Physics, 7(18), 3297-3305. %48
+	
+	\bibitem{A_New_Basis_Set} A New Basis Set Exchange: An Open, Up-to-date Resource for the Molecular Sciences Community. Benjamin P. Pritchard, Doaa Altarawy, Brett Didier, Tara D. Gibson, Theresa L. Windus. J. Chem. Inf. Model. 2019, 59(11), 4814-4820
+	
+	\bibitem {AIMAll_ESTUDIO} AIMAll (Version 19.02.13), Todd A. Keith, TK Gristmill Software, Overland Park KS, USA, 2019 (aim.tkgristmill.com) %49
+	
+	\bibitem {ParaView} A. Henderson, ParaView Guide, A Parallel Visualization Application. Kitware Inc., 2007.%50
+
+\end{thebibliography}
+
+\end{document}
