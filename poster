@@ -1,0 +1,267 @@
+\documentclass[12pt]{article}
+\usepackage[spanish,USenglish,es-tabla]{babel} % alterna inglés y español en la escritura
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amssymb,amsmath} % (librería  de símbolos)
+\usepackage{graphicx}
+\usepackage{float} %aquete para mejorar la posición de flotantes
+\usepackage{multicol}
+\usepackage{subfigure} % subfiguras
+\usepackage[papersize={60cm, 90cm},lmargin=0.5cm,rmargin=0.5cm,top=0.5cm,bottom=0.5cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{caption} % para referencias
+\DeclareCaptionFont{xxviii}{\fontsize{28}{32}\selectfont}
+\captionsetup{font=xxviii}
+\usepackage{ragged2e}
+\usepackage{mathptmx}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\definecolor{blue_b}{RGB}{205, 236, 255} 
+\pagecolor{blue_b}
+%\usepackage[fontsize=36pt]{fontsize}
+
+\definecolor{color1}{RGB}{232, 247, 250} % Color of the article title and sections
+\definecolor{color2}{RGB}{0,20,20} % Color of the boxes behind the abstract and headings
+
+\newtcolorbox{mybox}[2][]{colbacktitle=red!10!white, colback=blue!10!white,coltitle=red!70!black,
+title={#2},fonttitle=\bfseries,#1}
+
+\renewcommand*\thesection{\arabic{section}}
+\usepackage[explicit]{titlesec}
+\definecolor{myBlue}{RGB}{0, 55, 183}
+
+\titleformat{\section}[hang]{\fontsize{34}{30}\selectfont \bfseries\sffamily} %labels de as secciones
+{\rlap{\color{myBlue}\rule[-6pt]{28cm}{2pt}}\colorbox{myBlue}{%
+          \raisebox{0pt}[40pt][3pt]{ \makebox[60pt]{% height, width
+               \fontfamily{phv}\selectfont\color{white}{\thesection}}
+           }}}%
+{15pt}%
+{ \color{myBlue}#1
+%
+}
+\titlespacing*{\section}{0pt}{3mm}{5mm}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.0mm}
+
+%\rfoot{\colorbox{color1}{\thepage \hspace{1pt} {\bf{/}} \pageref{LastPage}}}
+%\cfoot{\colorbox{color1}{C.A. Salvador Jiménez R.}}
+%\lfoot{\colorbox{color1}{TAREA 6 - QIA}}
+
+\newtcolorbox{boxtext}[1]{colback=red!5!white,colframe=red!75!black,fonttitle=\bfseries,title=#1}
+
+\definecolor{borde}{RGB}{8,51,162}
+\definecolor{fondo}{RGB}{159, 229, 252 }
+\definecolor{titulo}{RGB}{223, 31, 31 }
+
+
+\begin{document}
+
+\renewcommand{\contentsname}{Índice general}
+\renewcommand{\listfigurename}{Índice de figuras}
+\renewcommand{\listtablename}{Índice de tablas}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\chaptername}{Capítulo} 
+\renewcommand{\bibname}{Bibliografía}
+
+\centering
+   \includegraphics[trim={0 1cm 0 1cm}, clip, width=58cm, height=6cm]{baner_Simposio_IQ_2022.png}
+
+   \vspace{0.4cm}
+
+\begin{tcolorbox}[colback=borde!20,%gray background
+                 colframe=borde,% black frame colour
+                 width=59cm,% Use 27cm total width,
+                 arc=3mm, auto outer arc,
+                 boxrule=3pt,
+                ]
+
+\begin{minipage}{58cm}
+\begin{center}
+{\fontsize{34}{28}\selectfont \textcolor{titulo}{{\bf{RELACIÓN DE LA DENSIDAD DE CORRIENTE INDUCIDA CON EL CAMPO LIGANTE Y EL DEZPLAZAMIENTO QUÍMICO}}}}
+\\
+{\fontsize{30}{18}\selectfont 
+Autores: {\bf{Carlos Alberto Salvador Jiménez Rosas}}, Dr. José Enrique Barquera Lozada. 
+\\
+Universidad Nacional Autónoma de México, Instituto de Química, Ciudad Universitaria, Ciudad de México 04510, México.}
+\end{center}
+\end{minipage}
+\end{tcolorbox}
+  
+   \vspace{0.4cm}
+
+\begin{mybox}[detach title,before upper={\tcbtitle\quad}]{{\fontsize{30}{30}\selectfont RESUMEN:}}
+{\fontsize{30}{30}\selectfont Se proponen una serie de moléculas que contienen ligante y un centro metálico que de antemano sabemos generará altos flujos de corriente eléctrica, consecuentemente campo magnéticos inducidos ($\vec{B}_{inducido}$) altos, haciendo los cálculos con DFT con y sin dispersión empírica. Se evaluaran los cambios en el desplazamiento a través de titulaciones de $^1$H-RMN, para establecer la relación desplazamiento - concentración. } \\
+
+\dotfill \\
+
+{\bf{{\fontsize{30}{18}\selectfont Palabras Clave: Desplazamiento químico, $^1$H-RMN, Campo magnético, flujo de corriente eléctrica.}}}
+\end{mybox}
+
+\begin{multicols}{2}
+\justifying
+
+\section{{\fontsize{36}{30}\selectfont INTRODUCCIÓN}}
+
+\begin{tcolorbox}[colback=borde!20,%gray background
+                 colframe=borde,% black frame colour
+                 width=28cm,% Use 27cm total width,
+                 arc=3mm, auto outer arc,
+                 boxrule=3pt,
+                ]
+\begin{minipage}{27cm}
+{\fontsize{30}{18}\selectfont
+Existen diversos factores que pueden cambiar el desplazamiento químico ($\delta$), en $^1H$-RMN, se pueden encontrar investigaciones teóricas y experimentales para establecer las razones y causas de este desconcertante e interesante fenómeno. Los $\delta$ se originan por la interacción del momento magnético nuclear (I) y un campo magnético aplicado ($\vec{B}_{aplicado}$). Factores que afectan $\delta$:
+
+\vspace{0.2cm}
+
+\begin{itemize}
+	\item Influencia de la topología de la densidad.
+	\item Puentes de hidrógeno o interacciones agostópicas.
+	\item Agentes de contraste.
+\end{itemize}
+}
+\end{minipage}
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+   \includegraphics[scale=1.3]{moleculas.png}
+	\caption{{\fontsize{30}{18}\selectfont Moléculas usadas durante el estudio}}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+   \includegraphics[scale=0.9]{interaction_cp-cic.png}
+	\caption{{\fontsize{30}{18}\selectfont Interacciones esperadas}}
+\end{figure}
+
+\begin{tcolorbox}[colback=borde!20,%gray background
+                 colframe=borde,% black frame colour
+                 width=28cm,% Use 27cm total width,
+                 arc=3mm, auto outer arc,
+                 boxrule=3pt,
+                ]
+\begin{minipage}{27cm}
+{\fontsize{30}{18}\selectfont
+El $\vec{B}_{aplicado}$ se puede incrementar con un $\vec{B}_{inducido}$ a través de una molécula. En este caso se utilizan compuestos con geometría cuadrado plano, que contiene a Ni como centro metálico, y ligantes que sabemos aumentan el flujo de corriente eléctrica ($I_{(e)}$) y consecuentemente $\vec{B}_{inducido}$.
+}
+\end{minipage}
+\end{tcolorbox}
+
+\begin{figure}[H]
+\centering
+   \includegraphics[trim={0 5cm 0 0}, clip, scale=0.9]{Bapli.png}
+	\caption{{\fontsize{30}{18}\selectfont Aumento en el campo magnético total ($\vec{B}_{total}$)}}
+\end{figure}
+
+\section{{\fontsize{36}{30}\selectfont METODOLOGÍA}}
+
+\begin{center}
+
+{\fontsize{32}{18}\selectfont
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black, fill = red!40]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill = blue!40]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill = yellow!50]
+\tikzstyle{proc} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill = orange!50]
+\tikzstyle{decision} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill = green!30]
+% Forma de flecha
+\tikzstyle{arrow} = [->,>=stealth]
+\begin{tikzpicture}[node distance=3.5cm]
+% Definir la forma específica del diagrama de flujo
+\node (start) [startstop]
+{{\fontsize{30}{18}\selectfont Optimización de geometría con DFT a un nivel M06/def2TZP}};
+\node (in1) [io, below of = start]
+{{\fontsize{30}{18}\selectfont Cálculo de error de superposición del conjunto base}};
+\node (in3) [proc, below of = in1]
+{{\fontsize{30}{18}\selectfont RMN con el algoritmo GIAO}};
+\node (dec1) [process, below of=in3]
+{{\fontsize{30}{18}\selectfont Cálculo de planos de densidad de corriente inducida ($J_{(e)}$)}};
+\node (dec2) [decision, below of=dec1]
+{{\fontsize{30}{18}\selectfont Cálculo de planos de flujo de corriente eléctrica $I_{(e)}$}};
+% Conectar forma específica
+\draw [arrow] (start) -- (in1);
+\draw [arrow] (in1) -- (in3);
+\draw [arrow] (in3) -- (dec1);
+\draw [arrow] (dec1) -- (dec2);
+\node[draw=none] at (7, -1.75)(yes){{\fontsize{26}{18}\selectfont {\bf{Cálculo c/s dispersión empírica}}}};
+%%%path betwen lines
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{figure}[H]
+\centering
+   \includegraphics[width=30cm, height=14cm]{calculos.png}
+	\caption{{\fontsize{30}{18}\selectfont Ejemplos de cálculo}}
+\end{figure}
+%
+
+\section{{\fontsize{36}{30}\selectfont RESULTADOS}}
+
+\begin{tcolorbox}[colback=borde!20,%gray background
+                 colframe=borde,% black frame colour
+                 width=29cm,% Use 27cm total width,
+                 arc=3mm, auto outer arc,
+                 boxrule=3pt,
+                ]
+\begin{minipage}{28cm}
+
+{\fontsize{30}{18}\selectfont
+\begin{itemize}
+	\item Hacer los cálculos con y sin dispersión empírica no maca una diferencia significativa en los valores de $I_{(e)}$
+	\item Las $E_{int}$ oscilan entre 8 - 20 $\frac{kcal}{mol}$ lo que nos indica una interacción débil entre complejo y ligante.
+	\item Es necesario obtener los resultados de las titulaciones de RMN, y constantes de acoplamiento ($J_{ij}$) para poder obtener la relación concentración - cambio en $\delta$.
+	\item {\bf{Próximo trabajo:}} Obtener los espectro de RMN teóricos y las $J_{ij}$ de interes, con efecto de disolvente (etanol) y las moléculas aisladas, para poder observar los cambios en $\delta$ que se pueden esperar.
+\end{itemize}
+}
+\end{minipage}
+\end{tcolorbox}
+
+\section{{\fontsize{36}{30}\selectfont CONCLUSIONES}}
+
+
+\begin{tcolorbox}[colback=borde!20,%gray background
+                 colframe=borde,% black frame colour
+                 width=29cm,% Use 27cm total width,
+                 arc=3mm, auto outer arc,
+                 boxrule=3pt,
+                ]
+\begin{minipage}{28cm}
+{\fontsize{30}{18}\selectfont Se a podido mostrar que estas tres moléculas generan grandes $I_{(e)}$ oscilando entre 0.62 y 0.125 $x10^{-3}$ A, además de mostrar buena correlación con los valores del $\nabla^2 \rho (r)$, esto nos lleva a esperar que los campos magnéticos inducidos serán altos, y que podremos observar cambios significativos en el $\sigma$.}
+\end{minipage}
+\end{tcolorbox}
+
+\end{multicols}
+
+\vspace{0.2cm}
+
+\begin{mybox}[detach title,before upper={\tcbtitle\quad}]{} 
+\parbox[c]{50cm}{
+{\fontsize{20}{18}\selectfont \textcolor{Red}{{\bf{BIBLIOGRAFÍA:}}}
+\begin{enumerate}
+	\item  Buckingham, A. D.; Stephens, P. J. Proton Chemical Shifts in the Nuclear Magnetic Resonance Spectra of Transition-Metal Hydrides: Square-Planar Platinum(II) Complexes. J. Chem. Soc. 1964, 4583-4587
+	\item Barquera-Lozada, J. E., Obenhuber, A., Hauf, C., \& Scherer, W. (2013). On the chemical shifts of agostic protons. The Journal of Physical Chemistry A, 117(20), 4304-4315.
+	\item Jiménez Rosas. C.A.S (2022). Estudio topológico del flujo de corriente eléctrica en compuestos tipo $ML_4$ [Tesis de licenciatura, Universidad Nacional Atutónoma de México]. TESIUNAM.
+\end{enumerate}
+}}\parbox[c]{1.5cm}{
+-
+}\parbox[c]{5cm}{
+\begin{figure}[H]
+\includegraphics[width=4.5cm, height=4.5cm]{qr_poster.png} 
+\end{figure}
+{\fontsize{26}{18}\selectfont ¡ESCANEAME!
+}} 
+\dotfill 
+\end{mybox}
+
+\end{document}
