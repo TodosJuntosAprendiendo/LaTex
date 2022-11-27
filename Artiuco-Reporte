@@ -1,0 +1,761 @@
+\documentclass[12pt]{article}
+\usepackage[spanish,USenglish,es-tabla]{babel}
+\setlength{\parskip}{1em}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath} % (librería  desímbolos)
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{subfigure} % subfiguras
+\usepackage[papersize={216mm,279mm},lmargin=2cm,rmargin=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{float} %aquete para mejorar la posición de flotantes
+\usepackage{caption} % para referencias
+\usepackage{ragged2e}
+\usepackage{mathptmx}
+\usepackage{makeidx}
+\usepackage{xparse}
+\usepackage{blindtext}
+\usepackage{longtable,multirow,booktabs}
+
+\definecolor{color1}{RGB}{232, 247, 250} % Color of the article title and sections
+\definecolor{color2}{RGB}{0,20,20} % Color of the boxes behind the abstract and headings
+
+\newtcolorbox{mybox}[2][]{colbacktitle=red!10!white, colback=blue!10!white,coltitle=red!70!black,
+title={#2},fonttitle=\bfseries,#1}
+
+\renewcommand*\thesection{\arabic{section}}
+\usepackage[explicit]{titlesec}
+\definecolor{myBlue}{HTML}{0088FF}
+
+\titleformat{\section}[hang]{\Large\bfseries\sffamily}%
+{\rlap{\color{myBlue}\rule[-6pt]{8.5cm}{1.2pt}}\colorbox{myBlue}{%
+           \raisebox{0pt}[13pt][3pt]{ \makebox[20pt]{% height, width
+                \fontfamily{phv}\selectfont\color{white}{\thesection}}
+            }}}%
+{15pt}%
+{ \color{myBlue}#1
+%
+}
+\titlespacing*{\section}{0pt}{3mm}{5mm}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.0mm}
+
+
+\newtcolorbox{boxtext}[1]{colback=red!5!white,colframe=red!75!black,fonttitle=\bfseries,title=#1}
+
+\rfoot{\colorbox{color1}{\thepage \hspace{1pt} {\bf{/}} \pageref{LastPage}}}
+\cfoot{\colorbox{color1}{C.A. Salvador Jiménez R.}}
+\lfoot{\colorbox{color1}{Writing Report}}
+
+\begin{document}
+
+\rule{\linewidth}{0.2mm}
+\parbox{5cm}{
+\includegraphics[scale=0.1]{unam_posgrado.png} 
+}\parbox{14cm}{ 
+\centering
+{\large \bf Quantum Chemitry Approach to Chemical Concepts and Atomic Properties} \\ Written Report }
+
+\noindent {\bf{Student:}} Jiménez Rosas Carlos Alberto Salvador \hfill {\bf{Date:}} November 23, 2022
+\rule{\linewidth}{0.1mm}
+
+\begin{mybox}[detach title,before upper={\tcbtitle\quad}]{ABSTRAC:}
+A series of molecules that contain a ligand and a metallic center are proposed, which we know in advance will generate high electric current flows, consequently high induced magnetic fields ($\vec{B}_{induced}$), making the calculations with DFT with and no empirical dispersion. Changes in displacement will be evaluated through $^1$H - NMR titrations, to establish the displacement-concentration relationship.  \\
+\dotfill \\
+{\bf{ Keywords: Chemical shift, $^1$H-NMR, Magnetic field, electric current flow.}}
+\end{mybox}
+
+\begin{multicols}{2}
+
+\tableofcontents
+
+The physical and chemical properties of matter can be determined through experimentation, with measuring instruments in a laboratory under specific and controlled conditions. There is another way in which we can obtain all the information of a system, according to quantum mechanics when we determine the wave function ($\Psi$) we can obtain all the information of the system, obtaining $\Psi$ is not trivial, and for its determination approximate methods are used. The calculations of the physicochemical properties are an obligatory complement when the experiments turn out to be too complex, expensive, or when we want to have a reference of what we are going to test based on numerical results.
+
+\section{Nuclear Magnetic Resonance} 
+    \label{NMR_Section}
+    
+Nuclear magnetic resonance (NMR) is one of the most powerful tools available today for elucidating the structure of one. This technique is based on an intrinsic property of the nucleus: its magnetic properties. The nucleus of an atom is formed by protons and neutrons, the total spin of the nucleus (I) is the sum of the spin of the particles that form it. In the presence of a magnetic field, each nuclear spin can be oriented in two different directions, each direction having an associated $J_z$ component along the axis of the applied field. This $J_z$ component is:
+
+\begin{equation}
+J_z = \frac{mh}{2 \pi} = m \hbar    
+\end{equation}
+
+Where m is a number between +I and –I, and gets its value depending on the nuclear spin. Since the nuclear spin is not aligned parallel to the applied external field, it receives a torque and begins to make a movement, similar to that of a top. The frequency of this rotation ($\mu_L$) depends on the applied magnetic field ($B_0$) and the nucleus in question. It is expressed by the equation:
+
+\begin{equation}
+ \mu_L = \frac{\gamma}{2 \pi} B_0
+\label{eq:lamor}
+\end{equation}
+
+The equation \ref{eq:lamor} is known as the Larmor frequency of the nucleus, where:
+
+\begin{itemize}
+    \item $\gamma$: gyromagnetic constant
+    \item $B_0$: applied magnetic field
+\end{itemize}
+
+Those nuclei that direct their spin in favor of the field will be at a slightly lower energy level than those that direct it against it. And the energy difference between both states ($\Delta E$) is given by the following equation:
+
+\begin{equation}
+\Delta E = \frac{\gamma h}{2 \pi} B_0
+\end{equation}
+
+where $h$ is Planck's constant. However, this energetic difference is very small: suppose an NMR equipment applies a magnetic field of 7.05 T, then, for the case of $^1H$ nuclei, the value of $\Delta E$ would be approximately 0.12 $ \frac{J}{mol}$. This extremely low energy corresponds to the range of radio frequencies (radio waves) and is what separates the two populations of $^1H$ nuclei under these conditions. If we calculate what is the frequency corresponding to this energy difference, we will see that it corresponds approximately to 300 MHz. 
+
+If it is irradiated with that frequency, then the spins of the nuclei will begin to interact with the radio frequency (more precisely, with its magnetic component) and the sample will absorb radiation. This condition is called the resonance condition and occurs when the frequency of the emitted radiation coincides with the Larmor frequency of the nuclei. Under these conditions, said absorption is measured indirectly and is perceived by the equipment as a signal.
+
+\subsection{Chemical shift}
+
+The tool to distinguish $^1H$ nuclei surrounded by different electron densities are the differences in resonance frequencies. However, using frequency as a measure of electron densities around the nucleus has a problem: it depends on the external magnetic field. If we carry out the same experiment in equipment that operates with a stronger magnetic field (and, therefore, at higher frequency values), for example, a 500 MHz NMR equipment, we will observe that chloroform absorbs at 500,003,630 Hz while pentachloroethane does it at 500,003,200 Hz. Now the difference between them is greater.
+
+To solve this problem, we define the chemical shift ($\delta$). To specify $\delta$ it is necessary to choose a substance as a reference to measure, not frequencies, but frequency differences. Said substance is usually tetramethylsilane (TMS), which presents very low frequency values since the electron density on its hydrogens is high due to the fact that silicon is less electronegative than C. By convention, TMS is assigned the value of delta zero ($\delta$ TMS = 0)
+
+The chemical shift of H from other substances is calculated as follows:
+
+\begin{equation}
+\delta = \frac{(\upsilon_i – \upsilon_{TMS}) 10^6}{\upsilon_0}
+\end{equation}
+
+where
+
+\begin{itemize}
+    \item $\upsilon_i$ is the absorption frequency of the hydrogen we are considering
+    \item $\upsilon_{TMS}$
+is the frequency at which TMS absorbs
+    \item $\upsilon_0$ is the nominal frequency at which the equipment being used works
+\end{itemize}
+
+The $\delta$) are not only independent of the applied field, but also take usual values between 0 and 12, very convenient to use, compare, memorize and tabulate. Note that $\delta$, being a frequency quotient, has no units, although units of parts per million (ppm) are usually associated. Thus the NMR spectra show a graph of absorbance vs $\delta$.
+
+\subsection{Coupling constants}
+     \label{affinity_constants}
+
+When a particular H nuclei enters resonance, the frequency of the transition, between nuclei with spin 1/2 (called $\alpha$ nuclei) and nuclei with spin -1/2 (called $\beta$ nuclei), tancision $ \alpha \rightarrow \beta$ is determined by the local magnetic field around the nucleus. When an H has neighbors on the adjacent C atom, it contributes to the magnetic field with its own spin magnetic moment, which can be $\alpha$ or $\beta$, slightly increasing or decreasing the local magnetic field value in the nucleus. Put another way: when the H on carbon 2 of ethyl are resonating (at $\delta$ $\approx$ 6.36), half of them will have a neighbor $\alpha$ on C1 and the other half will have a neighbor $\beta$ in C1, see figure \ref{fig:doblet_vecinos} to have the reference of what was discussed. The former will perceive a slightly larger field, the latter a slightly smaller field.
+
+This is why two different absorption frequencies will be observed and the signal will appear as a doublet, that is, two very close peaks of similar intensity. 2 When the H's turn to resonate on carbon 1 of ethyl (at $\delta$ $\approx$ 6.57), half of them will have a neighbor $\alpha$ on C2 and the other half will have a neighbor $\beta$ in C2. The signal will also appear as a doublet.
+
+\end{multicols}
+    
+    \begin{figure}[H]
+    \begin{center}
+    \includegraphics[scale=0.5]{doblete_vecinos.png}
+    \caption{Signal splitting of a proton H A caused by a neighboring proton $H_X$ (doublet)}
+    \label{fig:doblet_vecinos}
+    \end{center}
+    \end{figure}
+    
+\begin{multicols}{2}
+
+    \subsection{Unusual chemical shifts}
+
+There are several factors that generate unusual chemical shifts ($\delta$) in $^1H$-NMR, and although there are various experimental and theoretical investigations to establish the cause and reason for these observations, this remains a rather disconcerting and interesting phenomenon. Factors Affecting $\delta$
+
+\begin{itemize}
+    \item Influence of topology on electron density
+    \item Hydrogen bonds and agostic interactions
+    \item Contrast agents
+\end{itemize}
+
+\subsection{Nuclear magnetic resonance titrations}
+
+It is of great importance to know the association between a ligand (L) and its host (H). NMR titration is a method to determine the affinity constant (Ka) and consists of adding aliquots of known concentration of L to a solution of H. The choice of receptor is arbitrary but is based on the criteria of solubility, cost, availability (when its synthesis is complex), etc., since the H concentration will remain constant during the titration. The complex ($H_mG_n$) will then be formed, with m:n stoichiometry (1:1, 1:2, 2:1, etc.).
+    
+In titration experiments, a graph called the binding isotherm is constructed, which results from plotting the change in a response of an experimental measurement (Y) against the added equivalents of ligand (G). The resulting binding isotherm is then fitted to a nonlinear mathematical model according to the initially assumed stoichiometry (either 1 : 1, 1 : 2, 2 : 1, etc.), and the fit will yield the value approximate Ka \cite{Thordason} .
+
+\subsection{1:2 stoichiometry}
+ The key equation to keep in mind here is:
+ 
+\begin{equation}
+[HG]^2 -[HG] \left([G]_0 +[H]_0 + \frac{1}{Ka} \right)- [H]_0 [G]_0 = 0
+\label{eq:quadratic}
+\end{equation}
+
+ as well as the equations:
+
+\begin{equation}
+\Delta Y = Y_{\Delta HG} \left(\frac{[HG]}{[H]_0} \right)
+\end{equation}
+
+\begin{equation}
+\Delta Y = Y_{\Delta HG} ([HG])
+\end{equation}
+
+In a 1:2 system, the experimental data can be fitted by nonlinear regression with the equations:
+
+\begin{equation}
+\Delta Y = \frac{Y_{\Delta HG} K_1[G] + Y_{\Delta HG_2}K_1K_2[G]^2}{1 + K_1[G] + K_1K_2[G]^2}
+\end{equation}
+
+\begin{equation}
+\Delta Y = \frac{Y_{\Delta HG}[H]_0 K_1[G] + Y_{\Delta HG_2}[H]_0 K_1K_2[G]^2}{1 + K_1[G] + K_1K_2[G ]^2}
+\end{equation}
+
+and the equation \ref{eq:quadratic}, to obtain the unknown parameters $K_1, K_2, Y_{\Delta HG} \ and \ Y_{\Delta HG_2}$
+
+The cubic equation \ref{eq:quadratic} is of special interest here since it has three solutions that may or may not include complex numbers, expression for any concentration:
+
+\begin{equation}
+[G]^3(A) + [G]^2(B) + [G](C) - [G]_0 = 0
+\end{equation}
+
+where:
+
+\begin{itemize}
+    \item $A = K_1K_2$
+\item $B = K_1 (2K_2[H]_0K_2[G]_0 + 1)$
+\item $C = K_1([H]_0 - [G]_0) + 1$
+\end{itemize}
+
+The smallest positive real solution is the only one relevant here. Once the concentration of [G] is known, the concentration of [H] can also be calculated if necessary from the equation:
+
+\begin{equation}
+[H] = \frac{[H]_0}{1 + K_1[G] + K_1K_2[G]^2}
+\end{equation}
+
+\subsection{Goodness of fit}
+
+When the data is fitted to a model, it is necessary to evaluate if the trend of the model is actually followed. For this purpose there is the analysis of residuals. This graph shows the variation of the fit ($y_{fit}$) point, that is, the difference between the $y_{data}$ and the $y_{calculated}$ of each depending on the added binder ($[G]_0 $). Ideally, the plot of residuals should be randomly distributed above and below the zero line. A consistent trend indicates a poor fit.
+
+The other analysis is the estimation of the uncertainty of the results. The standard error used to calculate the intervals is 95\% confidence (approximately twice the standard error). Both analyzes will have repercussions on the decision to continue with the proposed model or to change the model and do a new analysis. It is also important to take into account that the titrations must be done in triplicate with constant temperature (the same for each titration), different concentrations must be tested and the purity of the solvents, the ligand and the receptor must be taken into account.
+
+\subsection{Magnetically induced current density}
+
+When a molecule is exposed to an external magnetic field, its electrons are forced to move around parts of the molecule or around the entire molecule, giving rise to an induced electric current density ($J_{(e)}$) \cite{PaulingL}. According to Faraday's law, the induced current density induces a magnetic field in the opposite direction to the external field. The magnetic field in molecules is very similar to the effect of the magnetic field in a coil in classical physics, however, for molecules quantum effects must be taken into account, since in molecules magnetically induced currents can flow simultaneously in the direction classical and in the non-classical direction as shown in figure \ref{FIG:rotation}. The current that flows in the classical and non-classical directions are called diatropic and paratropic currents, respectively \cite{Queralt}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=8cm,height=5cm]{image12.png}
+\caption{The direction in which the electrical current density rotates defines its name.}
+\label{FIG:rotation}
+\end{center}
+\end{figure}
+
+For chemists, knowledge about magnetically induced current density is relevant because density shows how electrons move in molecular systems when exposed to external magnetic fields, such information is not readily available experimentally. Measurable quantities such as NMR chemical shifts and magnetic susceptibilities can be related to the magnetically induced current density through the Bio-Savart\cite{Roca_Sanjun} law. By understanding how magnetically induced currents flow in molecules, it is possible to provide additional information about unusual chemical shifts.
+
+\subsection{Flow of electrical current}
+    
+The flow of electric current ($I_{(e)}$) in molecules can be obtained from $J_{(e)}$ as described in the equation \ref{eq:current_flow}, $I_{( e)}$ is not a physical observable, so in the context of mechanics it is not possible to assign an operator to it, in order to obtain its value it is necessary to calculate it.
+    
+    \begin{equation}
+        I_{(e)} = \int \int J_{(e)} \cdot dnds
+        \label{eq:current_flow}
+    \end{equation}
+    
+    It was recently described that the phenomenon of increase in current density is coupled with the binding field of those who bind to the metal in flat square complexes in the $d^8$ \cite{Rosas} configuration, in which it is concluded that binders such as $Cl^-$ and $F^-$, as well as ligands that are good $\pi$-acceptors increase the current density and the flow of electric current around the metallic center of the molecule.
+
+\section{Methodology} 
+    \label{Methodology}
+
+The results of this research were obtained experimentally and theoretically, both methodologies that were followed in the development of all the research are presented. The figure \ref{fig:Mx} shows the 3 molecules used throughout the study, as well as the acronyms given to each of them.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.4]{moleculas.png}
+\caption{Molecules used}
+\label{fig:Mx}
+\end{center}
+\end{figure}
+
+\subsection{Theoretical procedure}
+    \label{sec:Theoretical_procedure}
+
+The theoretical development was carried out in computer room 4 of the Institute of Chemistry, using the supercomputing resources of the UNAM, in addition to using specialized software from the Institute of Chemistry. The interaction of all the molecules was done in the Avogadro program, for the calculations it is of interest to study the isolated complexes, the interaction between a molecule of complex construction with cyclohexane and the interaction of a molecule of complex with two molecules of cyclohexane, as shown in the figure \ref{fig:interactions}
+
+\subsection{Geometry optimization}
+
+Using the Gaussian 16 \cite{Gaussian16} program, a geometry optimization of all the molecules presented in this thesis was made, using the hybrid global functional M06 \cite{Zhao-M06} that has an exchange of 27$\%$ HF , this functional is intended for transition metal and organometallic thermochemistry and non-covalent interactions, the basis functions def2TZVP.\cite{Weigend} were used. The vibration frequencies of the atoms were also calculated to ensure that they had found a minimum potential energy on the surface. Once the geometry was optimized, the calculation of the magnetic shielding was made.
+
+For all the molecules in the figure \ref{fig:interactions} the geometry optimization calculations were made with DFT at a level of theory M06/def2TZVP, and M06/def2TZVP including empirical Grimer scattering and the error calculation was also made. Basis Feature Set Overlay (BSSE). %quote a bleaker
+\end{multicols}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale=0.5]{interaction_cp-cic.png}
+\caption{Interactions studied}
+\label{fig:interactions}
+\end{center}
+\end{figure}
+
+\begin{multicols}{2}
+
+\subsection{Analysis of the electron density topology}
+
+With the program AIMALL \cite{AIMAll_ESTUDIO}, the calculation of electron density planes and induced current density was made. Knowing the coordinates of all the atoms, it is possible to obtain two vectors ($V_i(x_i, y_i, z_i) $) that are in the direction of the space between the ligands, and another vector above the molecular plane taking the metal center as origin of the molecule. With these 2 vectors you can calculate the planes in the molecule as shown in figure \ref{fig:planes_de_moleculas}.
+\end{multicols}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =14cm,height =6cm]{plans_1_4.png}
+\caption{All the planes of the molecules were calculated between the spaces between the ligands.}
+\label{fig:planes_de_moleculas}
+\end{center}
+\end{figure}
+
+\begin{multicols}{2}
+
+Particularly, the values of $\nabla^2 \rho(r)$ of interest for this study are the differences between the adjacent maximum and minimum values of the Laplacian on the molecular plane. The way to obtain these differences is illustrated in the figure \ref{fig:lap_max_min}
+\end{multicols}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width =14cm,height =6cm]{pdLap.png}
+\caption{Maximum and minimum values of $\nabla^2 \rho$ on the molecular plane}
+\label{fig:lap_max_min}
+\end{center}
+\end{figure}
+
+\begin{multicols}{2}
+
+With the ParaView \cite{ParaView} program, the electric current flow ($I_e$) was calculated in the direction of the vector normal to the plane.
+
+\section{Experimental procedure}
+    \label{sec:Experimental_procedure}
+     \lhead[]{\thesection \ Experimental procedure}
+
+The experimental tests were prepared in the 4-C laboratory of the IQ, the $^1H-NMR$ tests were carried out by technicians from the institute.
+
+    \subsection{Experimental design}
+
+    
+Stock solutions of complex and ligand are prepared at a concentration of 0.003 and 0.01 M respectively, the information of the weighed masses to prepare the solutions are listed in the table \ref{TAB:experiment}
+
+\end{multicols}
+
+\begin{table}[H]
+    \centering
+\caption{Calculation of stock solutions used}
+\label{TAB:experiment}
+    \begin{tabular}{ccc}
+  \toprule
+  Compound Name & Molar Mass & Heavy Mass \\
+  \hline
+    \hline
+  bis(triphenylphosphine)nickel(II) dichloro & 656.2 & 0.0098 \\
+  \hline
+  dichlorobis(triphenylphosphine)nickel(II) & 656.2 & 0.0098 \\
+  \hline
+  Nickel(II) chloride ethylene glycol dimethyl ether & 219.72 & 0.0033 \\
+  \hline
+  \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+To prepare the 0.003 M cyclohexane stock solution, a stock solution [0.01 M] was first prepared, the volume necessary to prepare it was taken from distilled and degassed cyclohexane, from this solution the volume necessary to prepare the 0.003 M solution was taken.
+
+In the titrations by $^1$H-RMN it is necessary to keep the concentration of the complex constant in all those detected, only the concentration of the complex increases, to achieve this the additions indicated in the table \ref{TAB:ALV} were made, the Aliquot volumes are in ml and were taken with the help of micropipettes and added directly to the NMR tube. To obtain the concentration values, the necessary stoichiometry was made.
+
+\end{multicols}
+
+\begin{table}[H]
+\centering
+\caption{List of aliquots added and the concentrations obtained}
+\label{TAB:ALV}
+  \begin{tabular}{cccccc}
+  \toprule
+  Complex aliquot & Ligand aliquot & $V_{Total}$ & [Complex] & [Ligand] & Experiment \\
+  \hline
+  \hline
+  0.1600 & 0.0050 & 0.500 & 0.0010 & 0.0010 & 1 \\
+  0.020 & 0.020 & 0.540 & 0.0010 & 0.0013 & 2 \\
+  0.020 & 0.030 & 0.590 & 0.0010 & 0.0014 & 3 \\
+  0.020 & 0.040 & 0.650 & 0.0010 & 0.0015 & 4 \\
+  0.020 & 0.050 & 0.720 & 0.0010 & 0.0016 & 5 \\
+  0.020 & 0.080 & 0.820 & 0.0010 & 0.0019 & 6 \\
+  0.090 & 0.150 & 1.060 & 0.0010 & 0.0022 & 7 \\
+  \hline
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+
+The temperature is a very important factor to take into account in $^1$H-NMR titrations, in order to know specifically at what temperature the spectra are being taken, an internal reference is used, this consists of a small tube with ethanol, which is embedded inside the NMR tube as shown in the figure \ref{fig:capillary}
+
+Ethanol ($CH_3CH_2OH$) is used as a standard for ethanol temperature, since the signals of its hydrogens in NMR spectra are sensitive to temperature, from the interpretation of the signals of the $CH_3CH_2OH$ protons it is possible to know exactly what temperature the spectra are being taken.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{capilar_rmn.png}
+    \caption{Inside the NMR tube containing the C-L mixture, a thinner capillary with the temperature standard is placed}
+    \label{fig:capillary}
+\end{figure}
+
+\section{Results and discussion}
+  
+  Experimental results were obtained using a 300 Mz $^1$H-NMR equipment at the IQ. Theoretical results were calculated using the "Miztli" supercomputer, in addition to IQ software. The optimized geometries of all the molecules $M_1$, $M_2$ and $M_3$, can be observed, in the subfigures --- respectively.
+  
+\subsection{Theoretical results}
+    \label{sec:Theoretical_results}
+    
+ It begins by obtaining the values of $I_{(e)}$ and of the Laplacian for all the molecules, including the dimer of each one of them with a molecule of cyclohexane, and the trimer with two molecules of cyclohexane, the values obtained are poured in the table \ref{tab:Fljos_non_dispersion}, in all cases the $M_1$ molecule exhibits greater electric current flows, in addition it can also be noted that the differences between the Laplacian values are also the largest in all cases.
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\subfigure[All molecules M1]{\includegraphics[width=14cm, height=4.7cm]{m1_all_molecules.png}}
+\subfigure[All molecules M2]{\includegraphics[width=16cm, height=4.7cm]{m2_all_molecules.png}}
+\subfigure[All molecules M3]{\includegraphics[width=16cm, height=4.7cm]{m3_all_molecules.png}}
+\caption{The geometry of all molecules optimizade.} 
+\label{fig:All_molecules_Mi}
+\end{figure}
+
+\begin{multicols}{2}
+
+\subsection{Quantum theory of atoms in molecules}
+     \label{sec:QTAIM}
+     
+ The Quantum Theory of Atoms in Molecules (QTAIM) \cite{Beader}, says that any molecule can be divided into different regions or beads, which will be represented by the Greek letter omega ($\Omega$). This partitioning of molecular space can be done by zero-flux surfaces of the density gradient vector field $\nabla \rho(r)$. The space identified as an atom is that in which the flux lines of $\nabla \rho(r)$ end in the nucleus of said atom. The boundaries of these regions satisfy the zero flow condition:
+
+\begin{equation}
+\nabla \rho(r) \cdot n = 0
+\end{equation}
+
+where:
+
+\begin{itemize}
+    \item $r$ is the position vector
+    \item $n$ is the normal vector to the surface.
+\end{itemize}
+
+It is true that for each $\Omega$ there is a set of lines of the gradient vector that originates at infinity and ends at a point between two bonded atoms. The lines of this set belong by definition to the zero-flux surface because they satisfy the equation locally.
+
+\subsection{Topology of electron density}
+
+Matter can be described by the electronic density of atoms and molecules, from this perspective the electronic density contains all the physical information of matter and its topology includes the concepts of atom, bond, structure, etc. In this context the molecular structure is characterized by the topology of $\rho (r)$, the morphology of $\rho(r)$ is given by the amount and type of topological features of $\rho (r)$, such Characteristics are associated with critical points, in which the first derivative of $\rho (r)$ vanishes, likewise, the second derivative of $\rho (r)$ distinguishes the different maxima, minima, and saddle points.
+
+The first step for a topological analysis using QTAIM is to obtain the critical points of the density $\rho(r)$, that is, to obtain the points at which the density gradient becomes zero, which is the same, to solve :
+
+ \begin{equation}
+ \nabla \rho(r) = \vec{i} \ \frac{\partial \rho (r)}{\partial x} +\vec{j} \ \frac{\partial \rho (r)}{\ partial y} + \vec{k} \ \frac{\partial \rho (r)}{\partial z}
+ \end{equation}
+
+It is possible to relate some chemical concepts to the critical points of electron density: nuclei (maximums), link points (first-order chair points), rings (second-order chair points) and boxes (minimum). To understand the chemical bond in this context we have the gradient field line that goes from one nucleus to another, the set of bond lines provides the structural formula of the molecule. The basin of attraction (or repulsion) of a critical point is the place where all the lines of the gradient field end (or are born). The basin of attraction of a nucleus is a three-dimensional region that is convex and separated from the other basins. The union of the nuclear critical point with its basin of attraction constitutes an atom. The integration of appropriate operators within a basin provides the observable properties of the atom in the molecule.
+
+\subsection{Laplacian of electron density}
+\label{subsection:laplacian}
+
+ From the equation \ref{eq:lapla} the values $\lambda_i$ are the curvatures or eigenvalues of the density with respect to the principal axes at that critical point $x_p , y_p , z_p$ and together they add the trace of the matrix Hessian, known in this case as: Laplacian of electron density($\nabla^2 \rho (r)$) which is given by the expression:
+
+ \begin{equation}
+ \begin{split}
+ \nabla \cdot \nabla \rho(r) = \nabla^2 \rho(r) = \frac{\partial^2 \rho (r_p)}{\partial x_p^2} + \frac{\partial^2 \rho (r_p)}{\partial y_p^2} + \frac{\partial^2 \rho (r_p)}{\partial z_p^2}  \\
+ = \lambda_1 + \lambda_2 + \lambda_3
+\end{split}
+\label{eq:lapla }
+ \end{equation}
+ 
+ The regions where the electrons are located can be visualized representing the function $- \nabla^2 \rho (r)$ , which present maxima related to the electronic pairs. In other words, the Laplacian topology gives us information about the accumulation or deficiency of electron density. The values that $\nabla^2 \rho (r)$ and its physical interpretation can take are:
+
+$$
+\nabla^2 \rho(r) \left\{
+\begin{array}{ll}
+(-) & Concentration \ of \ electronic \ density \\
+(+) & Electronic \ density \ deficiency
+\end{array}
+\right.
+$$
+
+\end{multicols}
+
+\begin{table}[H]
+\centering
+\caption{Relation of $I_e$ and the values of $\nabla^2 \rho(r)$, without using empirical dispersion}
+\label{tab:Fljos_non_dispersion}
+\begin{tabular}{cccccc}
+\toprule
+\hline
+Molecule & Energy \ / kcal/mol & $I_{(e)}$ \ / A & $V_{average}$ & $V_{maximum}$ & $V_{m\acute{i} cheer up}$ \\
+\hline
+M1 & -1717841.860 & 0.602 & 90.286 & 94.225 & 86.015 \\
+\hline
+M2 & -2824296.924 & 0.149 & 73.788 & 76.847 & 70.179 \\
+\hline
+M3 & -2824305.520 & 0.160 & 73.788 & 76.847 & 70.179 \\
+\hline
+\hline
+\multicolumn{6}{c}{With a cyclohexane} \\
+\hline
+\hline
+M1 & -1865793.660 & 0.586 & 89.599 & 94.171 & 85.961 \\
+\hline
+M2 & -2972252.082 & 0.125 & 78.014 & 96.667 & 69.450 \\
+\hline
+M3 & -2972258.376 & 0.185 & 73.864 & 76.364 & 70.955 \\
+\hline
+\hline
+\multicolumn{6}{c}{With two cyclohexanes} \\
+\hline
+\hline
+M1 & -1865799.514 & 0.160 & 73.788 & 76.847 & 70.179 \\
+\hline
+M2 & -3120198.542 & 0.147 & 70.390 & 72.089 & 69.360 \\
+\hline
+M3 & --- & -- & --- & --- & -- \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Interaction energies using empirical dispersion}
+\label{tab:Fljos_con_dispersion}
+\begin{tabular}{cccccc}
+\toprule
+\hline
+Molecule & Energy \ / kJ/mol & $I_{(e)}$ \ / A & $V_{average}$ & $V_{maximum}$ & $V_{m\acute{i} cheer up}$ \\
+\hline
+M1 & -1717843.764 & 0.603 & 90.235 & 94.250 & 85.543 \\
+\hline
+M2 & -2824313.415 & 0.160& 70.028& 71.854& 69.304 \\
+\hline
+M3 & -2824320.450 & 0.167& 72.737& 76.534& 69.939 \\
+\hline
+\hline
+\multicolumn{6}{c}{With a cyclohexane} \\
+\hline
+\hline
+M1 & -1865799.514 & 0.586& 89.599& 94.171& 85.961 \\
+\hline
+M2 & -2972274.128 & 0.125 & 78.014& 96.667& 69.450 \\
+\hline
+M3 & -2972279.594 & 0.167 & 72.598& 76.441& 69.939 \\
+\hline
+\hline
+\multicolumn{6}{c}{With two cyclohexane} \\
+\hline
+\hline
+M1 & -2013743.317 & 0.624 & 90.032 & 94.496 & 86.420 \\
+\hline
+M2 & -3120225.960 & 0.1505 & 70.129 & 71.916 & 69.038 \\
+\hline
+M3 & --- & -- & --- & --- & -- \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+
+\subsection{Empirical dispersion}
+        
+    Dispersion forces, first described by London \cite{F_London} arise from interactions between ions, dipoles, and induced dipoles that produce various properties in molecules, these interactions are generally called London dispersion forces and are the forces weaker intermoleculars. They are attractive forces that result when electrons in two adjacent atoms occupy positions that cause the atoms to form temporary dipoles. These forces play an important role in various chemical systems. These interactions control, for example, the DNA structures of proteins, the packing of crystals, the formation of aggregates, or the orientation of molecules on surfaces. \cite{Grimer_a, D_Becke, Grimer_b} Empirical scattering can be used in DFT to systems where non-covalent interactions play an important role. The scattering energy is added as a post-correction to the self-consistent field (SCF).
+    
+    \begin{equation}
+    E_{DFT} = E_{base} + E_{disp}
+    \end{equation}
+     
+    where
+    
+    \begin{itemize}
+        \item $E_{DFT}$ is the total DFT energy
+        \item $E_{base}$ is energy obtained without dispersion
+        \item $E_{disp}$ is the dispersion correction.
+    \end{itemize}
+
+In order to obtain the energy of interaction in the dimer, the energy of the monomers is used as indicated in the equation \ref{eq:ene_int}, for the molecules in which dispersion was not used, the results of the energies of interaction in the table \ref{tab:eng_interaccion_sind}
+
+\begin{equation}
+    \Delta E_{int} = E_{12} - E_1 - E_2
+    \label{eq:ene_int}
+\end{equation}
+
+    \subsection{Base set superpotition error}
+        
+    Molecular orbitals (MO) are linear combinations of atomic orbitals (AO), which in turn are linear combinations of other functions called basis functions. A set of bases is a collection of functions that obey a set of rules (such as being orthogonal to each other, among other rules) with which all AOs are built, and although these are centered on each atomic nucleus, the canonical form in which they combine to produce delocalized OM; in other words, an MO can occupy a large space spanning several atoms at once. The calculation of the interaction energy between two or more molecular fragments leads to an artificial extra stabilization term that derives from the fact that the electrons in molecule 1 can occupy the AOs (or the basis functions that form them) centered on the atoms of molecule 2, this is known as the basis set overlap error (BSSE).
+    
+    One way to fix this is to use a larger and larger base set. If a sufficiently precise description of atomic orbitals far from atomic centers is used (fuzzy functions in a traditional calculation), then it will not matter if additional basis functions (from the description of atomic orbitals of other reactants) occupy that same basis. region. The added basis functions of the other item are unnecessary and will not improve the quality of the calculation. It is not always possible to use a larger base set, because it is often too computationally expensive to increase the base set. Alternatively, a counterweight correction can be calculated.
+    
+    {\bf{Counterweight method}}
+    
+    In essence, the interaction energy ($E_{int}$) of any A—B dimer is calculated as the energy difference between the dimer and the energies calculated separately for each component.
+
+\begin{equation}
+    E_{int} = E_{AB} – E_A – E_B
+    \label{eq:jan_int}
+\end{equation}
+
+However, the calculation of $E_{int}$ by this method is very sensitive to the choice of the basis set due to BSSE, this error is particularly problematic when using small basis sets, due to the poor description of the interactions of dispersion, but dealing with this error simply by choosing a larger base set is rarely useful for systems of considerable size. The counterweight method is a clever correction to the equation \ref{eq:ene_int} \cite{Boys, Simon}. We can summarize the action of this method in the following steps:
+    
+    \begin{enumerate}
+        \item Calculate the energy with both reactants, including all electrons and nuclei. This results in the energy of the complex of reactant 1 and reactant 2: $E_{12}$
+        \item Repeat the calculation for each reactant, by itself, using the same geometry in which they are found, in the complex. This results in values $E_1$ and $E_2$
+        \item Repeat the calculation for each item, but with a modified base set: in addition to the individual item's base set, the other item's base is also used. For example, for reagent 1, these added basis functions are located where reagent 2 is located in the complex. These calculations do not include the nuclei or the electrons of the other reactant (ghost atoms). This results in energies $E_1^*$ and $E_2^*$
+    \end{enumerate}
+    
+    The counterweight correction ($E_c$) is calculated from the energies of the individual reactants:
+    
+    \begin{equation}
+    \Delta E_c = (E_1^* - E_1) + (E_2^* - E_2)
+    \end{equation}
+    
+    This represents the decrease in energy due to the addition of the base set of another reactant. Since the energy is less than or equal (with variational methods) with aggregate basis functions, this value must be negative. The corrected interaction energy is then
+    
+    \begin{equation}
+        \Delta E_{int} = E_{12} - E_1 - E_2 - \Delta E_c = E_{12} - E_1^* - E_2^*
+    \end{equation}
+
+Why does this matter? This correction will depend on the geometries of the reagents. When they are very far from each other, it will be very small: they do not influence each other. When they are very close, this effect will be small, by the same reasoning. It is the intermediate distances that have the highest BSSE. These are the distances at or near the transition state, which serves as the bottleneck for the reaction. If you don't account for the artificial enhancement near the transition state, you'll get an incorrect approximation of the activation energy, the energy difference between this transition state and the separate reactants limit. Only semi-empirical methods do not support a BSSE calculation because they do not make use of a set of bases in the first place. BSSE is always present and cannot be completely eliminated due to the use of finite basis sets, but it can be dealt with correctly if the counterbalancing method is included.
+
+\begin{table}[H]
+\centering
+\caption{Results without using empirical dispersion}
+\label{tab:eng_interaccion_sind}
+\begin{tabular}{ccc}
+\toprule
+\hline
+ & \multicolumn{2}{c}{Interaction energies kJ/mol} \\
+\hline
+Molecule & $M_i$ - 1 cyc & $M_i$ - 2 cyc \\
+\hline
+M1 & -6.673 & -1.453 \\
+\hline
+M2 & -10.032 & -11.366 \\
+\hline
+M3 & -7.730 & --- \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Interaction energies, using empirical scattering}
+\label{tab:eng_interaction_sind}
+\begin{tabular}{ccc}
+\toprule
+\hline
+ & \multicolumn{2}{c}{Interaction energies kJ/mol} \\
+\hline
+Molecule & $M_i$ - 1 cyc & $M_i$ - 2 cyc \\
+\hline
+M1 & -9.684 & -7.420 \\
+\hline
+M2 & -14.647 & -20.412 \\
+\hline
+M3 & -13.078 & --- \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the table \ref{tab:Fljos_con_dispersion} the values obtained when the empirical dispersion is included in the calculations are shown. We observe that the molecule $M_1$ is the one that continues to generate the largest $I_{(e)}$, although in this case the molecule $M_2$ is the one that generates the smallest fluxes in all cases.
+
+\end{multicols}
+
+\begin{table}[H]
+\centering
+\caption{Energy obtained after BSSE}
+\label{tab:E_dsse}
+\begin{tabular}{ccccc}
+\toprule
+\hline
+ & \multicolumn{2}{c}{Hartree} & \multicolumn{2}{c}{Kcal/mol} \\
+\hline
+ & Counterpoise corrected & \multirow{2}{*}{BSSE energy} & complexation energy & complexation energy \\
+  & energy & & (RAW) & (correct) \\
+\hline
+ & \multicolumn{4}{c}{$Ni(Cl)_2(ETY)_2$} \\
+\hline
+1 – ch & -2973.33 & 1.49$x10^{-3}$ & -6.99 & -6.05 \\
+\hline
+2 – ch & -3209.08 & 2.82$x10^{-3}$ & -14.87 & -13.09 \\
+\hline
+\hline
+ & \multicolumn{4}{c}{$Ni(Cl)_2(PPh_3)_2 cis$} \\
+\hline
+\hline
+1 – ch & -4736.58 & 1.47$x10^{-3}$ & -9.8 & -8.88 \\
+\hline
+2 – ch & -4972.35 & 2.79$x10^{-3}$ & -18.3 & -16.55 \\
+\hline
+\hline
+ & \multicolumn{4}{c}{$Ni(Cl)_2(PPh_3)_2 trans$} \\
+\hline
+\hline
+1 – ch & -4736.59 & 1.35$x10^{-3}$ & -8.29 & -7.45 \\
+\hline
+2 – ch & --- & --- & --- & --- \\
+\hline
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+
+\section{Conclusions}
+
+It has been possible to obtain the electric flux values for all the molecules, interacting with one and two electrons, in addition to observing high values in $I_{(e)}$. Doing these calculations with and without empirical spread does not make a significant difference. In addition, in all cases it is also possible to obtain the energy corrections by the counterweight method.
+
+{\bf{Next job}}
+
+\begin{itemize}
+    \item Complete the missing information in tables 8 and 5.
+        
+    \item Calculate $^1H$-NMR spectra for all molecules, isolated and with effect of solvent.
+    
+    \item Being able to compare with the calculated spectra if the chemical shift is greatly affected in the presence of my molecules.
+    
+    \item Carry out solubility tests in the laboratory for all the molecules.
+\end{itemize}
+
+\begin{thebibliography}{} 
+ \addcontentsline{toc}{chapter}{Bibliografía}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%CITAS DE LOS ANTECEDENTES %%%%%%%%%%%%%%%%%%%%%%  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
+	\bibitem{Thordason} P Thordason, Chem Soc. Rev. 2011, 40, 1035-1323.
+	
+		\bibitem{PaulingL} Pauling L. The diamagnetic anisotropy of aromatic molecules. J Chem Phys 1936, 4:673–677. %1
+
+    \bibitem{Queralt} Queralt, N., Taratiel, D., de Graaf, C., Caballol, R., Cimiraglia, R., \& Angeli, C. (2008). On the applicability of multireference second‐order perturbation theory to study weak magnetic coupling in molecular complexes. Journal of computational chemistry, 29(6), 994-1003.
+    
+      \bibitem{Roca_Sanjun} Roca‐Sanjuán, D., Aquilante, F., \& Lindh, R. (2012). Multiconfiguration second‐order perturbation theory approach to strong electron correlation in chemistry and photochemistry. Wiley Interdisciplinary Reviews: Computational Molecular Science, 2(4), 585-603.
+    
+    \bibitem{Rosas}	Jiménez Rosas. C.A.S (2022). Estudio topológico del flujo de corriente eléctrica en compuestos tipo $ML_4$ [Tesis de licenciatura, Universidad Nacional Atutónoma de México]. TESIUNAM.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% CITAS DEL MARCO TEÓRICO %%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% CITAS DE LA METODOLOGÍA %%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\bibitem{Gaussian16} Gaussian 16, Revision B.01, M. J. Frisch, G. W. Trucks, H. B. Schlegel, G. E. Scuseria, M. A. Robb, J. R. Cheeseman, G. Scalmani, V. Barone, G. A. Petersson, H. Nakatsuji, X. Li, M. Caricato, A. V. Marenich, J. Bloino, B. G. Janesko, R. Gomperts, B. Mennucci, H. P. Hratchian, J. V. Ortiz, A. F. Izmaylov, J. L. Sonnenberg, D. Williams-Young, F. Ding, F. Lipparini, F. Egidi, J. Goings, B. Peng, A. Petrone, T. Henderson, D. Ranasinghe, V. G. Zakrzewski, J. Gao, N. Rega, G. Zheng, W. Liang, M. Hada, M. Ehara, K. Toyota, R. Fukuda, J. Hasegawa, M. Ishida, T. Nakajima, Y. Honda, O. Kitao, H. Nakai, T. Vreven, K. Throssell, J. A. Montgomery, Jr., J. E. Peralta, F. Ogliaro, M. J. Bearpark, J. J. Heyd, E. N. Brothers, K. N. Kudin, V. N. Staroverov, T. A. Keith, R. Kobayashi, J. Normand, K. Raghavachari, A. P. Rendell, J. C. Burant, S. S. Iyengar, J. Tomasi, M. Cossi, J. M. Millam, M. Klene, C. Adamo, R. Cammi, J. W. Ochterski, R. L. Martin, K. Morokuma, O. Farkas, J. B. Foresman, and D. J. Fox, Gaussian, Inc., Wallingford CT, 2016. %46
+
+	\bibitem  {Zhao-M06} Y. Zhao \& D.G. Truhlar (2006). ``The M06 suite of density functionals for main group thermochemistry, thermochemical kinetics, noncovalent interactions, excited states, and transition elements: Two new functionals and systematic testing of four M06-class functionals and 12 other functionals". Theor Chem Acc. 120 (1–3): 215–241. %47
+	
+	\bibitem {Weigend} Weigend, F., \& Ahlrichs, R. (2005). Balanced basis sets of split valence, triple zeta valence and quadruple zeta valence quality for H to Rn: Design and assessment of accuracy. Physical Chemistry Chemical Physics, 7(18), 3297-3305. %48
+	
+	
+	\bibitem {AIMAll_ESTUDIO} AIMAll (Version 19.02.13), Todd A. Keith, TK Gristmill Software, Overland Park KS, USA, 2019 (aim.tkgristmill.com) %49
+	
+	\bibitem {ParaView} A. Henderson, ParaView Guide, A Parallel Visualization Application. Kitware Inc., 2007.%50
+	
+	\bibitem{Beader} Bader, R. F. (2002). Atoms in molecules. Encyclopedia of computational Chemistry, 1.
+	
+	    \bibitem{F_London} F. London, Z. Phys. 63, 245 (1930)
+    
+    \bibitem{Grimer_a} S. Grimme, J. Comput. Chem. 25, 1463 (2004).20A. 
+    
+    \bibitem{D_Becke} D. Becke and E. R. Johnson, J. Chem. Phys. 123, 154101 (2005). 21S. 
+    
+    \bibitem{Grimer_b} Grimme, J. Comput. Chem. 27, 1787 (2006).
+    
+        \bibitem{Boys} Boys, S. F., \& Bernardi, F. J. M. P. (1970). The calculation of small molecular interactions by the differences of separate total energies. Some procedures with reduced errors. Molecular Physics, 19(4), 553-566.
+    
+    \bibitem{Simon} Simon, S., Duran, M., \& Dannenberg, J. J. (1996). How does basis set superposition error change the potential surfaces for hydrogen‐bonded dimers?. The Journal of chemical physics, 105(24), 11024-11031. %Boys, Simon
+	
+\end{thebibliography}
+\end{multicols}
+
+\end{document}
+
