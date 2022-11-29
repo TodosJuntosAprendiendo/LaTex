@@ -1,0 +1,603 @@
+\documentclass[12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amssymb, amsbsy}
+\usepackage{mathrsfs} % para formato de letra
+\usepackage{ragged2e}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{url}
+\setbeamertemplate{caption}[numbered]
+
+\usetheme{Frankfurt}
+
+\author[Salvador Jiménez]{{\bf{Presenta: Jiménez Rosas Carlos Alberto Salvador}}}
+
+\institute[UNAM-IQ-FQ]{}
+
+\date{}
+\title[Átomo de hidrógeno]{Átomo de hidrógeno}
+
+\addtobeamertemplate{navigation symbols}{}{
+    \usebeamerfont{footline}
+    \usebeamercolor[fg]{footline}
+    \hspace{1em}
+    \bf{\large \insertframenumber %\hspace{1pt} de \inserttotalframenumber
+}}
+
+\begin{document}
+
+\begin{frame}[noframenumbering]
+\maketitle
+
+\begin{center}
+    \includegraphics[scale=0.1]{unam_posgrado.png}
+\end{center}
+\thispagestyle{empty}
+
+\end{frame}
+
+
+\begin{frame}{}
+
+\parbox{4.5cm}{
+\begin{minipage}[c]{5cm}
+\begin{figure}[H]
+\centering
+	\includegraphics[scale=0.6]{descarga.png}
+	\caption{Átomo de H en coordenadas esféricas}
+\end{figure}	
+\end{minipage}
+}\parbox{7cm}{ 
+\begin{minipage}[c]{7cm}
+   \begin{block}{El problema del átomo de H}
+    \justifying
+    \begin{itemize}
+        \item El átomo de H es un problema de dos cuerpos: un electrón y un núcleo
+        \item Podemos reducir el problema de los dos cuerpos al problema de un cuerpo del electrón con masa reducida que se mueve con respecto al núcleo fijo.
+        \item Tenemos un problema de una partícula que se mueve en un potencial simétrico en 3D. 
+    \end{itemize}
+\end{block}
+\end{minipage}
+}
+ 
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{La función de onda}
+        \justifying
+    El modelo cuántico que explica satisfactoriamente el átomo de hidrógeno, se obtiene aplicando la ecuación de Schrödinger a un problema de una partícula en tres dimensiones dentro de un campo electrostático.   
+    
+    \begin{equation}
+        -{\frac {\hslash ^{2}}{2\mu }}\nabla ^{2} \Psi (\mathbf {r} ) + V(\mathbf {r} ) \Psi (\mathbf {r} )\,=\ E \Psi (\mathbf {r} )
+    \end{equation}
+    
+     El potencial $(V(\mathbf {r} ))$ modela la interacción entre el protón y el electrón. El térmmino $\frac {\hslash ^{2}}{2\mu }\nabla ^{2}$ es la energía cinética. 
+
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{Coordenadas esféricas}  
+        \justifying
+     Sabemos que el laplaciano aplicado a una función tiene la forma:
+     \begin{equation}
+     \nabla^2 f = \frac{{\partial}^{2}f}{\partial x^{2}} + \frac{{\partial}^{2}f}{\partial y^{2}} + \frac{{\partial}^{2}f}{\partial z^{2}}
+     \label{eq:laplaciano}
+     \end{equation}
+     
+    Es conveniente obtener el operador $\nabla^2$ en coordenadas esféricas:
+    
+    \begin{equation}
+     x=r\sin(\theta)\cos(\phi), \ \ y=r\sin(\theta)\sin(\phi), \ \ z=r\cos(\theta)      
+    \end{equation}
+    
+     \begin{equation}
+     r=\sqrt{x^{2}+y^{2}+z^{2}},  \ \ \theta = \arccos \left( \frac{z}{r} \right),  \ \ \phi=\arctan\left(\frac{y}{x}\right)
+     \end{equation}   
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{Coordenadas esféricas}  
+        \justifying
+     Aplicando la regla de la cadena en la eq \ref{eq:laplaciano} tendríamos:
+     \begin{equation}
+     \frac{\partial f}{\partial x} = \frac{\partial f}{\partial r}\frac{\partial r}{\partial x} + \frac{\partial f}{\partial\theta} \frac{\partial\theta}{\partial x} + \frac{\partial f}{\partial\phi} \frac{\partial\phi}{\partial x}
+     \label{eq:parttial_x}
+     \end{equation}   
+     
+     \begin{equation}
+     \frac{\partial f}{\partial y} = \frac{\partial f}{\partial r}\frac{\partial r}{\partial y} + \frac{\partial f}{\partial\theta} \frac{\partial\theta}{\partial y} + \frac{\partial f}{\partial\phi} \frac{\partial\phi}{\partial y}
+     \label{eq:parttial_y}
+     \end{equation}   
+     
+     \begin{equation}
+     \frac{\partial f}{\partial z} = \frac{\partial f}{\partial r}\frac{\partial r}{\partial z} + \frac{\partial f}{\partial\theta} \frac{\partial\theta}{\partial z} + \frac{\partial f}{\partial\phi} \frac{\partial\phi}{\partial z}
+     \label{eq:parttial_z}
+     \end{equation} 
+     
+     El próximo paso es determinar las derivadas parciales de $r, \theta, \phi $
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{Derivadas parciales de: $r, \theta, \phi $}
+     \begin{equation}
+     \frac{\partial r}{\partial x} = \sin(\theta)\cos(\phi), \ \frac{ \partial\theta}{\partial x}=\frac{1}{r}\cos(\theta)\cos(\phi), \ \frac{ \partial\phi}{\partial x}=-\frac{1}{r}\frac{\sin(\phi)}{\sin(\theta)}
+     \label{eq:pt_rtf_x}
+     \end{equation} 
+     
+     \begin{equation}
+         \frac{\partial r}{\partial y}=\sin(\theta)\sin(\phi), \ \frac{ \partial\theta}{\partial y}=\frac{1}{r}\cos(\theta)\sin(\phi), \ \frac{\partial\phi}{\partial y}=\frac{1}{r}\frac{\cos(\phi)}{\sin(\theta)}
+        \label{eq:pt_rtf_y}
+     \end{equation}
+     
+     \begin{equation}
+         \frac{\partial r}{\partial z}=\cos(\theta), \ \frac{\partial \theta}{\partial z}=-\frac{1}{r}\sin(\theta), \ \frac{\partial\phi}{ \partial z}=0
+              \label{eq:pt_rtf_z}
+     \end{equation}
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{... Y continua}
+        \justifying
+    Sutituyendo los valores de eq \ref{eq:pt_rtf_x} en eq \ref{eq:parttial_x}:
+    
+    \begin{equation}
+    \frac{\partial f}{\partial x} = \sin(\theta)\cos(\phi)\frac{\partial f}{\partial r}+\frac{1}{r} \cos(\theta)\cos(\phi)\frac{\partial f}{\partial\theta}-\frac{1}{r}\frac{\sin( \phi)}{\sin(\theta)}\frac{\partial f}{\partial\phi} 
+    \label{eq:dif_f_x}
+    \end{equation}
+    
+    Asumiendo que f es una función diferenciable podemos sustituir f por $\frac{\partial f}{\partial x}$ en eq \ref{eq:parttial_x}, además de sustituir las demás derivadas parciales eq \ref{eq:pt_rtf_x} y obtenemos:
+    
+    \begin{equation}
+    \begin{split}
+    \frac{\partial^2 f}{\partial x^2} = \sin(\theta)\cos(\phi)\frac{\partial}{\partial r}\Big{[}\frac{ \partial f}{\partial x}\Big{]} + \frac{1}{r}\cos(\theta)\cos(\phi)\frac{\partial }{\partial\theta}\Big{[}\frac{\partial f}{\partial x}\Big{]}
+    \\
+    -\frac{1}{r}\frac{\sin(\phi)}{\sin(\theta)}\frac{\partial}{\partial\phi}\Big{[}\frac{\partial f} {\partial x}\Big{]}
+    \label{eq:dif2_f_x2}
+    \end{split}
+    \end{equation}
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{... Todavía no}
+        \justifying
+    Sutituyendo los valores de eq \ref{eq:dif_f_x} en eq \ref{eq:dif2_f_x2} en pro de eliminar derivadas parciales respecto a x obtenemos:
+    
+    \begin{equation}
+    \begin{split}
+    \frac{\partial^2 f}{\partial x^2} = \sin(\theta)\cos(\phi)\frac{\partial}{\partial r}\Big{[}\sin(\theta)\cos(\phi)\frac{\partial f}{\partial r}+\frac{1}{r}\cos(\theta)\cos( \phi)\frac{\partial f}{\partial\theta}
+    \\
+    -\frac{1}{r}\frac{\sin(\phi)}{\sin( \theta)}\frac{\partial f}{\partial\phi}\Big{]} + \frac{1}{r}\frac{\sin(\phi)}{\sin(\theta)}\frac{\partial}{\partial\phi}\Big{[}\sin(\theta)\cos(\phi)\frac{\partial f}{\partial r} 
+    \\
+    + \frac{ 1}{r}\cos(\theta)\cos(\phi)\frac{\partial f}{\partial\theta} - \frac{1}{r}\frac{\sin(\phi)}{\sin(\theta)}\frac{\partial f}{\partial\phi}\Big{]}
+    \end{split}
+    \end{equation}
+    
+    El objetivo es obtener el mismo resultado para $\frac{\partial^2 f}{\partial y^2}$ y $\frac{\partial^2 f}{\partial z^2}$ y poder sustituir en eq \ref{eq:laplaciano} el laplaciano
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+    \begin{block}{Mucha álgebra después...}
+        \justifying
+    Finalmente se seguiran los pasos de las ultimas 4 láminas y con todas las simplificaciones plausibles obtendremos:
+    
+    \begin{equation}
+    \nabla^2 f = \frac{{\partial}^{2}f}{\partial r^{2}}+\frac{1}{r^{2}}\frac{{ \partial}^{2}f}{\partial{\theta}^{2}}+\frac{1}{r^{2}}\frac{1}{{\sin}^{2}(\theta)}\frac{{\partial}^{2}f}{\partial{\phi}^{2}}+\frac{2}{r}\frac{\partial f}{\partial r}+\frac{1}{r^{2}}\frac{\cos(\theta)}{\sin(\theta)}\frac{\partial f }{\partial\theta}
+    \end{equation}
+    
+    La justificación para utilizar este laplaciano, aunque obviamente tiene una estructura más complicada, es que es la forma más práctica de realizar la separación de variables.
+    \end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{La ecuación de Schrödinger}
+        \justifying
+Preparado el $\nabla^2$ en coordenadas esféricas, podemos escribir la ecuación de Schrödinger:
+
+\begin{equation}
+\begin{split}
+    \frac{1}{r^{2}}{\frac {\partial }{\partial r}}\left(r^{2}{\frac {\partial \Psi (r,\theta ,\phi )}{\partial r}}\right) + {\frac {1}{r^{2}\sin \theta }}{\frac {\partial }{\partial \theta }}\left(\sin \theta {\frac {\partial \Psi (r,\theta ,\phi )}{\partial \theta }}\right) +
+    \\ 
+    {\frac {1}{r^{2}\sin ^{2}\theta }}{\frac {\partial ^{2}\Psi (r,\theta ,\phi )}{\partial \phi ^{2}}} - {\frac {2\mu }{\hslash ^{2}}}(V(r)-E)\Psi (r,\theta ,\phi ) \ = \ 0 
+    \label{eq:1}
+\end{split}
+\end{equation}
+
+Esta es una ecuación diferencial de derivadas parciales. Usando la técnica de separación de variables la convertiremos en tres ecuaciones diferenciales ordinarias:
+
+\begin{equation}
+    \Psi (r,\theta ,\phi ) = R(r)Y(\theta ,\phi )
+    \label{eq:separa}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Aún hay más}
+        \justifying
+De modo que la eq \ref{eq:1} después de aplicar \ref{eq:separa} e igualar a cero queda:
+
+\begin{equation}
+\begin{split}
+\frac{1}{R(r)} \frac{1}{r^{2}} \frac{\partial }{\partial r} \left(r^{2}{\frac {\partial R(r)}{\partial r}}\right)+{\frac {1}{Y(\theta ,\phi )}}{\frac {1}{r^{2}\sin \theta }}{\frac {\partial }{\partial \theta }}\left(\sin \theta {\frac {\partial Y(\theta ,\phi )}{\partial \theta }}\right)
+\\
++ {\frac {1}{Y(\theta ,\phi )}}{\frac {1}{r^{2}\sin ^{2}\theta }}{\frac {\partial ^{2}Y(\theta ,\phi )}{\partial \phi ^{2}}} - {\frac {2\mu }{\hslash ^{2}}}(V(r)-E) = 0
+\label{eq:yyyyy}
+\end{split}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}
+        \justifying
+Reordenando términos de eq \ref{eq:yyyyy} y multiplicando por $r^{2}$ se puede escribir como:
+
+\begin{equation}
+    \begin{split}
+    \frac {1}{R(r)} \frac{\partial }{\partial r} \left(r^{2}{\frac {\partial R(r)}{\partial r}}\right)\,-\,{\frac {2\mu r^{2}}{\hslash ^{2}}}(V(r)-E) =
+    \\
+    -{\frac {1}{Y(\theta ,\phi )}}\left[{\frac {1}{\sin \theta }}{\frac {\partial }{\partial \theta }}\left(\sin \theta {\frac {\partial Y(\theta ,\phi )}{\partial \theta }}\right)     +{\frac {1}{\sin ^{2}\theta }}{\frac {\partial ^{2}Y(\theta ,\phi )}{\partial \phi^{2}}}\right]
+    \end{split}
+\end{equation}
+
+Nótese que la parte izquierda de esta ecuación no depende de las variables de la parte derecha y viceversa, esto quiere decir que la única forma de satisfacer la igualdad es que ambas partes sean igual a una constante: $l(l+1)$de modo que se obtienen dos ecuaciones.
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Ecuación angular}
+        \justifying
+La primera es conocida en física como los armónicos esféricos y es
+
+\begin{equation}
+\frac{1}{\sin \theta } \frac {\partial }{\partial \theta } \left(\sin \theta {\frac {\partial Y(\theta ,\phi )}{\partial \theta }}\right)+{\frac {1}{\sin ^{2}\theta }}{\frac {\partial ^{2}Y(\theta ,\phi )}{\partial \phi ^{2}}}+l(l+1)Y(\theta ,\phi ) = 0
+\label{eq:esfericos}
+\end{equation}
+
+La eq \ref{eq:esfericos} es la ecuación de Laplace en coordenadas esféricas, la solución a esta ecuación es:
+
+\begin{equation}
+Y(\theta ,\phi ) = A_{l}^{m} e^{im \phi} P_{l}^{m}(\cos \theta )
+\end{equation}
+
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+        \justifying
+con
+
+\begin{equation}
+A_{l}^{m} = \sqrt{\frac {(2l+1)(l-m)!}{4\pi (l+m)!}}    
+\end{equation}
+
+Y $P_{l}^{m}(\cos \theta )$ los polinomios asociados de Legendre. La forma de construir los polinomios es:
+
+\begin{equation}
+P_{l}^{m}(x)\,=\,(-1)^{m}{\frac{(1-x^{2})^{|m|/2}}{2^{l}l!}}{\frac{{\text{d}}^{|m|+l}}{{\text{d}}x^{|m|+l}}}(x^{2}-1)^{l}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+        \justifying
+La razón por la que la constante de separación se eligió como $l(l+1)$ fue justamente para que la solución fueran estos polinomios, la otra constante m aparece al aplicar el método de separación a la ecuación de los armónicos esféricos
+
+\vspace{0.5cm}
+
+La constante m además, solo puede ser un entero, y esto se debe a que $e^{im \phi}$ debe ser monovaluada, por otro lado $l$ también debe ser un entero, y positivo, para que la solución a la ecuación sea aceptable, se puede además estabelcer una relación entre las constantes:%, puesto que si $|m| >l$ el polinomio correspondiente a las constantes dadas se anula y por consiguiente toda la función de onda, en concreto:
+
+\begin{equation}
+l=|m|,\,|m|+1,\,|m|+2\ldots
+\end{equation}
+
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Ecuación radial}
+        \justifying
+La otra ecuación es de suma importancia, ya que su solución depende de la forma específica del potencial:
+
+\begin{equation}
+\frac {1}{r^{2}}\frac{\partial }{\partial r} \left(r^{2}{\frac {\partial R(r)}{\partial r}}\right)  - {\frac {2\mu }{\hslash ^{2}}}\left({\frac {Q}{r}}-E\right)R(r) = {\frac {l(l+1)}{r^{2}}}R(r)
+\end{equation}
+
+donde se ha sustituido $V(r)$  por el potencial electrostático mediante el cual interaccionan el protón y el electrón:
+
+\begin{equation}
+Q = -\frac{e^{2}}{4\pi \varepsilon _{0}}    
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+        \justifying
+Esta ecuación es de una dificultad considerable, se puede resolver si se consideran las soluciones asintóticas y luego se ajusta una solución exacta, haciendo el cambio:
+
+\begin{equation}
+u(r) = rR(r)
+\end{equation}
+
+se tiene que la ecuación se reescribe como:
+
+\begin{equation}
+\frac {{\text{d}}^{2}}{{\text{d}}r^{2}} u(r)+{\frac {2\mu }{\hslash ^{2}}}\left(-{\frac {Q}{r}}-{\frac {\hslash ^{2}l(l+1)}{2\mu r^{2}}}+E\right)u(r) = 0
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+        \justifying
+Si ahora se hace un cambio de variable
+
+\begin{equation}
+E = -{\frac {k^{2}\hslash ^{2}}{2\mu }}\qquad \xi = -{\frac {2\mu Q}{\hslash ^{2}k}}
+\end{equation}
+
+la ecuación queda:
+
+\begin{equation}
+\frac {1}{k^{2}} \frac {{\text{d}}^{2}}{{\text{d}}r^{2}} u(r)+\left({\frac {\xi }{kr}}-{\frac {l(l+1)}{k^{2}r^{2}}}-1\right)u(r)= 0
+\end{equation}
+
+ahora otro cambio:
+
+\begin{equation}
+kr = x \qquad \Rightarrow \qquad \frac {{\text{d}}^{2}}{{\text{d}}r^{2}} =k^{2}{\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}}
+\end{equation}
+
+y ahora la ecuación es
+
+\begin{equation}
+\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}u(x)+\left({\frac {\xi }{x}}-{\frac {l(l+1)}{x^{2}}}-1\right)u(x)= 0
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Evaluando asíntotas}
+        \justifying
+Si se considera que $x \rightarrow \infty$ la ecuación queda:
+
+\begin{equation}
+\frac {{\text{d}}^{2}}{{\text{d}}x^{2}} u(x)-u(x) = 0
+\end{equation}
+
+la solución físicamente aceptable bajo esta condición es
+
+\begin{equation}
+u(x) \approx e^{-x}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Evaluando asíntotas}
+        \justifying
+Si se considera que $x\rightarrow 0$  el término que depende de $1/x^{2}$  crece mucho más rápido que los demás, y se obtiene:
+
+\begin{equation}
+\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}u(x)-{\frac {l(l+1)}{x^{2}}}u(x) = 0
+\end{equation}
+
+la solución acpetable en este caso es
+
+\begin{equation}
+u(x) \approx x^{1+l}
+\end{equation}
+
+\end{block}
+\end{frame}
+
+
+\begin{frame}{}
+\begin{block}{}
+    \justifying
+Si ahora se supone una función S(x) tal que: 
+
+\begin{equation}
+u(r)=e^{-x} x^{1+l} S(x)
+\end{equation}
+
+entonces se tendrá que satisfacer la siguiente ecuación:
+
+\begin{equation}
+\begin{split}
+x{\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}}S(x)+(1-2x+(2l+1)){\frac{\text{d}}{{\text{d}}x}}S(x) + 
+\\
+2\left(\left[{\frac {\xi }{2}}+l\right]-(2l+1)\right)S(x)
+\end{split}
+\label{eq:s_x}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+    \justifying
+    
+Si ahora hacemos:
+
+\begin{itemize}
+    \item $2l+1=\gamma$  
+    \item $\frac{\xi }{2} = n$ con $n \in \mathbb {Z}$  
+    \item $\beta =n+l$ 
+\end{itemize}
+
+Sustituyendo en eq \ref{eq:s_x} se tendría:
+
+\begin{equation}
+x{\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}}S(x)+(1-2x+\gamma ){\frac{\text{d}}{{\text{d}}x}}S(x)+2 \left(\beta -\gamma \right)S(x)
+\label{eq:ya_casi}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Ecuación de Lagerre}
+    \justifying
+haciendo ahora $ 2x = \rho $ la ecuación \ref{eq:ya_casi} se escribe:
+
+\begin{equation}
+\rho {\frac {{\text{d}}^{2}}{{\text{d}}x^{2}}}S(\rho )+(1-\rho +\gamma ){\frac{\text{d}}{{\text{d}}x}}S(\rho )+\left(\beta -\gamma \right)S(\rho )
+\label{eq:Laguere}
+\end{equation}
+
+Esta es la ecuación de Lagerre y veremos su solución a continuación.
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Solución a la ecuación de Lagerre}
+    \justifying
+\begin{equation}
+ S(\rho ) = L_{n+l}^{2l+1}(\rho )
+\end{equation}
+
+donde los $L_{n+l}^{2l+1}(\rho)$  son los polinomios asociados de Laguerre y que vienen definidos por:
+
+\begin{equation}
+L_{n+l}^{2l+1}(\rho ) = {\frac {e^{\rho }\rho ^{-(2l+1)}}{(n+l)!}}{\frac {{\text{d}}^{n+l}}{{\text{d}}\rho ^{n+l}}}(e^{-\rho }x^{n+3l+1})
+\label{eq:pol_lag_ro}
+\end{equation}
+
+La solución a la ecuación radial se puede entonces escribir
+
+\begin{equation}
+R_{nl}(r ) = A_{nl} e^{-\rho /2} \rho ^{l} L_{n+l}^{2l+1}(\rho )
+\label{eq:pol_lag_ro_2}
+\end{equation}
+
+donde el termino de normalización es:
+
+\begin{equation}
+A_{nl} = \left({\frac {2}{na_{0}}}\right)^{3/2}\left[{\frac {(n-l-1)!}{2n[(n+l)!]}}\right]^{1/2}
+\end{equation}
+\end{block}    
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{}
+
+En esta solución eq \ref{eq:pol_lag_ro_2} de la ecuación de onda radial aparece de modo natural el radio de Bohr:
+
+\begin{equation}
+a_0 = \frac{h^2}{4 \pi^2 me^2} = 0.529 \r{A}
+\end{equation}
+
+Obsérvese también que en la solución aparecen dos números enteros, n y l. Este es el origen matemático de dos de los tres números cuánticos requeridos para especificar el estado de un electrón en un átomo hidrogenoide (n, l, m).
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Los niveles energéticos del hidrógeno}
+    \justifying
+En la solución de la parte radial, apareció un nuevo entero positivo, de hecho mayor estrictamente que cero, y es n, en la ecuación en la que apareció que se estableció:
+
+\begin{equation}
+ n = \frac{\xi }{2}
+\end{equation}
+
+Se puede verificar que:
+
+\begin{equation}
+    \xi ^{2} = -{\frac {2\mu Q^{2}}{\hslash ^{2}E}} = 4n^{2}
+\end{equation}
+
+de donde:
+
+\begin{equation}
+E_{n} = -{\frac {\mu }{2\hslash ^{2}n^{2}}}\left({\frac {e^{2}}{4\pi \varepsilon _{0}}}\right)^{2}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Ecuación resuelta}
+    \justifying
+Finalmente la solución analítica a $\Psi$ para el átomo de hidrógeno se puede escribir como:
+
+\begin{equation}
+\begin{split}
+   \Psi(r, \theta, \phi) = R_{nl}(r ) Y(\theta ,\phi ) =
+   \\
+A_{nl} e^{-\rho /2} \rho ^{l} L_{n+l}^{2l+1}(\rho ) A_{l}^{m} e^{im \phi} P_{l}^{m}(\cos \theta ) =
+ \\
+ \left({\frac {2}{na_{0}}}\right)^{3/2}\left[{\frac {(n-l-1)!}{2n[(n+l)!]}}\right]^{1/2} e^{-x} (2x)^{l}\frac {e^{2x}(2x)^{-(2l+1)}}{(n+l)!}
+ \\
+ {\frac {{\text{d}}^{n+l}}{{\text{d}}x^{n+l}}}(e^{-2x }x^{n+3l+1}) \sqrt{\frac {(2l+1)(l-m)!}{4\pi (l+m)!}}  e^{im \phi} (-1)^{m}{\frac{(1-x^{2})^{|m|/2}}{2^{l}l!}}
+ \\
+ {\frac{{\text{d}}^{|m|+l}}{{\text{d}}x^{|m|+l}}}(x^{2}-1)^{l}
+\end{split}
+\end{equation}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Los números cuánticos}
+    \justifying
+Estas condiciones de cuantización surgen de las restricciones que imponen las condiciones de contorno al movimiento electrónico dentro del átomo.
+
+\begin{enumerate}
+    \item n define el nivel de energía total, n = 1, 2, 3 $\cdots$
+    
+    \vspace{0.5cm}
+    
+    \item l, asociado al momento angular total, toma valores 0, 1, 2,... hasta n-1. define la forma del orbital y el momento angular del electrón $\vec{L}$, cuyo módulo $\mid{\vec {L}}\mid$ viene dado por: $|L|=\hbar{\sqrt{l(l+1)}}$
+
+    \vspace{0.5cm}
+    
+    \item $m_{l}$  toma valores $0, \pm 1, \pm 2, ... \pm l$ define la orientación del orbital atómico frente a un campo magnético externo. Para la proyección $L_{z}$ del momento angular total sobre el eje z del campo externo:  $L_{z}=\hbar m_{l}$
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{El espín}
+    \justifying
+Es menester incluir un cuarto número cuántico $m_{s}$ para determinar completamente el estado de un electrón. El momento angular de espín $\vec{s}$, define la existencia de 2 estados electrónicos diferentes a través del número cuántico $m_{s}$ = +1/2 o -1/2.
+
+\begin{equation}
+\mid {\vec{s}}\mid =\hbar {\sqrt {s(s+1)}}
+\end{equation}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Referencias}
+\begin{thebibliography}{10}
+	
+	\beamertemplatearticlebibitems
+	
+	\bibitem{Levine} Levine, I. N. (2001). Química cuántica. Pearson educación.
+	
+	\beamertemplatebookbibitems
+	\bibitem{Levine} Levine, I. N. (2001). Química cuántica. Pearson educación.
+	
+	\bibitem{McQ}
+	McQuarrie, D. A. (2008). Quantum chemistry. University Science Books.
+	
+	\bibitem{Szabo}
+	Szabo, A., \& Ostlund, N. S. (2012). Modern quantum chemistry: introduction to advanced electronic structure theory. Courier Corporation.
+	
+	%https://es-academic.com/dic.nsf/eswiki/1025858
+	
+	\beamertemplateonlinebibitems
+	
+	\bibitem{Levine} Levine, I. N. (2001). Química cuántica. Pearson educación.
+
+\end{thebibliography}
+\end{frame}
+\end{document}
